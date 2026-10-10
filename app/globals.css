@@ -252,9 +252,9 @@ p{text-wrap:pretty}
 .filters-row{margin:var(--s3) 0 var(--s5)}
 
 /* one grid for every project list: fixed 4:5 tiles, name and type underneath */
-.gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--s4) var(--s3)}
+.gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--s2) 4px}
 .g{display:block;min-width:0}
-.ph{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;border-radius:24px;background:var(--h1)}
+.ph{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;border-radius:4px;background:var(--h1)}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .g:nth-child(8n+2) .ph{background:var(--h2)}
 .g:nth-child(8n+3) .ph{background:var(--h3)}
@@ -263,7 +263,7 @@ p{text-wrap:pretty}
 .g:nth-child(8n+6) .ph{background:var(--h6)}
 .g:nth-child(8n+7) .ph{background:var(--h7)}
 .g:nth-child(8n+8) .ph{background:var(--h8)}
-.g-cap{display:block;margin-top:12px;font-size:var(--fs-small);font-weight:500;line-height:1.3}
+.g-cap{display:block;margin-top:8px;font-size:var(--fs-small);font-weight:500;line-height:1.3}
 .g-cap span{display:block;font-weight:400;color:var(--t3)}
 @media(hover:hover){.g:hover .ph{filter:brightness(.96)}}
 @media(max-width:1100px){.gallery{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -362,7 +362,10 @@ p{text-wrap:pretty}
 /* Desktop: the whole form fits the window, no scrolling. Spacing and field heights follow the window
    height; phones keep the roomy stacked layout. */
 @media(min-width:1001px){
-  .inq{padding-top:calc(var(--nav-h) + clamp(12px,2.4vh,40px));padding-bottom:clamp(12px,2.4vh,40px)}
+  /* the title and the form share one middle line, and the pair sits in the middle of the window below the navbar */
+  #view-inquire{min-height:100%;display:flex}
+  .inq{flex:1;display:flex;align-items:center;padding-top:calc(var(--nav-h) - 27px + clamp(12px,2.4vh,40px));padding-bottom:clamp(12px,2.4vh,40px)}
+  .inq-grid{width:100%;align-items:center}
   #inqForm{gap:clamp(10px,2vh,32px)}
   .f label,.f .legend{margin-bottom:clamp(4px,.8vh,8px)}
   .f input[type="text"]{min-height:clamp(42px,5.4vh,52px)}
