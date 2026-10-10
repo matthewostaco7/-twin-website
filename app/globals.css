@@ -2686,3 +2686,8 @@ html .acc,html .acc + .acc{border-radius:0 !important}
   html #view-home #services .sv h3{font-size:24px !important;line-height:1.15 !important;margin-bottom:6px !important}
   html #view-home #services .sv p{font-size:17px !important;line-height:1.4 !important}
 }
+
+/* home: more room between the service cards' text and the scroll dots */
+@media(max-width:900px){
+  html #view-home #services .svc-dots{margin-top:40px !important}
+}
