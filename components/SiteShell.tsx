@@ -167,23 +167,31 @@ export default function SiteShell({ children }: { children: ReactNode }) {
     return () => { m.removeEventListener("wheel", onWheel); removeEventListener("keydown", onKey); };
   }, [v.isHome]);
 
-  // desktop: on service and contact pages the navbar slides away when scrolling down and returns on scroll up
+  // On service and contact pages the navbar slides away when scrolling down and returns on scroll up.
+  // Listens (capture) to whichever element scrolls, so it works however the page is laid out.
   const autoHide = v.isSvc || v.isInq;
   useEffect(() => {
-    const main = mainRef.current;
     const app = document.querySelector(".app");
-    if (!main || !app || !autoHide) return;
-    let last = main.scrollTop, hidden = false;
+    if (!app || !autoHide) return;
+    const pos = (t: EventTarget | null) => {
+      const el = t instanceof Element ? t : document.scrollingElement;
+      return el === document.documentElement || el === document.body || t === document ? window.scrollY : (el as Element).scrollTop;
+    };
+    let last = 0, hidden = false;
     const set = (h: boolean) => { if (h !== hidden) { hidden = h; app.classList.toggle("nav-hidden", h); } };
-    const onScroll = () => {
-      const y = main.scrollTop, d = y - last;
+    const onScroll = (e: Event) => {
+      const t = e.target as Element | Document;
+      // ignore inner scrollers (carousels, the contents list)
+      if (t instanceof Element && t !== mainRef.current) return;
+      const y = pos(t), d = y - last;
       if (y < 24) set(false);
       else if (d > 6) set(true);
       else if (d < -6) set(false);
       if (Math.abs(d) > 6 || y < 24) last = y;
     };
-    main.addEventListener("scroll", onScroll, { passive: true });
-    return () => { main.removeEventListener("scroll", onScroll); app.classList.remove("nav-hidden"); };
+    last = pos(mainRef.current);
+    document.addEventListener("scroll", onScroll, { capture: true, passive: true });
+    return () => { document.removeEventListener("scroll", onScroll, true); app.classList.remove("nav-hidden"); };
   }, [autoHide, pathname]);
 
   // Escape closes the current page
