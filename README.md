@@ -63,7 +63,7 @@ If `projects` is empty, the gallery shows placeholder tiles.
 - **Grid:** content sits in a 12-column grid inside a 1200px column (`.wrap`), with 24px gutters. Every page starts at the same left edge.
 - **Spacing:** multiples of 8 only (`--s1` to `--s7`). `--top` is the space above a page's first line.
 - **Type:** five sizes. `h1` page title, `h2` section, `h3` subsection or card, `.lead` for the intro, body for everything else. Mono is for small labels only. Headings are weight 500, text 400.
-- **State:** the current page, tab and chapter is the orange pill. The one exception is the Work filter bar (`components/WorkFilters`): a light track with a dark selected pill, so it never competes with the orange navigation. Hover only changes colour.
+- **State:** the current page, tab and chapter is the orange pill. The one exception is the Work filter bar (`components/WorkFilters`): an AIR 1 track with a raised AIR 2 selected pill, so it stays quiet next to the orange navigation. Hover only changes colour.
 - **Colour and fonts:** brand colours and font families are tokens on `:root`. The site is light only.
 
 ## Contact form

@@ -14,6 +14,7 @@
   --t2:rgba(7,19,31,.68); --t3:rgba(7,19,31,.58); --line:rgba(7,19,31,.12);
   --h1:#D9E4F7; --h2:#E7DFF7; --h3:#FBE4CF; --h4:#D6EFE2; --h5:#F8DDE5; --h6:#D3EDF4; --h7:#F6EECB; --h8:#E3E8F0;
   /* surfaces that were already in use, named once */
+  --air-2:#F7F9FB;            /* AIR 2: the light neutral that pairs with AIR 1 */
   --on-signal:#07131F; --frame:#F2F2F2;
   --tint:#FFF3E3; --tint-hover:#FFEBD3; --tint-card:#FFF6EA;
   --field:#F6F7F9; --ghost:rgba(7,19,31,.07); --ghost-hover:rgba(7,19,31,.12);

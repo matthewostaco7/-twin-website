@@ -1,11 +1,11 @@
-/* Outer track */
+/* Outer track: AIR 1 */
 .filterContainer {
   display: inline-flex;
   align-items: center;
   max-width: 100%;
   padding: 4px;
   gap: 4px;
-  background-color: #f3f4f6;
+  background-color: var(--air);
   border-radius: 9999px;
 }
 
@@ -16,30 +16,29 @@
   border: none;
   border-radius: 9999px;
   background: transparent;
-  color: #4b5563;
+  color: var(--t2);
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.5;
   white-space: nowrap;
   cursor: pointer;
-  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 .filterPill:hover {
-  color: #111827;
+  color: var(--fg);
 }
 
 .filterPill:focus-visible {
-  outline: 2px solid #111827;
+  outline: 2px solid var(--fg);
   outline-offset: 2px;
 }
 
-/* Selected: dark neutral, so it never competes with the orange tab bar */
+/* Selected: AIR 2, with full-strength text (flat, no shadow) */
 .filterPill.active {
-  background-color: #111827;
-  color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: var(--air-2);
+  color: var(--fg);
 }
 
 /* Phones: the five pills share the full width instead of scrolling */
