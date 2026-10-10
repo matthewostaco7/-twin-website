@@ -364,20 +364,22 @@ p{text-wrap:pretty}
 /* Desktop: the whole form fits the window, no scrolling. Spacing and field heights follow the window
    height; phones keep the roomy stacked layout. */
 @media(min-width:1001px){
-  /* the title and the form share one middle line, and the pair sits in the middle of the window below the navbar */
+  /* the title is level with the Name row (label + field), and the pair sits in the middle of the window below the navbar */
   #view-inquire{min-height:100%;display:flex}
-  .inq{flex:1;display:flex;align-items:center;padding-top:calc(var(--nav-h) - 27px + clamp(12px,2.4vh,40px));padding-bottom:clamp(12px,2.4vh,40px)}
-  .inq-grid{width:100%;align-items:center}
+  .inq{--lab:calc(20px + clamp(4px,.8vh,8px));--fh:clamp(42px,5.4vh,52px);flex:1;display:flex;align-items:center;padding-top:calc(var(--nav-h) - 27px + clamp(12px,2.4vh,40px));padding-bottom:clamp(12px,2.4vh,40px)}
+  .inq-grid{width:100%;align-items:start}
+  .inq-head h1{margin-top:calc((var(--lab) + var(--fh) - var(--fs-h1) * var(--lh-h1)) / 2)}
   #inqForm{gap:clamp(10px,2vh,32px)}
   .f label,.f .legend{margin-bottom:clamp(4px,.8vh,8px)}
-  .f input[type="text"]{min-height:clamp(42px,5.4vh,52px)}
+  .f input[type="text"]{min-height:var(--fh)}
   .f textarea{min-height:clamp(56px,9vh,128px);padding-block:var(--s1)}
   .chip-r span{min-height:clamp(34px,4.4vh,44px)}
   #inqForm .btn{min-height:clamp(44px,5.6vh,56px)}
 }
 @media(min-width:1001px) and (max-height:760px){
+  .inq{--fh:38px}
   #inqForm{gap:10px}
-  .f input[type="text"]{min-height:38px}
+  .f input[type="text"]{min-height:var(--fh)}
   .chip-r span{min-height:32px}
   #inqForm .btn{min-height:40px}
 }
