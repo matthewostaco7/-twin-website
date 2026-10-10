@@ -88,25 +88,27 @@ export default function InquiryForm() {
 
           <div className="inq-main">
             <form id="inqForm" noValidate onSubmit={submit} hidden={!!sent}>
-              <div className="f">
-                <label htmlFor="iName">Name</label>
-                <input id="iName" ref={refs.name} name="name" type="text" enterKeyHint="next" autoComplete="name" autoCapitalize="words" required
-                  aria-invalid={err.name} aria-describedby={err.name ? "eName" : undefined} value={f.name} onChange={(e) => set("name")(e.target.value)} />
-                <p className="ferr" id="eName" hidden={!err.name}>Required</p>
-              </div>
-              <div className="f">
-                <label htmlFor="iContact">Email</label>
-                <input id="iContact" ref={refs.contact} name="contact" type="text" enterKeyHint="next" inputMode="email" autoComplete="email" autoCapitalize="off" spellCheck={false} required
-                  aria-invalid={err.contact} aria-describedby={err.contact ? "eContact" : undefined} value={f.contact} onChange={(e) => set("contact")(e.target.value)} />
-                <p className="ferr" id="eContact" hidden={!err.contact}>Required</p>
+              <div className="f-row">
+                <div className="f">
+                  <label htmlFor="iName">Name</label>
+                  <input id="iName" ref={refs.name} name="name" type="text" enterKeyHint="next" autoComplete="name" autoCapitalize="words" required
+                    aria-invalid={err.name} aria-describedby={err.name ? "eName" : undefined} value={f.name} onChange={(e) => set("name")(e.target.value)} />
+                  <p className="ferr" id="eName" hidden={!err.name}>Required</p>
+                </div>
+                <div className="f">
+                  <label htmlFor="iContact">Email</label>
+                  <input id="iContact" ref={refs.contact} name="contact" type="text" enterKeyHint="next" inputMode="email" autoComplete="email" autoCapitalize="off" spellCheck={false} required
+                    aria-invalid={err.contact} aria-describedby={err.contact ? "eContact" : undefined} value={f.contact} onChange={(e) => set("contact")(e.target.value)} />
+                  <p className="ferr" id="eContact" hidden={!err.contact}>Required</p>
+                </div>
               </div>
               <div className="f">
                 <label htmlFor="iCompany">Company</label>
                 <input id="iCompany" ref={refs.company} name="company" type="text" enterKeyHint="next" autoComplete="organization" autoCapitalize="words"
                   value={f.company} onChange={(e) => set("company")(e.target.value)} />
               </div>
-              <fieldset className="f" id="needSet">
-                <legend>What do you need? <span className="hint">Pick one or more</span></legend>
+              <div className="f" id="needSet" role="group" aria-labelledby="needLabel">
+                <span className="legend" id="needLabel">What do you need? <span className="hint">Pick one or more</span></span>
                 <div className="opts">
                   {NEED_OPTIONS.map((o, i) => (
                     <label key={o} className="chip-r">
@@ -115,8 +117,8 @@ export default function InquiryForm() {
                     </label>
                   ))}
                 </div>
-                <p className="ferr" hidden={!err.need}>Pick one</p>
-              </fieldset>
+                <p className="ferr" id="eNeed" hidden={!err.need}>Pick one</p>
+              </div>
               <div className="f">
                 <label htmlFor="iProj">Tell us about the project <span className="hint">Optional</span></label>
                 <textarea id="iProj" ref={refs.project} name="project" rows={5} placeholder="What are you trying to build, change, or become?"

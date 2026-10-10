@@ -328,20 +328,22 @@ p{text-wrap:pretty}
 
 /* 9 · CONTACT ------------------------------------------------------------ */
 .inq{padding-top:var(--top);padding-bottom:var(--space-section)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
 .inq-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gutter);row-gap:var(--s5)}
 .inq-head{grid-column:1/6}
 .inq-head h1{outline:none}
 .inq-main{grid-column:7/13;max-width:600px}
 #inqForm{display:flex;flex-direction:column;gap:var(--s5)}
 .f{min-width:0;border:0}
-.f label,.f legend{display:block;margin-bottom:var(--s1);padding:0;font-size:var(--fs-small);font-weight:500;line-height:20px;color:var(--t2)}
+.f label,.f .legend{display:block;margin-bottom:var(--s1);padding:0;font-size:var(--fs-small);font-weight:500;line-height:20px;color:var(--t2)}
 .hint{margin-left:var(--s1);font-family:var(--mono);font-size:var(--fs-mono);font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)}
 .f input[type="text"],.f textarea{width:100%;min-height:56px;padding:0 18px;border:1.5px solid var(--edge);border-radius:var(--r-field);background:var(--field);color:var(--signal);font-family:var(--mono);font-size:var(--fs-small);letter-spacing:.01em;caret-color:var(--signal);outline:none;transition:background .2s,border-color .2s,box-shadow .2s}
 .f textarea{min-height:144px;padding:var(--s2) 18px;line-height:1.5;resize:vertical}
 .f ::placeholder{color:var(--t3);opacity:1}
 .f input[type="text"]:focus,.f textarea:focus{background:var(--bg);border-color:var(--signal)}
 .f [aria-invalid="true"]{border-color:var(--fg)}
-.ferr{margin-top:var(--s1);font-family:var(--mono);font-size:var(--fs-mono);letter-spacing:.08em;text-transform:uppercase}
+.f{position:relative}
+.ferr{position:absolute;top:0;right:0;margin:0;font-family:var(--mono);font-size:var(--fs-mono);line-height:20px;letter-spacing:.08em;text-transform:uppercase}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:var(--s1)}
 .chip-r{position:relative;display:flex;margin:0}
 .chip-r:last-child{grid-column:1/-1}
@@ -355,6 +357,21 @@ p{text-wrap:pretty}
 .done-actions{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s4)}
 .done-s{margin-top:var(--s4);font-size:var(--fs-small);color:var(--t2)}
 .done-s a{text-decoration:underline;text-underline-offset:3px;color:var(--fg)}
+/* Desktop: the whole form fits the window, no scrolling. Spacing and field heights follow the window
+   height; phones keep the roomy stacked layout. */
+@media(min-width:1001px){
+  .inq{padding-top:calc(var(--nav-h) + clamp(16px,3vh,40px));padding-bottom:clamp(16px,3vh,40px)}
+  #inqForm{gap:clamp(12px,2.4vh,32px)}
+  .f label,.f .legend{margin-bottom:clamp(4px,.8vh,8px)}
+  .f input[type="text"]{min-height:clamp(42px,5.4vh,52px)}
+  .f textarea{min-height:clamp(64px,11vh,128px);padding-block:var(--s1)}
+  .opts{display:flex;flex-wrap:wrap}
+  .chip-r{flex:0 0 auto}
+  .chip-r:last-child{grid-column:auto}
+  .chip-r span{width:auto;min-height:clamp(38px,4.8vh,44px);padding:0 clamp(10px,1.2vw,20px)}
+  #inqForm .btn{min-height:clamp(44px,5.6vh,56px)}
+}
+@media(max-width:760px){.f-row{grid-template-columns:1fr}}
 @media(max-width:900px){
   .inq-grid{display:block}
   .inq-head{margin-bottom:var(--s5)}
