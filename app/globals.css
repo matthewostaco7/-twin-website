@@ -1917,7 +1917,6 @@ html[data-theme="dark"] .st-list li,html[data-theme="dark"] .st-steps li{border-
 @media(max-width:900px){.main.is-work .fbar{padding-bottom:28px !important}.main.is-work .gal-intro{padding-top:0 !important}}
 #ownNew{background:#FF9D2E !important;opacity:1 !important}
 @media(min-width:901px){
-  .app:has(#view-project:not([hidden])) .side{display:none !important}
   .app:has(#view-project:not([hidden])) .main{margin:12px !important}
   .app:has(#view-project:not([hidden])) .app,.app:has(#view-project:not([hidden])){padding-top:12px !important}
   #view-project:not([hidden]) .pj-side,#view-project:not([hidden]) .pj-scroll{padding-top:0 !important}
@@ -1967,7 +1966,8 @@ html[data-theme="dark"] .st-list li,html[data-theme="dark"] .st-steps li{border-
 }
 @media(max-width:900px){#view-work{touch-action:pan-y}}
 @media(max-width:600px){.hero .hero-cta{width:calc(100% - 20px) !important;margin:0 auto !important}}
-.app:has(#view-inquire:not([hidden])) .m-top,.app:has(#view-inquire:not([hidden])) .side-top .logo{display:none !important}
+.app:has(#view-inquire:not([hidden])) .m-top{display:none !important}
+@media(max-width:900px){.app:has(#view-inquire:not([hidden])) .side-top .logo{display:none !important}}
 @media(max-width:900px){
   #view-inquire #inqForm{gap:28px !important}
   #view-inquire #inqTitle{margin-top:20px !important;margin-bottom:32px !important}
@@ -2028,7 +2028,7 @@ html[data-theme="dark"] .st-list li,html[data-theme="dark"] .st-steps li{border-
   .main.is-work .fbar .fp{flex:1 1 auto;min-width:0;padding-left:4px !important;padding-right:4px !important;text-align:center;letter-spacing:.04em}
 }
 .g::after,.g:hover::after{content:none !important;display:none !important}
-@media(min-width:901px){.app:has(#view-service:not([hidden])) .side{display:none !important}.app:has(#view-service:not([hidden])) .main{margin:0}}
+@media(min-width:901px){.app:has(#view-service:not([hidden])) .main{margin:0}}
 .hero,.hero .hero-card{background:linear-gradient(180deg,rgba(146,217,238,.5) 0%,rgba(146,217,238,.26) 32%,rgba(146,217,238,.08) 62%,#fff 90%) !important}
 .hero .hero-card{background:transparent !important}
 .hero .hue{background:#92D9EE !important;opacity:.32 !important}
@@ -2191,8 +2191,6 @@ html[data-theme="dark"] .st-list li,html[data-theme="dark"] .st-steps li{border-
 @media(max-width:900px){#view-about:not([hidden]){height:auto;min-height:calc(100svh - 72px - 120px)}}
 
 /* contact page: no navbar */
-.app:has(#view-inquire:not([hidden])) .side{display:none !important}
-@media(min-width:901px){.app:has(#view-inquire:not([hidden])){grid-template-rows:minmax(0,1fr) !important}}
 @media(max-width:900px){.app:has(#view-inquire:not([hidden])) main.main{padding-bottom:40px}}
 
 /* ===== TYPE SYSTEM (brand): Neue Montreal communicates · IBM Plex Mono identifies ===== */
@@ -2659,3 +2657,10 @@ html .acc-h{gap:12px !important;min-height:56px !important;padding:12px 0 !impor
 html .acc-p p{padding-bottom:20px !important;line-height:1.6 !important}
 html .acc + .acc{margin-top:0 !important;border-top:1px solid #F2F2F2 !important}
 html .acc,html .acc + .acc{border-radius:0 !important}
+
+/* desktop: the floating navbar shows on every page, so pages that start at the top leave room for it */
+@media(min-width:901px){
+  html #view-project:not([hidden]) .pj-side,html #view-project:not([hidden]) .pj-scroll{padding-top:calc(72px + 8px) !important}
+  html .svc-page{padding-top:calc(72px + 16px) !important}
+  html .inq{padding-top:calc(72px + 16px)}
+}
