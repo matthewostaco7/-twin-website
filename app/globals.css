@@ -143,20 +143,20 @@ p{text-wrap:pretty}
 .bc:active{background:var(--tint-hover)}
 .bc p{margin-top:var(--s1);max-width:14em;color:var(--t2)}
 .bc-viz{display:flex;align-items:flex-end;margin-top:auto;padding-top:var(--s3)}
-.bc-aa{font-size:clamp(72px,7vw,104px);font-weight:500;line-height:.8;letter-spacing:-.04em}
+.bc-aa{font-size:clamp(72px,7vw,104px);font-weight:500;line-height:.8;letter-spacing:-.04em;color:var(--air)}
 .bc-num{display:inline-flex;align-items:center;gap:.12em}
-.bc-num s{text-decoration-thickness:.04em;color:rgba(7,19,31,.28)}
-.bc-num svg{width:.34em;height:.34em;flex:none;fill:none;stroke:var(--fg);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.bc-num s{text-decoration-thickness:.04em}
+.bc-num svg{width:.34em;height:.34em;flex:none;fill:none;stroke:var(--air);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .bc-rebrand{align-items:center;gap:12px}
 .bc-tile{flex:none;display:grid;place-items:center;width:clamp(56px,5.6vw,80px);aspect-ratio:1;border-radius:20px;background:var(--bg)}
 .bc-tile svg{width:56%;height:auto}
-.bc-tile.old svg *{fill:rgba(7,19,31,.16)}
+.bc-tile.old svg *{fill:var(--air)}
 .bc-tile.new{background:var(--fg)}
-.bc-tile.new svg *{fill:var(--signal)}
-.bc-arrow{width:24px;height:24px;flex:none;fill:none;stroke:var(--fg);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.bc-tile.new svg *{fill:var(--air)}
+.bc-arrow{width:24px;height:24px;flex:none;fill:none;stroke:var(--air);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .bc-shape{display:block;width:clamp(80px,7vw,104px)}
 .bc-shape svg{display:block;width:100%;height:auto}
-.bc-shape polygon{fill:var(--signal)}
+.bc-shape polygon{fill:var(--air)}
 .svc-dots{display:none}
 @media(max-width:900px){
   /* phones and tablets: swipe sideways, with dots */
