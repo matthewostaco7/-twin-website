@@ -42,7 +42,6 @@
   /* atmosphere */
   --glass:rgba(255,255,255,.66);
   --hair:rgba(7,19,31,.08);
-  --lift:0 1px 1px rgba(7,19,31,.012),0 20px 56px -22px rgba(7,19,31,.07);
   --ease:cubic-bezier(.2,.8,.2,1);
   --nav-h:72px;
   --top:var(--s4);            /* space above a page's first line */
@@ -350,7 +349,7 @@ p{text-wrap:pretty}
 .chip-r{position:relative;display:flex;margin:0}
 .chip-r:last-child{grid-column:1/-1}
 .chip-r input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
-.chip-r span{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:0 var(--s2);border-radius:999px;background:var(--field);box-shadow:inset 0 0 0 1.5px var(--edge);font-size:var(--fs-body);text-align:center;transition:background .2s}
+.chip-r span{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:0 var(--s2);border-radius:999px;background:var(--field);box-shadow:inset 0 0 0 1px var(--air);font-size:var(--fs-body);text-align:center;transition:background .2s}
 @media(hover:hover){.chip-r:hover input:not(:checked)+span{background:var(--ghost-hover)}}
 .chip-r input:checked+span{background:var(--signal);color:var(--on-signal);font-weight:500;box-shadow:none}
 .chip-r input:focus-visible+span{outline:2px solid var(--fg);outline-offset:2px}
@@ -373,7 +372,7 @@ p{text-wrap:pretty}
 
 /* 11 · ATMOSPHERE ---------------------------------------------------------
    Airy, premium, a little futuristic: soft cool light at the top of every page and
-   very gentle depth. No glass, no glow, no hard edges. Same palette throughout; nothing here adds a colour. */
+   flat surfaces. No glass, no glow, no shadows, no hard edges. Same palette throughout; nothing here adds a colour. */
 .main{background:radial-gradient(60% 640px at 6% -8%,rgba(146,217,238,.20),transparent 72%),var(--bg);background-repeat:no-repeat}
 
 /* navigation stays solid; the current tab carries a soft orange light */
@@ -389,15 +388,12 @@ p{text-wrap:pretty}
 @keyframes drift{from{transform:translate3d(-2%,0,0) scale(1)}to{transform:translate3d(3%,4%,0) scale(1.06)}}
 
 /* surfaces: hairline edge and soft depth */
-.bc{box-shadow:var(--lift);transition:background .3s,transform .5s var(--ease),box-shadow .5s var(--ease)}
+.bc{transition:background .3s,transform .5s var(--ease),box-shadow .5s var(--ease)}
 @media(hover:hover){.bc:hover{transform:translateY(-6px)}}
-.meta-card,.toc{box-shadow:var(--lift)}
 .g .ph{transition:transform .5s var(--ease)}
 @media(hover:hover){.g:hover .ph{filter:none;transform:translateY(-4px)}}
-.pj-img{box-shadow:var(--lift)}
 .f input[type="text"],.f textarea{border:1px solid var(--air);background:rgba(246,247,249,.72)}
 .f input[type="text"]:focus,.f textarea:focus{box-shadow:none}
-.chip-r span{box-shadow:inset 0 0 0 1px var(--air)}
 .chip-r input:checked+span{box-shadow:none}
 .locked-msg{letter-spacing:var(--ls-h2)}
 
