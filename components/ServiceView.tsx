@@ -68,6 +68,14 @@ export default function ServiceView({ slug }: { slug: string }) {
                 ))}
               </ul>
             </nav>
+            <nav className="svc-more" aria-label="Other services">
+              <span className="mono t3">Other services</span>
+              <div>
+                {SERVICE_SLUGS.map((k) => (
+                  <Link key={k} href={"/services/" + k} aria-current={k === slug ? "page" : undefined}>{SERVICES[k].name}</Link>
+                ))}
+              </div>
+            </nav>
           </aside>
 
           <div className="svc-body">
@@ -105,11 +113,6 @@ export default function ServiceView({ slug }: { slug: string }) {
             </section>
           </div>
 
-          <nav className="svc-more" aria-label="Services">
-            {SERVICE_SLUGS.map((k) => (
-              <Link key={k} href={"/services/" + k} aria-current={k === slug ? "page" : undefined}>{SERVICES[k].name}</Link>
-            ))}
-          </nav>
         </div>
       </div>
     </div>
