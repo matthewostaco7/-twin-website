@@ -41,7 +41,8 @@
   --top:var(--s4);            /* space above a page's first line */
   --navh:72px;                /* height of the phone tab bar */
 }
-@media(min-width:901px){:root{--top:calc(var(--nav-h) + var(--s6))}}
+/* desktop: the navbar band is taller, so the pill floats 40px below the top of the window instead of 20 */
+@media(min-width:901px){:root{--nav-h:112px;--top:calc(var(--nav-h) + var(--s6))}}
 
 /* 2 · BASE & TYPE -------------------------------------------------------- */
 *{box-sizing:border-box;margin:0;padding:0}
