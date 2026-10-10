@@ -345,11 +345,13 @@ p{text-wrap:pretty}
 .f [aria-invalid="true"]{border-color:var(--fg)}
 .f{position:relative}
 .ferr{position:absolute;top:0;right:0;margin:0;font-family:var(--mono);font-size:var(--fs-mono);line-height:20px;letter-spacing:.08em;text-transform:uppercase}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:var(--s1)}
-.chip-r{position:relative;display:flex;margin:0}
-.chip-r:last-child{grid-column:1/-1}
+/* the five options are five equal tiles: one row where they fit, otherwise 3 + 2 with the second pair wider */
+.opts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s1)}
+.chip-r{position:relative;display:flex;margin:0;grid-column:span 2}
+.chip-r:nth-child(n+4){grid-column:span 3}
+@media(min-width:600px) and (max-width:900px){.opts{grid-template-columns:repeat(5,minmax(0,1fr))}.chip-r,.chip-r:nth-child(n+4){grid-column:auto}}
 .chip-r input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
-.chip-r span{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:0 var(--s2);border-radius:999px;background:var(--field);box-shadow:inset 0 0 0 1px var(--air);font-size:var(--fs-body);text-align:center;transition:background .2s}
+.chip-r span{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:0 4px;border-radius:var(--r-field);white-space:nowrap;background:var(--field);box-shadow:inset 0 0 0 1px var(--air);font-size:var(--fs-body);text-align:center;transition:background .2s}
 @media(hover:hover){.chip-r:hover input:not(:checked)+span{background:var(--ghost-hover)}}
 .chip-r input:checked+span{background:var(--signal);color:var(--on-signal);font-weight:500;box-shadow:none}
 .chip-r input:focus-visible+span{outline:2px solid var(--fg);outline-offset:2px}
@@ -366,18 +368,18 @@ p{text-wrap:pretty}
   .f label,.f .legend{margin-bottom:clamp(4px,.8vh,8px)}
   .f input[type="text"]{min-height:clamp(42px,5.4vh,52px)}
   .f textarea{min-height:clamp(64px,11vh,128px);padding-block:var(--s1)}
-  .opts{display:flex;flex-wrap:wrap}
-  .chip-r{flex:0 0 auto}
-  .chip-r:last-child{grid-column:auto}
-  .chip-r span{width:auto;min-height:clamp(38px,4.8vh,44px);padding:0 clamp(10px,1.2vw,20px)}
+  .opts{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .chip-r{grid-column:span 2}
+  .chip-r:nth-child(n+4){grid-column:span 3}
+  .chip-r span{min-height:clamp(38px,4.8vh,44px)}
   #inqForm .btn{min-height:clamp(44px,5.6vh,56px)}
 }
+@media(min-width:1200px){.opts{grid-template-columns:repeat(5,minmax(0,1fr))}.chip-r,.chip-r:nth-child(n+4){grid-column:auto}}
 @media(max-width:760px){.f-row{grid-template-columns:1fr}}
 @media(max-width:900px){
   .inq-grid{display:block}
   .inq-head{margin-bottom:var(--s5)}
   .inq-main{max-width:none}
-  .opts{grid-template-columns:1fr 1fr}
 }
 
 /* 10 · STORY & 404 ------------------------------------------------------- */
