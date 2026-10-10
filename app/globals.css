@@ -139,26 +139,26 @@ p{text-wrap:pretty}
 
 /* service cards: title, one line, one bold element */
 .bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gutter)}
-.bc{display:flex;flex-direction:column;aspect-ratio:3/4;padding:var(--s4);border-radius:var(--r-card);background:var(--signal);color:var(--on-signal);transition:filter .2s}
-@media(hover:hover){.bc:hover{filter:brightness(.96)}}
-.bc:active{filter:brightness(.92)}
-.bc p{margin-top:var(--s1);max-width:14em;color:rgba(7,19,31,.78)}
+.bc{display:flex;flex-direction:column;aspect-ratio:3/4;padding:var(--s4);border-radius:var(--r-card);background:var(--tint-card);color:var(--fg);transition:background .2s}
+@media(hover:hover){.bc:hover{background:var(--tint)}}
+.bc:active{background:var(--tint)}
+.bc p{margin-top:var(--s1);max-width:14em;color:var(--t2)}
 .bc-viz{display:flex;align-items:flex-end;margin-top:auto;padding-top:var(--s3)}
-.bc-aa{font-size:clamp(72px,7vw,104px);font-weight:500;line-height:.8;letter-spacing:-.04em;color:var(--fg)}
+.bc-aa{font-size:clamp(72px,7vw,104px);font-weight:500;line-height:.8;letter-spacing:-.04em;color:var(--signal)}
 .bc-num{display:inline-flex;align-items:center;gap:.12em}
-.bc-num s{text-decoration-thickness:.04em;color:rgba(7,19,31,.6)}
-.bc-num svg{width:.34em;height:.34em;flex:none;fill:none;stroke:var(--fg);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.bc-num s{text-decoration-thickness:.04em;color:var(--air)}
+.bc-num svg{width:.34em;height:.34em;flex:none;fill:none;stroke:var(--signal);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .bc-rebrand{align-items:center;gap:12px}
 .bc-tile{flex:none;display:grid;place-items:center;width:clamp(56px,5.6vw,80px);aspect-ratio:1;border-radius:20px}
 .bc-tile svg{width:56%;height:auto}
-.bc-tile.old{box-shadow:inset 0 0 0 1.5px rgba(7,19,31,.6)}
-.bc-tile.old svg *{fill:rgba(7,19,31,.6)}
-.bc-tile.new{background:var(--fg)}
-.bc-tile.new svg *{fill:var(--signal)}
-.bc-arrow{width:24px;height:24px;flex:none;fill:none;stroke:var(--fg);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.bc-tile.old{background:var(--air)}
+.bc-tile.old svg *{fill:var(--bg)}
+.bc-tile.new{background:var(--signal)}
+.bc-tile.new svg *{fill:var(--air)}
+.bc-arrow{width:24px;height:24px;flex:none;fill:none;stroke:var(--signal);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .bc-shape{display:block;width:clamp(80px,7vw,104px)}
 .bc-shape svg{display:block;width:100%;height:auto}
-.bc-shape polygon{fill:var(--fg)}
+.bc-shape polygon{fill:var(--signal)}
 .svc-dots{display:none}
 @media(max-width:900px){
   /* phones and tablets: swipe sideways, with dots */
