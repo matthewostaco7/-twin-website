@@ -8,8 +8,6 @@ export type Service = {
   timeline: string;
   revisions: string;
   best: string;
-  /** Brand language + typography chapters (Branding and Rebranding only) */
-  extra?: { lang: [string, string[]]; type: [string, string[]] };
   /** matching option in the contact form */
   need: string;
 };
@@ -33,6 +31,8 @@ export const SERVICES: Record<string, Service> = {
       "Visual direction and references",
       "Logo design",
       "Color palette and typography system",
+      "Brand language",
+      "Typography",
       "Component library, grid, and spacing",
       "Visual style guide",
       "Applications across key touchpoints",
@@ -47,16 +47,6 @@ export const SERVICES: Record<string, Service> = {
     timeline: "3 weeks",
     revisions: "2 rounds",
     best: "New companies",
-    extra: {
-      lang: [
-        "How your company sounds, from the first word. We write down your voice, the lines you own and the words you leave out.",
-        ["Voice and tone", "Messaging pillars", "Tagline and key lines", "Words to use and words to avoid"],
-      ],
-      type: [
-        "The typefaces that carry your voice. We choose, pair and set them so every page reads like you wrote it.",
-        ["Typeface pairing", "Scale and hierarchy", "Weights, spacing and tracking", "Usage examples across touchpoints"],
-      ],
-    },
     need: "Branding",
   },
   debranding: {
@@ -94,6 +84,8 @@ export const SERVICES: Record<string, Service> = {
       "Updated visual direction",
       "Logo refresh or full redesign",
       "Updated palette and modern typography",
+      "Brand language",
+      "Typography",
       "Enhanced component library",
       "Transition guide from the old brand",
     ],
@@ -107,16 +99,6 @@ export const SERVICES: Record<string, Service> = {
     timeline: "3–4 weeks",
     revisions: "2 rounds",
     best: "Evolved companies",
-    extra: {
-      lang: [
-        "Keep what people already trust, say it better. We tune your voice so the new look and the new words finally match.",
-        ["Voice and tone refresh", "Messaging pillars, updated", "Tagline and key lines", "What changes, what stays"],
-      ],
-      type: [
-        "A clearer, more current type system. We keep what feels familiar and fix what no longer holds up.",
-        ["Type review and pairing", "Scale and hierarchy", "Weights, spacing and tracking", "Before and after usage"],
-      ],
-    },
     need: "Rebranding",
   },
   logo: {

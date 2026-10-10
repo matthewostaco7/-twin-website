@@ -84,11 +84,6 @@ export default function InquiryForm() {
         <div className="inq-grid">
           <header className="inq-head">
             <h1 id="inqTitle" tabIndex={-1} ref={refs.title}>Twin, let&rsquo;s talk?</h1>
-            <p className="inq-alt">
-              Prefer email? <a href={"mailto:" + site.email}>{site.email}</a>
-              <br />
-              <span className="t3">{site.location}</span>
-            </p>
           </header>
 
           <div className="inq-main">

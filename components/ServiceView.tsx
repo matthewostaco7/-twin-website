@@ -11,7 +11,6 @@ export default function ServiceView({ slug }: { slug: string }) {
 
   const toc: [string, string][] = [
     ["included", "What’s included"],
-    ...(x.extra ? ([["language", "Brand language"], ["typography", "Typography"]] as [string, string][]) : []),
     ["process", "How it works"],
     ["deliverables", "Deliverables"],
   ];
@@ -42,14 +41,6 @@ export default function ServiceView({ slug }: { slug: string }) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     setCur(id);
   };
-
-  const list = (id: string, h: string, c: [string, string[]]) => (
-    <section id={id}>
-      <h2>{h}</h2>
-      <p className="lead">{c[0]}</p>
-      <ol className="inc">{c[1].map((t) => <li key={t}>{t}</li>)}</ol>
-    </section>
-  );
 
   return (
     <div id="view-service" ref={view}>
@@ -84,8 +75,6 @@ export default function ServiceView({ slug }: { slug: string }) {
               <h2>What&rsquo;s included</h2>
               <ol className="inc">{x.included.map((t) => <li key={t}>{t}</li>)}</ol>
             </section>
-            {x.extra && list("language", "Brand language", x.extra.lang)}
-            {x.extra && list("typography", "Typography", x.extra.type)}
             <section id="process">
               <h2>How it works</h2>
               <div className="accs">

@@ -35,7 +35,7 @@ app/                  Routes (one folder per page), layout, global styles
 components/           SiteShell (navigation, colour mode), WorkGallery, ProjectView,
                       ServiceView, InquiryForm, ServicesGrid, ProjectTile, icons
 lib/
-  site.ts             Email, location, Work lock switch
+  site.ts             Email, Work lock switch
   services.ts         Service page content
   projects.ts         Project types, chapters per service, helpers
 content/projects.json Portfolio projects
@@ -45,7 +45,7 @@ public/fonts/         Neue Montreal (IBM Plex Mono loads from Google Fonts)
 
 ## Editing content
 
-- **Contact details:** `lib/site.ts` (shown on the Contact page)
+- **Contact details:** `lib/site.ts` (the email address is used by the Contact form)
 - **Show the Work gallery:** set `workLocked: false` in `lib/site.ts`. This removes the "Unlocking Soon" overlay.
 - **Services:** `lib/services.ts`
 - **Projects:** `content/projects.json`. Put images in `public/images/projects/` and reference them as `/images/projects/<file>`. Each project has:

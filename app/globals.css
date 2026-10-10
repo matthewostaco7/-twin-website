@@ -316,8 +316,6 @@ p{text-wrap:pretty}
 .inq-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gutter);row-gap:var(--s5)}
 .inq-head{grid-column:1/6}
 .inq-head h1{outline:none}
-.inq-alt{margin-top:var(--s3);color:var(--fg)}
-.inq-alt a{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 .inq-main{grid-column:7/13;max-width:600px}
 #inqForm{display:flex;flex-direction:column;gap:var(--s4)}
 .f{min-width:0;border:0}
