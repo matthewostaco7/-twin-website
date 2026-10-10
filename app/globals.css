@@ -136,8 +136,8 @@ p{text-wrap:pretty}
 .hero .hl::before{content:"";position:absolute;inset:.04em 0 -.01em;z-index:-1;background:var(--signal);transform:skewX(26deg)}
 .hero .ul{text-decoration:underline;text-decoration-thickness:.05em;text-underline-offset:.12em;text-decoration-skip-ink:none;text-decoration-color:var(--signal)}
 .hero .nw{white-space:nowrap}
-.hero .ic.inl{box-sizing:border-box;width:.9em;height:.9em;padding:.13em;border-radius:50%;background:#FFF3E3;stroke:var(--signal);stroke-width:1.75;vertical-align:-.1em;margin:0 .08em 0 -.16em}
-.hero .nw>.ic.inl:last-child{margin:0 0 0 .1em}
+.hero .ic.inl{box-sizing:border-box;width:.9em;height:.9em;padding:.13em;border-radius:50%;background:#FFF3E3;stroke:var(--signal);stroke-width:1.75;vertical-align:-.1em;margin:0 .1em 0 -.08em}
+.hero .ic.inl.r{margin:0 0 0 .1em}
 .hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s2)}
 @media(max-width:900px){
   /* the hero's wash runs up behind the logo bar, so there is no band between them */
