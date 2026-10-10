@@ -2669,25 +2669,68 @@ html .acc,html .acc + .acc{border-radius:0 !important}
 }
 @media(prefers-reduced-motion:reduce){.side{transition:none !important}}
 
-/* ===== Home "What we do" cards: larger ===== */
-@media(min-width:901px){
-  html #view-home #services{padding-left:24px !important;padding-right:24px !important}
-  html #view-home #services .svc-grid,html #view-home #services .head.svc-title{max-width:1400px !important;width:100% !important;margin-left:auto !important;margin-right:auto !important}
-  html #view-home #services .svc-grid{gap:20px !important}
-  html #view-home #services .sv .sv-ic{aspect-ratio:1/1 !important;border-radius:20px !important;margin-bottom:18px !important}
-  html #view-home #services .sv .sv-ic svg{width:112px !important;height:112px !important;stroke-width:1 !important}
-  html #view-home #services .sv h3{font-size:clamp(22px,1.9vw,28px) !important;line-height:1.15 !important;margin-bottom:6px !important}
-  html #view-home #services .sv p{font-size:clamp(16px,1.3vw,18px) !important;line-height:1.4 !important}
-}
-@media(max-width:900px){
-  html #view-home #services .sv{flex-basis:86% !important}
-  html #view-home #services .sv .sv-ic{aspect-ratio:1/1 !important;border-radius:20px !important;margin-bottom:16px !important}
-  html #view-home #services .sv .sv-ic svg{width:96px !important;height:96px !important;stroke-width:1 !important}
-  html #view-home #services .sv h3{font-size:24px !important;line-height:1.15 !important;margin-bottom:6px !important}
-  html #view-home #services .sv p{font-size:17px !important;line-height:1.4 !important}
-}
-
 /* home: more room between the service cards' text and the scroll dots */
 @media(max-width:900px){
   html #view-home #services .svc-dots{margin-top:40px !important}
 }
+
+/* ===== Home "What we do": bento cards =====
+   Same TWIN colors as before (cream tile, orange, navy). Title top-left, icon badge top-right,
+   one line of copy, and a small picture of the service anchored at the bottom. */
+html #view-home #services{padding-left:24px;padding-right:24px}
+html #view-home #services .head.svc-title{max-width:1400px;margin-left:auto;margin-right:auto}
+.bento{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.bc{position:relative;display:flex;flex-direction:column;min-height:clamp(380px,30vw,440px);padding:clamp(24px,2.1vw,32px);border-radius:32px;background:#FFF3E3;color:var(--fg);transition:background .35s ease,transform .45s var(--spring,cubic-bezier(.34,1.56,.64,1))}
+@media(hover:hover){.bc:hover{background:#FFE6C7;transform:translateY(-6px)}}
+.bc:active{background:#FFE6C7}
+.bc:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.bc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.bc h3{font-weight:500;font-size:clamp(24px,2vw,30px);line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
+.bc-ic{flex:none;width:48px;height:48px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--signal)}
+.bc-ic .ic{width:22px;height:22px;stroke:var(--signal);stroke-width:1.5}
+.bc p{margin-top:12px;max-width:15em;font-size:clamp(16px,1.25vw,18px);line-height:1.4;color:var(--t2)}
+.bc-viz{margin-top:auto;padding-top:28px;display:flex}
+/* branding: type specimen + palette */
+.bc-brand{align-items:flex-end;justify-content:space-between}
+.bc-aa{font-weight:500;font-size:clamp(72px,6.4vw,96px);line-height:.8;letter-spacing:-.04em}
+.bc-sw{display:flex;gap:8px;padding-bottom:4px}
+.bc-sw i{width:26px;height:26px;border-radius:50%;background:var(--fg)}
+.bc-sw i:nth-child(2){background:var(--signal)}
+.bc-sw i:nth-child(3){background:#fff;box-shadow:inset 0 0 0 1px rgba(7,19,31,.14)}
+/* debranding: many things become one */
+.bc-debrand{flex-direction:column;align-items:flex-start;gap:8px}
+.bc-chip{display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border-radius:999px;background:#fff;font-size:14px;font-weight:500;line-height:1;white-space:nowrap}
+.bc-chip.ghost{opacity:.55;text-decoration:line-through;text-decoration-color:var(--t3)}
+.bc-chip.dark{background:var(--fg);color:#fff}
+.bc-debrand .bc-chip:nth-child(2){margin-left:22px}
+.bc-debrand .bc-chip:nth-child(3){margin-left:6px}
+/* rebranding: old -> new */
+.bc-rebrand{align-items:center;gap:12px}
+.bc-tile{flex:none;width:clamp(64px,5.4vw,80px);aspect-ratio:1;border-radius:20px;background:#fff;display:grid;place-items:center}
+.bc-tile svg{width:56%;height:auto}
+.bc-tile.old svg polygon{fill:rgba(7,19,31,.18)}
+.bc-tile.new{background:var(--fg)}
+.bc-arrow{width:24px;height:24px;flex:none;fill:none;stroke:var(--fg);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+/* logo: one mark */
+.bc-logo{align-items:flex-end;justify-content:space-between;gap:12px}
+.bc-big{width:clamp(88px,7.4vw,112px);aspect-ratio:1;border-radius:24px;background:#fff;display:grid;place-items:center}
+.bc-big svg{width:62%;height:auto}
+.bc-logo .bc-chip{margin-bottom:4px}
+@media(max-width:900px){
+  .bento{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -24px;padding:0 24px 4px;scroll-padding:0 24px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .bento::-webkit-scrollbar{display:none}
+  .bc{flex:0 0 84%;scroll-snap-align:start;min-height:360px;border-radius:28px}
+  .bc h3{font-size:26px}
+  .bc p{font-size:17px}
+  .bc-aa{font-size:88px}
+}
+@media (hover:none){.bc:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){.bc{transition:none}}
+
+/* bento cards: radii (the global rule above forces 14px unless listed) */
+.bc{border-radius:32px !important}
+.bc-ic,.bc-chip,.bc-sw i{border-radius:999px !important}
+.bc-tile{border-radius:20px !important}
+.bc-big{border-radius:24px !important}
+.bc-ic .ic{width:26px;height:26px}
+@media(max-width:900px){.bc{border-radius:28px !important}}

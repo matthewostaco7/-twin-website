@@ -1,11 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { SERVICES, SERVICE_SLUGS } from "@/lib/services";
-import { IconArrowUpRight, SERVICE_ICONS } from "./icons";
+import { Mark, SERVICE_ICONS } from "./icons";
 
-/** "What we do" cards. On phones they scroll sideways, with dots underneath. */
+/** The visual at the bottom of each card: a small, quiet picture of what the service does. */
+const VISUALS: Record<string, ReactNode> = {
+  branding: (
+    <div className="bc-viz bc-brand">
+      <span className="bc-aa">Aa</span>
+      <span className="bc-sw"><i /><i /><i /></span>
+    </div>
+  ),
+  debranding: (
+    <div className="bc-viz bc-debrand">
+      <span className="bc-chip ghost">9 fonts</span>
+      <span className="bc-chip ghost">6 logos</span>
+      <span className="bc-chip dark">1 clear system</span>
+    </div>
+  ),
+  rebranding: (
+    <div className="bc-viz bc-rebrand">
+      <span className="bc-tile old"><Mark /></span>
+      <svg className="bc-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+      <span className="bc-tile new"><Mark /></span>
+    </div>
+  ),
+  logo: (
+    <div className="bc-viz bc-logo">
+      <span className="bc-big"><Mark /></span>
+      <span className="bc-chip">One mark</span>
+    </div>
+  ),
+};
+
+/** "What we do": four service cards. On phones they scroll sideways, with dots underneath. */
 export default function ServicesGrid() {
   const grid = useRef<HTMLDivElement>(null);
   const [cur, setCur] = useState(0);
@@ -16,7 +46,7 @@ export default function ServicesGrid() {
     let tick = 0;
     const set = () => {
       tick = 0;
-      const cards = Array.from(g.querySelectorAll<HTMLElement>(".sv"));
+      const cards = Array.from(g.querySelectorAll<HTMLElement>(".bc"));
       const mid = g.scrollLeft + g.clientWidth / 2;
       let best = 0, bd = 1e9;
       if (g.scrollLeft + g.clientWidth >= g.scrollWidth - 2) best = cards.length - 1;
@@ -35,20 +65,22 @@ export default function ServicesGrid() {
 
   const show = (i: number) => {
     const g = grid.current;
-    const c = g?.querySelectorAll<HTMLElement>(".sv")[i];
+    const c = g?.querySelectorAll<HTMLElement>(".bc")[i];
     if (!g || !c) return;
     g.scrollTo({ left: c.offsetLeft - g.offsetLeft - parseFloat(getComputedStyle(g).paddingLeft || "0"), behavior: "smooth" });
   };
 
   return (
     <>
-      <div className="svc-grid" ref={grid}>
+      <div className="bento" ref={grid}>
         {SERVICE_SLUGS.map((slug) => (
-          <Link key={slug} className="sv rv" href={"/services/" + slug}>
-            <span className="sv-ic">{SERVICE_ICONS[slug]}</span>
-            <h3>{SERVICES[slug].name}</h3>
+          <Link key={slug} className="bc rv" href={"/services/" + slug}>
+            <div className="bc-top">
+              <h3>{SERVICES[slug].name}</h3>
+              <span className="bc-ic">{SERVICE_ICONS[slug]}</span>
+            </div>
             <p>{SERVICES[slug].line}</p>
-            <span className="sv-go" aria-hidden="true"><IconArrowUpRight /></span>
+            {VISUALS[slug]}
           </Link>
         ))}
       </div>
