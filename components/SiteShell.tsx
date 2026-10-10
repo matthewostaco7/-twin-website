@@ -2,12 +2,10 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { IconContact, IconHome, IconMoon, IconStory, IconSun, IconWork, Mark } from "./icons";
+import { useEffect, useRef, type ReactNode } from "react";
+import { IconContact, IconHome, IconStory, IconWork, Mark } from "./icons";
 
-type Theme = "light" | "dark";
-
-/** Which page the URL is. Drives the active tab and where dark mode applies. */
+/** Which page the URL is. Drives the active tab and the page-specific behaviour. */
 function viewOf(path: string) {
   const p = path.replace(/\/+$/, "") || "/";
   return {
@@ -31,19 +29,6 @@ function legacyHashTarget(hash: string): string | null {
   return null;
 }
 
-function ThemeToggle({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme) => void }) {
-  return (
-    <div className="theme-seg" role="group" aria-label="Colour mode">
-      <button type="button" aria-pressed={theme === "light"} onClick={() => setTheme("light")}>
-        <IconSun /><span className="sr-only">Light</span>
-      </button>
-      <button type="button" aria-pressed={theme === "dark"} onClick={() => setTheme("dark")}>
-        <IconMoon /><span className="sr-only">Dark</span>
-      </button>
-    </div>
-  );
-}
-
 const NAV = [
   { href: "/", label: "Home", icon: <IconHome /> },
   { href: "/work", label: "Work", icon: <IconWork /> },
@@ -58,30 +43,15 @@ export default function SiteShell({ children }: { children: ReactNode }) {
   const mainRef = useRef<HTMLElement>(null);
   const prevPath = useRef<string>("");
   const workScroll = useRef(0);
-  const [theme, setThemeState] = useState<Theme>("light");
 
-  // Dark mode exists on Work, project pages and Story. Everywhere else the toggle is not shown.
-  const darkable = v.isWork || v.isProj || v.isStory;
   // The current page's tab. Service pages belong to Home ("What we do").
   const active = v.isWork || v.isProj ? "/work" : v.isStory ? "/story" : v.isContact ? "/contact" : "/";
 
-  // First load: forward old hash links, read the saved colour mode.
+  // First load: forward old hash links.
   useEffect(() => {
     const target = legacyHashTarget(location.hash);
     if (target) router.replace(target);
-    try { setThemeState(localStorage.getItem("twin-theme") === "dark" ? "dark" : "light"); } catch {}
   }, [router]);
-
-  useEffect(() => {
-    const root = document.documentElement;
-    if (darkable && theme === "dark") root.setAttribute("data-theme", "dark");
-    else root.removeAttribute("data-theme");
-  }, [darkable, theme]);
-
-  const setTheme = (t: Theme) => {
-    setThemeState(t);
-    try { localStorage.setItem("twin-theme", t); } catch {}
-  };
 
   // Every page change starts at the top (or at the #anchor). Coming back from a project returns to where the grid was.
   useEffect(() => {
@@ -156,13 +126,11 @@ export default function SiteShell({ children }: { children: ReactNode }) {
               ))}
             </nav>
           </div>
-          {darkable && <div className="side-bot"><ThemeToggle theme={theme} setTheme={setTheme} /></div>}
         </aside>
 
         <main className="main" id="main" tabIndex={-1} ref={mainRef}>
           <div className="m-top">
             <Link href="/" aria-label="TWIN home"><Mark />TWIN</Link>
-            {darkable && <ThemeToggle theme={theme} setTheme={setTheme} />}
           </div>
           {children}
         </main>

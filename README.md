@@ -31,7 +31,7 @@ Old `#/work`-style links from the single-page version redirect to the new URLs.
 
 ```
 app/                  Routes (one folder per page), layout, global styles
-  globals.css         All styles, in 11 labelled sections (tokens first, dark mode last)
+  globals.css         All styles, in 10 labelled sections (tokens first)
 components/           SiteShell (navigation, colour mode), WorkGallery, ProjectView,
                       ServiceView, InquiryForm, ServicesGrid, ProjectTile, icons
 lib/
@@ -64,7 +64,7 @@ If `projects` is empty, the gallery shows placeholder tiles.
 - **Spacing:** multiples of 8 only (`--s1` to `--s7`). `--top` is the space above a page's first line.
 - **Type:** five sizes. `h1` page title, `h2` section, `h3` subsection or card, `.lead` for the intro, body for everything else. Mono is for small labels only. Headings are weight 500, text 400.
 - **State:** the current page, tab, filter and chapter is always the orange pill. Hover only changes colour.
-- **Colour and fonts:** brand colours and font families are tokens on `:root`. Dark mode swaps them in one block and applies to Work, projects and Story.
+- **Colour and fonts:** brand colours and font families are tokens on `:root`. The site is light only.
 
 ## Contact form
 

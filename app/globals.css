@@ -2,7 +2,6 @@
    TWIN
    1 Tokens · 2 Base & type · 3 Shell & navigation · 4 Controls
    5 Home · 6 Service page · 7 Work · 8 Project · 9 Contact · 10 Story & 404
-   11 Dark mode
    Rules of the house: one 12-column grid, an 8px spacing scale, five type sizes,
    weight 500 for headings and 400 for text, the current page is always orange.
    ========================================================================== */
@@ -41,7 +40,6 @@
   --nav-h:72px;
   --top:var(--s4);            /* space above a page's first line */
   --navh:72px;                /* height of the phone tab bar */
-  color-scheme:light;
 }
 @media(min-width:901px){:root{--top:calc(var(--nav-h) + var(--s6))}}
 
@@ -77,11 +75,6 @@ p{text-wrap:pretty}
 .main{min-width:0;outline:none}
 .m-top{display:none}
 
-.theme-seg{display:inline-flex;padding:4px;border-radius:999px;background:var(--card)}
-.theme-seg button{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;color:var(--t2);transition:background .2s,color .2s}
-.theme-seg button .ic{width:20px;height:20px}
-.theme-seg button[aria-pressed="true"]{background:var(--bg);color:var(--fg)}
-
 .logo{position:relative;display:flex;align-items:center;gap:12px;min-height:44px;padding:0 20px 0 14px;border-radius:999px;font-weight:500;letter-spacing:.04em}
 .logo svg{width:30px;height:auto}
 .menu{display:flex;gap:4px}
@@ -96,22 +89,21 @@ p{text-wrap:pretty}
   .app{height:100svh;padding:12px}
   .main{height:100%;overflow-y:auto;overflow-x:hidden;border-radius:28px;background:var(--bg);scrollbar-width:none;scroll-padding-top:calc(var(--nav-h) + var(--s3))}
   .main::-webkit-scrollbar{display:none}
-  /* floating navbar: one pill, centred; colour mode sits at the right when it applies */
+  /* floating navbar: one centred pill */
   .side{position:fixed;top:12px;left:12px;right:12px;z-index:80;height:var(--nav-h);padding:0 var(--s3);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;pointer-events:none;transition:transform .35s cubic-bezier(.4,0,.2,1)}
   .side-top{grid-column:2;display:flex;align-items:center;gap:4px;padding:6px;border:1px solid var(--line);border-radius:999px;background:var(--bg);pointer-events:auto}
-  .side-bot{grid-column:3;justify-self:end;pointer-events:auto}
   .logo::after{content:"";position:absolute;right:0;top:10px;bottom:10px;width:1px;background:var(--line)}
   .app.nav-hidden .side{transform:translateY(calc(-100% - 12px))}
 }
 @media(max-width:900px){
   html{scroll-padding-top:64px}
   .main{padding-bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px))}
-  .m-top{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);padding:0 var(--pad)}
+  .m-top{display:flex;align-items:center;height:var(--nav-h);padding:0 var(--pad)}
   .m-top a{display:inline-flex;align-items:center;gap:12px;font-weight:500;letter-spacing:.04em}
   .m-top svg{width:28px;height:auto}
   /* phone: a four-tab bar at the bottom, icon over label */
   .side{position:fixed;left:0;right:0;bottom:0;z-index:80;padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
-  .logo,.side-bot{display:none}
+  .logo{display:none}
   .menu{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
   .item{flex-direction:column;justify-content:center;gap:2px;min-height:56px;padding:6px 4px;border-radius:16px;font-size:var(--fs-mono)}
   .item .ic{width:24px;height:24px}
@@ -360,15 +352,6 @@ p{text-wrap:pretty}
 .center-page{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s4);min-height:calc(100svh - 24px);padding:var(--top) var(--pad);text-align:center}
 .center-page h1{color:var(--signal);outline:none}
 @media(max-width:900px){.center-page{min-height:calc(100svh - var(--nav-h) - var(--navh) - env(safe-area-inset-bottom,0px))}}
-
-/* 11 · DARK MODE (Work, projects, Story) --------------------------------- */
-html[data-theme="dark"]{color-scheme:dark;--bg:#07131F;--fg:#F2F2F2;--card:#14212E;--air:#1B2A39;--t2:rgba(242,242,242,.7);--t3:rgba(242,242,242,.58);--line:rgba(242,242,242,.14);--frame:#040C14;--ghost:rgba(242,242,242,.1);--ghost-hover:rgba(242,242,242,.16)}
-@media(max-width:900px){html[data-theme="dark"]{--frame:#07131F}}
-html[data-theme="dark"] .theme-seg button[aria-pressed="true"]{background:var(--air)}
-html[data-theme="dark"] .ph,html[data-theme="dark"] .pj-img:not(:has(img)){background:var(--air)}
-html[data-theme="dark"] .pj-img.has-alpha{background:#F2F2F2}
-html[data-theme="dark"] .car-dots button{background:var(--line)}
-html[data-theme="dark"] .car-dots button[aria-current="true"]{background:var(--signal)}
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}

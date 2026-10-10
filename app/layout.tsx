@@ -17,14 +17,10 @@ export const viewport: Viewport = {
   themeColor: "#FFFFFF",
 };
 
-// Runs before paint: applies the saved dark mode on the pages that have it (Work, projects, Story), so there is no flash.
-const preload = `try{if(/^\\/(work|story)(\\/|$)/.test(location.pathname)&&localStorage.getItem("twin-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}`;
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
-        <script dangerouslySetInnerHTML={{ __html: preload }} />
         <link rel="preload" href="/fonts/NeueMontreal-Regular.otf" as="font" type="font/otf" crossOrigin="" />
         <link rel="preload" href="/fonts/NeueMontreal-Medium.otf" as="font" type="font/otf" crossOrigin="" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

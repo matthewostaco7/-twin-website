@@ -11,32 +11,10 @@ function Figure({ im, p }: { im: ProjectImage | null; p: Project }) {
   const src = im ? safeSrc(im.src) : "";
   const cap = im?.caption || "";
   const ratio = im?.w && im?.h ? (im.w / im.h).toFixed(3) : String(p.r);
-  const ref = useRef<HTMLImageElement>(null);
-  const [alpha, setAlpha] = useState(false);
-
-  // Pictures with transparent areas get a light backing in dark mode so dark logos stay visible.
-  useEffect(() => {
-    const img = ref.current;
-    if (!img) return;
-    const check = () => {
-      try {
-        const cv = document.createElement("canvas");
-        cv.width = 8; cv.height = 8;
-        const cx = cv.getContext("2d", { willReadFrequently: true });
-        if (!cx) return;
-        cx.drawImage(img, 0, 0, 8, 8);
-        const d = cx.getImageData(0, 0, 8, 8).data;
-        for (let i = 3; i < d.length; i += 4) if (d[i] < 250) { setAlpha(true); break; }
-      } catch {}
-    };
-    if (img.complete && img.naturalWidth) check();
-    else img.addEventListener("load", check, { once: true });
-  }, [src]);
-
   return (
     <figure className="pj-fig">
-      <div className={"pj-img" + (alpha ? " has-alpha" : "")} style={{ aspectRatio: ratio } as CSSProperties}>
-        {src && <img ref={ref} src={src} alt={cap || p.name} loading="lazy" />}
+      <div className="pj-img" style={{ aspectRatio: ratio } as CSSProperties}>
+        {src && <img src={src} alt={cap || p.name} loading="lazy" />}
       </div>
       {cap && <figcaption>{cap}</figcaption>}
     </figure>
