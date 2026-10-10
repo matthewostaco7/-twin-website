@@ -2,7 +2,7 @@
    TWIN
    1 Tokens · 2 Base & type · 3 Shell & navigation · 4 Controls
    5 Home · 6 Service page · 7 Work · 8 Project · 9 Contact · 10 Story & 404
-   11 Atmosphere (light and depth)
+   11 Finish (hover and form details)
    Rules of the house: one 12-column grid, an 8px spacing scale, five type sizes,
    weight 500 for headings and 400 for text, the current page is always orange.
    ========================================================================== */
@@ -370,35 +370,19 @@ p{text-wrap:pretty}
 .center-page h1{outline:none}
 @media(max-width:900px){.center-page{min-height:calc(100svh - var(--nav-h) - var(--navh) - env(safe-area-inset-bottom,0px))}}
 
-/* 11 · ATMOSPHERE ---------------------------------------------------------
-   Airy, premium, a little futuristic: soft cool light at the top of every page and
-   flat surfaces. No glass, no glow, no shadows, no hard edges. Same palette throughout; nothing here adds a colour. */
-.main{background:radial-gradient(60% 640px at 6% -8%,rgba(146,217,238,.20),transparent 72%),var(--bg);background-repeat:no-repeat}
-
-/* navigation stays solid; the current tab carries a soft orange light */
-
-/* buttons: a soft light under the orange; glass for the quiet one */
+/* 11 · FINISH -------------------------------------------------------------
+   Calm hover movement and form details. Flat surfaces: no gradients beyond the hero's original
+   faint tint, no glass, no glow, no shadows, no hard edges. */
 .btn{transition:filter .2s,background .2s}
-
-/* hero: slow aurora and a fine grid that fades out */
-.hero{overflow:clip}
-.hero>*{position:relative;z-index:1}
-.hero::before{content:"";position:absolute;inset:-12% -8% auto;height:78%;z-index:0;background:radial-gradient(38% 58% at 28% 42%,rgba(146,217,238,.34),transparent 72%),radial-gradient(30% 48% at 52% 74%,rgba(226,232,240,.8),transparent 72%);filter:blur(36px);animation:drift 32s ease-in-out infinite alternate}
-.hero::after{content:"";position:absolute;inset:0;z-index:0;background-image:linear-gradient(var(--hair) 1px,transparent 1px),linear-gradient(90deg,var(--hair) 1px,transparent 1px);background-size:72px 72px;opacity:.55;-webkit-mask-image:radial-gradient(60% 56% at 50% 40%,#000,transparent 78%);mask-image:radial-gradient(60% 56% at 50% 40%,#000,transparent 78%)}
-@keyframes drift{from{transform:translate3d(-2%,0,0) scale(1)}to{transform:translate3d(3%,4%,0) scale(1.06)}}
-
-/* surfaces: hairline edge and soft depth */
-.bc{transition:background .3s,transform .5s var(--ease),box-shadow .5s var(--ease)}
+.bc{transition:background .3s,transform .5s var(--ease)}
 @media(hover:hover){.bc:hover{transform:translateY(-6px)}}
 .g .ph{transition:transform .5s var(--ease)}
 @media(hover:hover){.g:hover .ph{filter:none;transform:translateY(-4px)}}
 .f input[type="text"],.f textarea{border:1px solid var(--air);background:rgba(246,247,249,.72)}
 .f input[type="text"]:focus,.f textarea:focus{box-shadow:none}
 .chip-r input:checked+span{box-shadow:none}
-.locked-msg{letter-spacing:var(--ls-h2)}
 
 @media(prefers-reduced-motion:reduce){
-  .hero::before{animation:none}
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none !important}
 }
