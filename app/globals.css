@@ -42,8 +42,8 @@
   /* atmosphere */
   --glass:rgba(255,255,255,.66);
   --hair:rgba(7,19,31,.08);
-  --glow:rgba(255,157,46,.34);
-  --lift:0 1px 2px rgba(7,19,31,.04),0 18px 48px -14px rgba(7,19,31,.12);
+  --glow:rgba(255,157,46,.16);
+  --lift:0 1px 1px rgba(7,19,31,.012),0 20px 56px -22px rgba(7,19,31,.07);
   --ease:cubic-bezier(.2,.8,.2,1);
   --nav-h:72px;
   --top:var(--s4);            /* space above a page's first line */
@@ -344,7 +344,7 @@ p{text-wrap:pretty}
 .f input[type="text"],.f textarea{width:100%;min-height:56px;padding:0 18px;border:1.5px solid var(--edge);border-radius:var(--r-field);background:var(--field);color:var(--signal);font-family:var(--mono);font-size:var(--fs-small);letter-spacing:.01em;caret-color:var(--signal);outline:none;transition:background .2s,border-color .2s,box-shadow .2s}
 .f textarea{min-height:144px;padding:var(--s2) 18px;line-height:1.5;resize:vertical}
 .f ::placeholder{color:var(--t3);opacity:1}
-.f input[type="text"]:focus,.f textarea:focus{background:var(--bg);border-color:var(--fg);box-shadow:0 0 0 3px rgba(255,157,46,.28)}
+.f input[type="text"]:focus,.f textarea:focus{background:var(--bg);border-color:var(--fg);box-shadow:0 0 0 3px rgba(255,157,46,.2)}
 .f [aria-invalid="true"]{border-color:var(--fg)}
 .ferr{margin-top:var(--s1);font-family:var(--mono);font-size:var(--fs-mono);letter-spacing:.08em;text-transform:uppercase}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:var(--s1)}
@@ -378,13 +378,13 @@ p{text-wrap:pretty}
 .main{background:radial-gradient(70% 640px at 88% -6%,rgba(255,157,46,.07),transparent 72%),radial-gradient(60% 640px at 6% -8%,rgba(146,217,238,.20),transparent 72%),var(--bg);background-repeat:no-repeat}
 
 /* navigation stays solid; the current tab carries a soft orange light */
-.item[aria-current="page"]{box-shadow:0 6px 18px -6px var(--glow)}
+.item[aria-current="page"]{box-shadow:0 8px 22px -10px var(--glow)}
 
 /* buttons: a soft light under the orange; glass for the quiet one */
-.btn{box-shadow:0 10px 26px -10px var(--glow),inset 0 1px 0 rgba(255,255,255,.4);transition:filter .2s,background .2s,box-shadow .35s var(--ease),transform .35s var(--ease)}
-@media(hover:hover){.btn:hover{transform:translateY(-1px);box-shadow:0 16px 32px -10px var(--glow),inset 0 1px 0 rgba(255,255,255,.4)}}
-.btn-2{background:rgba(255,255,255,.6);box-shadow:0 0 0 1px var(--hair),0 8px 24px -12px rgba(7,19,31,.14)}
-@media(hover:hover){.btn-2:hover{background:#fff;box-shadow:0 0 0 1px var(--hair),0 14px 30px -12px rgba(7,19,31,.18)}}
+.btn{box-shadow:0 12px 32px -16px var(--glow),inset 0 1px 0 rgba(255,255,255,.3);transition:filter .2s,background .2s,box-shadow .35s var(--ease),transform .35s var(--ease)}
+@media(hover:hover){.btn:hover{transform:translateY(-1px);box-shadow:0 18px 40px -16px var(--glow),inset 0 1px 0 rgba(255,255,255,.3)}}
+.btn-2{background:rgba(255,255,255,.6);box-shadow:0 0 0 1px var(--hair),0 10px 28px -16px rgba(7,19,31,.07)}
+@media(hover:hover){.btn-2:hover{background:#fff;box-shadow:0 0 0 1px var(--hair),0 14px 34px -16px rgba(7,19,31,.10)}}
 .btn-2:active{background:#fff}
 
 /* hero: slow aurora and a fine grid that fades out */
@@ -396,17 +396,17 @@ p{text-wrap:pretty}
 
 /* surfaces: hairline edge and soft depth */
 .bc{border:1px solid rgba(255,157,46,.16);box-shadow:var(--lift);transition:background .3s,transform .5s var(--ease),box-shadow .5s var(--ease)}
-@media(hover:hover){.bc:hover{transform:translateY(-6px);box-shadow:0 1px 2px rgba(7,19,31,.04),0 30px 60px -18px rgba(255,157,46,.36)}}
+@media(hover:hover){.bc:hover{transform:translateY(-6px);box-shadow:0 1px 1px rgba(7,19,31,.012),0 32px 64px -28px rgba(255,157,46,.2)}}
 .meta-card,.toc{border:1px solid rgba(255,157,46,.14);box-shadow:var(--lift)}
 .filters,.svc-more a{box-shadow:0 0 0 1px var(--hair)}
 .g .ph{box-shadow:var(--lift);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
-@media(hover:hover){.g:hover .ph{filter:none;transform:translateY(-4px);box-shadow:0 26px 52px -18px rgba(7,19,31,.2)}}
+@media(hover:hover){.g:hover .ph{filter:none;transform:translateY(-4px);box-shadow:0 28px 64px -26px rgba(7,19,31,.10)}}
 .pj-img{box-shadow:var(--lift)}
 .acc-i{box-shadow:0 0 0 1px var(--hair)}
 .f input[type="text"],.f textarea{border:1px solid var(--air);background:rgba(246,247,249,.72)}
-.f input[type="text"]:focus,.f textarea:focus{box-shadow:0 0 0 4px rgba(255,157,46,.26),0 12px 28px -14px rgba(255,157,46,.5)}
+.f input[type="text"]:focus,.f textarea:focus{box-shadow:0 0 0 4px rgba(255,157,46,.16),0 14px 32px -18px rgba(255,157,46,.28)}
 .chip-r span{box-shadow:inset 0 0 0 1px var(--air)}
-.chip-r input:checked+span{box-shadow:0 10px 24px -10px var(--glow)}
+.chip-r input:checked+span{box-shadow:0 12px 28px -14px var(--glow)}
 .locked-msg{letter-spacing:var(--ls-h2)}
 
 @media(prefers-reduced-motion:reduce){
