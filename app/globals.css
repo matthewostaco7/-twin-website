@@ -42,7 +42,6 @@
   /* atmosphere */
   --glass:rgba(255,255,255,.66);
   --hair:rgba(7,19,31,.08);
-  --glow:rgba(255,157,46,.16);
   --lift:0 1px 1px rgba(7,19,31,.012),0 20px 56px -22px rgba(7,19,31,.07);
   --ease:cubic-bezier(.2,.8,.2,1);
   --nav-h:72px;
@@ -100,7 +99,7 @@ p{text-wrap:pretty}
   .main::-webkit-scrollbar{display:none}
   /* floating navbar: one centred pill */
   .side{position:fixed;top:12px;left:12px;right:12px;z-index:80;height:var(--nav-h);padding:0 var(--s3);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;pointer-events:none;transition:transform .35s cubic-bezier(.4,0,.2,1)}
-  .side-top{grid-column:2;display:flex;align-items:center;gap:4px;padding:6px;border:1px solid var(--line);border-radius:999px;background:var(--bg);pointer-events:auto}
+  .side-top{grid-column:2;display:flex;align-items:center;gap:4px;padding:6px;border:1px solid var(--hair);border-radius:999px;background:var(--bg);pointer-events:auto}
   .logo::after{content:"";position:absolute;right:0;top:10px;bottom:10px;width:1px;background:var(--line)}
   .app.nav-hidden .side{transform:translateY(calc(-100% - 12px))}
 }
@@ -344,7 +343,7 @@ p{text-wrap:pretty}
 .f input[type="text"],.f textarea{width:100%;min-height:56px;padding:0 18px;border:1.5px solid var(--edge);border-radius:var(--r-field);background:var(--field);color:var(--signal);font-family:var(--mono);font-size:var(--fs-small);letter-spacing:.01em;caret-color:var(--signal);outline:none;transition:background .2s,border-color .2s,box-shadow .2s}
 .f textarea{min-height:144px;padding:var(--s2) 18px;line-height:1.5;resize:vertical}
 .f ::placeholder{color:var(--t3);opacity:1}
-.f input[type="text"]:focus,.f textarea:focus{background:var(--bg);border-color:var(--fg);box-shadow:0 0 0 3px rgba(255,157,46,.2)}
+.f input[type="text"]:focus,.f textarea:focus{background:var(--bg);border-color:var(--signal)}
 .f [aria-invalid="true"]{border-color:var(--fg)}
 .ferr{margin-top:var(--s1);font-family:var(--mono);font-size:var(--fs-mono);letter-spacing:.08em;text-transform:uppercase}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:var(--s1)}
@@ -373,40 +372,33 @@ p{text-wrap:pretty}
 @media(max-width:900px){.center-page{min-height:calc(100svh - var(--nav-h) - var(--navh) - env(safe-area-inset-bottom,0px))}}
 
 /* 11 · ATMOSPHERE ---------------------------------------------------------
-   Airy, premium, a little futuristic: soft light at the top of every page, hairline edges
-   and gentle depth. Same palette throughout; nothing here adds a colour. */
-.main{background:radial-gradient(70% 640px at 88% -6%,rgba(255,157,46,.07),transparent 72%),radial-gradient(60% 640px at 6% -8%,rgba(146,217,238,.20),transparent 72%),var(--bg);background-repeat:no-repeat}
+   Airy, premium, a little futuristic: soft cool light at the top of every page and
+   very gentle depth. No glass, no glow, no hard edges. Same palette throughout; nothing here adds a colour. */
+.main{background:radial-gradient(60% 640px at 6% -8%,rgba(146,217,238,.20),transparent 72%),var(--bg);background-repeat:no-repeat}
 
 /* navigation stays solid; the current tab carries a soft orange light */
-.item[aria-current="page"]{box-shadow:0 8px 22px -10px var(--glow)}
 
 /* buttons: a soft light under the orange; glass for the quiet one */
-.btn{box-shadow:0 12px 32px -16px var(--glow),inset 0 1px 0 rgba(255,255,255,.3);transition:filter .2s,background .2s,box-shadow .35s var(--ease),transform .35s var(--ease)}
-@media(hover:hover){.btn:hover{transform:translateY(-1px);box-shadow:0 18px 40px -16px var(--glow),inset 0 1px 0 rgba(255,255,255,.3)}}
-.btn-2{background:rgba(255,255,255,.6);box-shadow:0 0 0 1px var(--hair),0 10px 28px -16px rgba(7,19,31,.07)}
-@media(hover:hover){.btn-2:hover{background:#fff;box-shadow:0 0 0 1px var(--hair),0 14px 34px -16px rgba(7,19,31,.10)}}
-.btn-2:active{background:#fff}
+.btn{transition:filter .2s,background .2s}
 
 /* hero: slow aurora and a fine grid that fades out */
 .hero{overflow:clip}
 .hero>*{position:relative;z-index:1}
-.hero::before{content:"";position:absolute;inset:-12% -8% auto;height:78%;z-index:0;background:radial-gradient(38% 58% at 28% 42%,rgba(146,217,238,.34),transparent 72%),radial-gradient(34% 54% at 74% 34%,rgba(255,157,46,.16),transparent 72%),radial-gradient(30% 48% at 52% 74%,rgba(226,232,240,.8),transparent 72%);filter:blur(36px);animation:drift 32s ease-in-out infinite alternate}
+.hero::before{content:"";position:absolute;inset:-12% -8% auto;height:78%;z-index:0;background:radial-gradient(38% 58% at 28% 42%,rgba(146,217,238,.34),transparent 72%),radial-gradient(30% 48% at 52% 74%,rgba(226,232,240,.8),transparent 72%);filter:blur(36px);animation:drift 32s ease-in-out infinite alternate}
 .hero::after{content:"";position:absolute;inset:0;z-index:0;background-image:linear-gradient(var(--hair) 1px,transparent 1px),linear-gradient(90deg,var(--hair) 1px,transparent 1px);background-size:72px 72px;opacity:.55;-webkit-mask-image:radial-gradient(60% 56% at 50% 40%,#000,transparent 78%);mask-image:radial-gradient(60% 56% at 50% 40%,#000,transparent 78%)}
 @keyframes drift{from{transform:translate3d(-2%,0,0) scale(1)}to{transform:translate3d(3%,4%,0) scale(1.06)}}
 
 /* surfaces: hairline edge and soft depth */
-.bc{border:1px solid rgba(255,157,46,.16);box-shadow:var(--lift);transition:background .3s,transform .5s var(--ease),box-shadow .5s var(--ease)}
-@media(hover:hover){.bc:hover{transform:translateY(-6px);box-shadow:0 1px 1px rgba(7,19,31,.012),0 32px 64px -28px rgba(255,157,46,.2)}}
-.meta-card,.toc{border:1px solid rgba(255,157,46,.14);box-shadow:var(--lift)}
-.filters,.svc-more a{box-shadow:0 0 0 1px var(--hair)}
-.g .ph{box-shadow:var(--lift);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
-@media(hover:hover){.g:hover .ph{filter:none;transform:translateY(-4px);box-shadow:0 28px 64px -26px rgba(7,19,31,.10)}}
+.bc{box-shadow:var(--lift);transition:background .3s,transform .5s var(--ease),box-shadow .5s var(--ease)}
+@media(hover:hover){.bc:hover{transform:translateY(-6px)}}
+.meta-card,.toc{box-shadow:var(--lift)}
+.g .ph{transition:transform .5s var(--ease)}
+@media(hover:hover){.g:hover .ph{filter:none;transform:translateY(-4px)}}
 .pj-img{box-shadow:var(--lift)}
-.acc-i{box-shadow:0 0 0 1px var(--hair)}
 .f input[type="text"],.f textarea{border:1px solid var(--air);background:rgba(246,247,249,.72)}
-.f input[type="text"]:focus,.f textarea:focus{box-shadow:0 0 0 4px rgba(255,157,46,.16),0 14px 32px -18px rgba(255,157,46,.28)}
+.f input[type="text"]:focus,.f textarea:focus{box-shadow:none}
 .chip-r span{box-shadow:inset 0 0 0 1px var(--air)}
-.chip-r input:checked+span{box-shadow:0 12px 28px -14px var(--glow)}
+.chip-r input:checked+span{box-shadow:none}
 .locked-msg{letter-spacing:var(--ls-h2)}
 
 @media(prefers-reduced-motion:reduce){
