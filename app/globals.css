@@ -89,7 +89,9 @@ p{text-wrap:pretty}
 .menu{display:flex;gap:4px}
 .item{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 18px 0 14px;border-radius:999px;color:var(--t2);font-size:var(--fs-small);transition:background .2s,color .2s}
 .item .ic{width:22px;height:22px}
-.item[aria-current="page"]{background:var(--signal);color:var(--on-signal);font-weight:500}
+/* the current tab pops out in AIR 2, and its icon turns signal orange */
+.item[aria-current="page"]{background:var(--air-2);color:var(--fg);font-weight:500}
+.item[aria-current="page"] .ic{stroke:var(--signal)}
 @media(hover:hover){.item:not([aria-current="page"]):hover{background:var(--card);color:var(--fg)}}
 
 @media(min-width:901px){
