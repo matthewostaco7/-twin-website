@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { SERVICES, SERVICE_SLUGS } from "@/lib/services";
-import { Mark } from "./icons";
 
 /** One bold element at the bottom of each card: a quiet picture of the service. */
 const VISUALS: Record<string, ReactNode> = {
@@ -11,12 +10,16 @@ const VISUALS: Record<string, ReactNode> = {
   debranding: <div className="bc-viz"><span className="bc-aa bc-num"><s>9</s><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>1</span></div>,
   rebranding: (
     <div className="bc-viz bc-rebrand">
-      <span className="bc-tile old"><Mark /></span>
+      <span className="bc-tile old"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="3" /></svg></span>
       <svg className="bc-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
-      <span className="bc-tile new"><Mark /></span>
+      <span className="bc-tile new"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14" /></svg></span>
     </div>
   ),
-  logo: <div className="bc-viz"><span className="bc-mark"><Mark /></span></div>,
+  logo: (
+    <div className="bc-viz">
+      <span className="bc-shape"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,8 96,92 4,92" /></svg></span>
+    </div>
+  ),
 };
 
 /** "What we do": four service cards. On phones they scroll sideways, with dots underneath. */
