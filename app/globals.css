@@ -233,6 +233,7 @@ p{text-wrap:pretty}
 .filters button{flex:none;min-height:40px;padding:0 20px;border-radius:999px;color:var(--t2);font-size:var(--fs-small);transition:background .2s,color .2s}
 @media(hover:hover){.filters button[aria-pressed="false"]:hover{color:var(--fg)}}
 .filters button[aria-pressed="true"]{background:var(--signal);color:var(--on-signal);font-weight:500}
+@media(max-width:480px){.filters{width:100%}.filters button{flex:1 1 auto;padding:0 var(--s1)}}
 
 /* one grid for every project list: fixed 4:5 tiles, name and type underneath */
 .gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--s3) var(--s2)}
@@ -254,7 +255,7 @@ p{text-wrap:pretty}
 @media(max-width:480px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* locked: two rows of the grid, fading out, with one message */
-.gallery.locked{margin-top:var(--s5);pointer-events:none;-webkit-mask-image:linear-gradient(#000 0,#000 40%,transparent 100%);mask-image:linear-gradient(#000 0,#000 40%,transparent 100%)}
+.gallery.locked{pointer-events:none;-webkit-mask-image:linear-gradient(#000 0,#000 40%,transparent 100%);mask-image:linear-gradient(#000 0,#000 40%,transparent 100%)}
 .locked .ph{background:var(--card) !important}
 .locked-msg{position:relative;margin-top:calc(-1 * var(--s7));text-align:center;font-size:var(--fs-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2);font-weight:500;color:var(--signal)}
 @media(max-width:1100px){.locked .g:nth-child(n+9){display:none}}
