@@ -2,50 +2,69 @@
 
 Official website of TWIN, a visual branding studio: brand identity for founders and SMEs who don't want to look like everyone else.
 
-This is a static site with no build step and no dependencies. It was extracted from the TWIN artifact published on claude.ai.
+Built with **Next.js 16** (App Router), **React 19** and **TypeScript**. Pages are exported as a static site, so it runs on any host.
 
-## Run it locally
+## Getting started
 
 ```bash
-python3 -m http.server 8000
-# open http://localhost:8000
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # static site written to ./out
+npm run start    # preview ./out locally
+npm run lint     # type-check
 ```
 
-Any static file server works. Opening `index.html` directly also works.
+## Pages
 
-## Structure
+| URL | What it is |
+|---|---|
+| `/` | Hero, "What we do" services, work teaser |
+| `/work` | Gallery with Brand / Rebrand / Debrand / Logo filters |
+| `/work/[id]` | Project page: overview, chapters, image carousels, "More like this" |
+| `/services/[slug]` | Branding, Debranding, Rebranding, Logo |
+| `/story` | Story (coming soon) |
+| `/contact` | Inquiry form; `/contact?need=Branding` preselects a service |
+
+Old `#/work`-style links from the single-page version redirect to the new URLs.
+
+## Project structure
 
 ```
-index.html                 Page markup: sidebar nav, home, services, work, story, project view, inquiry form
-assets/
-  css/styles.css           All styles (design tokens on :root, responsive rules, motion)
-  js/data.js               Portfolio content (window.TWIN_DATA), loaded before app.js
-  js/app.js                Hash router (#/work, #/story, #/inquire, #/services/<slug>, project pages), gallery, filters, inquiry form
-  js/enhancements.js       Small extras: service carousel dots, swipe navigation, scroll snapping
-  data/projects.json       Same content as data.js, as plain JSON
-  fonts/                   Neue Montreal Regular + Medium (IBM Plex Mono loads from Google Fonts)
-  images/projects/         Project covers and case-study images
-  favicon.svg
-tools/extract-artifact.py  Script used to split the single-file artifact into this layout
+app/                  Routes (one folder per page), layout, global styles
+  globals.css         All styles: design tokens on :root, responsive rules, motion
+components/           SiteShell (sidebar, footer, theme), WorkGallery, ProjectView,
+                      ServiceView, InquiryForm, ServicesGrid, ProjectTile, icons
+lib/
+  site.ts             Email, social links, location, Work lock switch
+  services.ts         Service page content
+  projects.ts         Project types, chapters per service, helpers
+content/projects.json Portfolio projects
+public/images/        Project images
+public/fonts/         Neue Montreal (IBM Plex Mono loads from Google Fonts)
 ```
 
 ## Editing content
 
-Projects live in `assets/js/data.js`. Each project has:
+- **Contact details and social links:** `lib/site.ts`
+- **Show the Work gallery:** set `workLocked: false` in `lib/site.ts`. This removes the "Unlocking Soon" overlay.
+- **Services:** `lib/services.ts`
+- **Projects:** `content/projects.json`. Put images in `public/images/projects/` and reference them as `/images/projects/<file>`. Each project has:
+  - `id`, `name`, `type` (`Brand`, `Rebrand`, `Debrand` or `Logo`), `date`, `reason`
+  - `r`: the tile's aspect ratio (width / height)
+  - `cover`: `{ "src", "caption", "w", "h" }`
+  - `sections`: images per chapter. The chapter keys depend on the type and are listed in `SECTION_DEFS` in `lib/projects.ts`.
 
-- `name`, `type` (`Brand`, `Rebrand`, `Debrand` or `Logo`), `date`, `reason`
-- `r`: the tile's aspect ratio (width / height)
-- `cover`: `{ src, caption, w, h }`
-- `sections`: image lists by section key (for example `logo`, `colors`, `application`)
+If `projects` is empty, the gallery shows placeholder tiles.
 
-Put new images in `assets/images/projects/` and reference them by relative path.
-If `projects` is empty, the Work page shows placeholder tiles.
+## Contact form
 
-The artifact version had owner-only editing tools that only work inside claude.ai. On a normal host they stay hidden, so you edit content in `data.js`.
+There is no backend. Submitting opens the visitor's email app with the inquiry pre-filled and addressed to the email in `lib/site.ts`.
 
 ## Deploy
 
-Upload the repository root to any static host: GitHub Pages, Netlify, Vercel or Cloudflare Pages. No build command is needed, and the publish directory is `/`.
+- **Vercel:** import the repo. Framework and settings are detected automatically.
+- **Netlify / Cloudflare Pages:** build command `npm run build`, publish directory `out`.
+- **GitHub Pages:** publish the `out` folder. For a project page under `/<repo>/`, also set `basePath` in `next.config.ts`.
 
 ## Fonts
 

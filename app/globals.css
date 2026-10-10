@@ -2196,8 +2196,8 @@ html[data-theme="dark"] .st-list li,html[data-theme="dark"] .st-steps li{border-
 @media(max-width:900px){.app:has(#view-inquire:not([hidden])) main.main{padding-bottom:40px}}
 
 /* ===== TYPE SYSTEM (brand): Neue Montreal communicates · IBM Plex Mono identifies ===== */
-@font-face{font-family:"Neue Montreal";font-weight:400;font-style:normal;font-display:swap;src:local("Neue Montreal Regular"),url(../fonts/NeueMontreal-Regular.otf) format("opentype")}
-@font-face{font-family:"Neue Montreal";font-weight:500;font-style:normal;font-display:swap;src:local("Neue Montreal Medium"),url(../fonts/NeueMontreal-Medium.otf) format("opentype")}
+@font-face{font-family:"Neue Montreal";font-weight:400;font-style:normal;font-display:swap;src:local("Neue Montreal Regular"),url(/fonts/NeueMontreal-Regular.otf) format("opentype")}
+@font-face{font-family:"Neue Montreal";font-weight:500;font-style:normal;font-display:swap;src:local("Neue Montreal Medium"),url(/fonts/NeueMontreal-Medium.otf) format("opentype")}
 html{font-synthesis:none;text-rendering:optimizeLegibility;font-kerning:normal}
 /* Regular + Medium only: loaded weights stop at 500, so 600/700 requests resolve to Medium */
 b,strong{font-weight:500}
@@ -2501,27 +2501,27 @@ html:not([data-theme="dark"]) #view-service,html:not([data-theme="dark"]) #view-
 }
 
 /* ===== Work: "Unlocking Soon" — light-grey cards, only the top 20% shows, blurred gradient over the lower half ===== */
-html .main.is-work #gallery .g{background:#EEF0F2 !important;border:0 !important;outline:0 !important;box-shadow:none !important;-webkit-mask-image:linear-gradient(#000 0,#000 20%,transparent 62%);mask-image:linear-gradient(#000 0,#000 20%,transparent 62%);pointer-events:none}
-html .main.is-work #gallery .g > *,html .main.is-work #gallery .g img,html .main.is-work #gallery .g::before,html .main.is-work #gallery .g::after{visibility:hidden !important}
-html .main.is-work .gal-intro{visibility:hidden}
-html .main.is-work::after{content:"Unlocking Soon";position:fixed;left:0;right:0;bottom:0;top:42%;z-index:20;display:flex;align-items:center;justify-content:center;padding-top:6vh;pointer-events:none;
+html.work-locked .main.is-work #gallery .g{background:#EEF0F2 !important;border:0 !important;outline:0 !important;box-shadow:none !important;-webkit-mask-image:linear-gradient(#000 0,#000 20%,transparent 62%);mask-image:linear-gradient(#000 0,#000 20%,transparent 62%);pointer-events:none}
+html.work-locked .main.is-work #gallery .g > *,html.work-locked .main.is-work #gallery .g img,html.work-locked .main.is-work #gallery .g::before,html.work-locked .main.is-work #gallery .g::after{visibility:hidden !important}
+html.work-locked .main.is-work .gal-intro{visibility:hidden}
+html.work-locked .main.is-work::after{content:"Unlocking Soon";position:fixed;left:0;right:0;bottom:0;top:42%;z-index:20;display:flex;align-items:center;justify-content:center;padding-top:6vh;pointer-events:none;
  font-family:var(--sans);font-weight:500;font-size:clamp(22px,3.2vw,36px);letter-spacing:-.01em;color:#07131F;text-align:center;
  background:linear-gradient(180deg,rgba(245,246,248,0) 0,rgba(245,246,248,.72) 38%,rgba(245,246,248,.94) 100%);
  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 34%);mask-image:linear-gradient(180deg,transparent 0,#000 34%)}
-@media(max-width:900px){html .main.is-work::after{top:38%;padding-bottom:var(--navh,80px)}}
+@media(max-width:900px){html.work-locked .main.is-work::after{top:38%;padding-bottom:var(--navh,80px)}}
 
 /* Unlocking Soon: first row stays fully visible; fade starts from the 2nd row */
-html .main.is-work #gallery .g{-webkit-mask-image:none !important;mask-image:none !important}
-@media(max-width:767px){html .main.is-work #gallery .g:nth-child(n+3){-webkit-mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important;mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important}}
-@media(min-width:768px) and (max-width:900px){html .main.is-work #gallery .g:nth-child(n+4){-webkit-mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important;mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important}}
-@media(min-width:901px){html .main.is-work #gallery .g:nth-child(n+6){-webkit-mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important;mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important}}
-html .main.is-work::after{top:46% !important}
-@media(max-width:900px){html .main.is-work::after{top:44% !important}}
-html .main.is-work::after{top:62% !important;padding-top:2vh !important}
-@media(max-width:900px){html .main.is-work::after{top:54% !important}}
-html .main.is-work::after{color:#FF9D2E !important}
-html .main.is-work::after{color:#FF9D2E !important}
+html.work-locked .main.is-work #gallery .g{-webkit-mask-image:none !important;mask-image:none !important}
+@media(max-width:767px){html.work-locked .main.is-work #gallery .g:nth-child(n+3){-webkit-mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important;mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important}}
+@media(min-width:768px) and (max-width:900px){html.work-locked .main.is-work #gallery .g:nth-child(n+4){-webkit-mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important;mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important}}
+@media(min-width:901px){html.work-locked .main.is-work #gallery .g:nth-child(n+6){-webkit-mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important;mask-image:linear-gradient(#000 0,#000 20%,transparent 62%) !important}}
+html.work-locked .main.is-work::after{top:46% !important}
+@media(max-width:900px){html.work-locked .main.is-work::after{top:44% !important}}
+html.work-locked .main.is-work::after{top:62% !important;padding-top:2vh !important}
+@media(max-width:900px){html.work-locked .main.is-work::after{top:54% !important}}
+html.work-locked .main.is-work::after{color:#FF9D2E !important}
+html.work-locked .main.is-work::after{color:#FF9D2E !important}
 
 /* Work grid: 5 per row on desktop, 2 on mobile, for every filter */
 html .main.is-work #gallery{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
@@ -2556,10 +2556,10 @@ html #view-home #services .sv:hover .sv-ic svg{color:#FF9D2E !important;stroke:#
 html .svc-side .toc a[aria-current],html .svc-side .toc a.on,html .svc-side .toc a.active{box-shadow:none !important}
 
 /* Work: overlay starts exactly where row 2 starts; page not scrollable */
-html .main.is-work::after,html .main.is-work::after{top:var(--soon-top,54%) !important;padding-top:0 !important}
-@media(max-width:900px){html .main.is-work::after{top:var(--soon-top,54%) !important}}
-html .main.is-work,html .main.is-work .gal,html .main.is-work .gal-scroll{overflow:hidden !important;overscroll-behavior:none}
-html .main.is-work .gal-scroll{touch-action:none}
+html.work-locked .main.is-work::after,html.work-locked .main.is-work::after{top:var(--soon-top,54%) !important;padding-top:0 !important}
+@media(max-width:900px){html.work-locked .main.is-work::after{top:var(--soon-top,54%) !important}}
+html.work-locked .main.is-work,html.work-locked .main.is-work .gal,html.work-locked .main.is-work .gal-scroll{overflow:hidden !important;overscroll-behavior:none}
+html.work-locked .main.is-work .gal-scroll{touch-action:none}
 
 /* TOC: only the current item is highlighted, in SIGNAL */
 html .svc-side .toc a{background:transparent !important;color:var(--muted) !important;box-shadow:none !important}
