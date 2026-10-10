@@ -248,12 +248,7 @@ p{text-wrap:pretty}
 /* 7 · WORK --------------------------------------------------------------- */
 .work-page{padding-top:var(--top);padding-bottom:var(--space-section)}
 .work-page .lead{min-height:3em;margin-top:var(--s2);color:var(--t2)}
-.filters{display:flex;gap:4px;width:fit-content;max-width:100%;margin:var(--s3) 0 var(--s5);padding:4px;border-radius:999px;background:var(--card);overflow-x:auto;scrollbar-width:none}
-.filters::-webkit-scrollbar{display:none}
-.filters button{flex:none;min-height:40px;padding:0 20px;border-radius:999px;color:var(--t2);font-size:var(--fs-small);transition:background .2s,color .2s}
-@media(hover:hover){.filters button[aria-pressed="false"]:hover{color:var(--fg)}}
-.filters button[aria-pressed="true"]{background:var(--signal);color:var(--on-signal);font-weight:500}
-@media(max-width:480px){.filters{width:100%}.filters button{flex:1 1 auto;padding:0 var(--s1)}}
+.filters-row{margin:var(--s3) 0 var(--s5)}
 
 /* one grid for every project list: fixed 4:5 tiles, name and type underneath */
 .gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--s4) var(--s3)}

@@ -1,0 +1,68 @@
+/* Outer track */
+.filterContainer {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 4px;
+  gap: 4px;
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+}
+
+/* Pills */
+.filterPill {
+  flex: none;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: #4b5563;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.filterPill:hover {
+  color: #111827;
+}
+
+.filterPill:focus-visible {
+  outline: 2px solid #111827;
+  outline-offset: 2px;
+}
+
+/* Selected: dark neutral, so it never competes with the orange tab bar */
+.filterPill.active {
+  background-color: #111827;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Phones: the five pills share the full width instead of scrolling */
+@media (max-width: 480px) {
+  .filterContainer {
+    display: flex;
+    width: 100%;
+  }
+  .filterPill {
+    flex: 1 1 auto;
+    padding: 8px 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .filterPill {
+    padding: 8px 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filterPill {
+    transition: none;
+  }
+}
