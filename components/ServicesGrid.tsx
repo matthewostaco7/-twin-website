@@ -3,23 +3,12 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { SERVICES, SERVICE_SLUGS } from "@/lib/services";
-import { Mark, SERVICE_ICONS } from "./icons";
+import { Mark } from "./icons";
 
-/** The visual at the bottom of each card: a small, quiet picture of what the service does. */
+/** One bold element at the bottom of each card: a quiet picture of the service. */
 const VISUALS: Record<string, ReactNode> = {
-  branding: (
-    <div className="bc-viz bc-brand">
-      <span className="bc-aa">Aa</span>
-      <span className="bc-sw"><i /><i /><i /></span>
-    </div>
-  ),
-  debranding: (
-    <div className="bc-viz bc-debrand">
-      <span className="bc-chip ghost">9 fonts</span>
-      <span className="bc-chip ghost">6 logos</span>
-      <span className="bc-chip dark">1 clear system</span>
-    </div>
-  ),
+  branding: <div className="bc-viz"><span className="bc-aa">Aa</span></div>,
+  debranding: <div className="bc-viz"><span className="bc-aa bc-num"><s>9</s><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>1</span></div>,
   rebranding: (
     <div className="bc-viz bc-rebrand">
       <span className="bc-tile old"><Mark /></span>
@@ -27,12 +16,7 @@ const VISUALS: Record<string, ReactNode> = {
       <span className="bc-tile new"><Mark /></span>
     </div>
   ),
-  logo: (
-    <div className="bc-viz bc-logo">
-      <span className="bc-big"><Mark /></span>
-      <span className="bc-chip">One mark</span>
-    </div>
-  ),
+  logo: <div className="bc-viz"><span className="bc-mark"><Mark /></span></div>,
 };
 
 /** "What we do": four service cards. On phones they scroll sideways, with dots underneath. */
@@ -75,10 +59,7 @@ export default function ServicesGrid() {
       <div className="bento" ref={grid}>
         {SERVICE_SLUGS.map((slug) => (
           <Link key={slug} className="bc rv" href={"/services/" + slug}>
-            <div className="bc-top">
-              <h3>{SERVICES[slug].name}</h3>
-              <span className="bc-ic">{SERVICE_ICONS[slug]}</span>
-            </div>
+            <h3>{SERVICES[slug].name}</h3>
             <p>{SERVICES[slug].line}</p>
             {VISUALS[slug]}
           </Link>

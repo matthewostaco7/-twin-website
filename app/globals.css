@@ -2674,63 +2674,98 @@ html .acc,html .acc + .acc{border-radius:0 !important}
   html #view-home #services .svc-dots{margin-top:40px !important}
 }
 
-/* ===== Home "What we do": bento cards =====
-   Same TWIN colors as before (cream tile, orange, navy). Title top-left, icon badge top-right,
-   one line of copy, and a small picture of the service anchored at the bottom. */
+/* ===== Metallic theme =====
+   Brushed-silver surfaces, polished edges and a soft sheen. Text stays navy; TWIN orange is the accent. */
+:root{
+  --metal:linear-gradient(145deg,#FDFDFE 0%,#E8EBEF 30%,#F7F9FA 48%,#DADFE5 74%,#EDF0F3 100%);
+  --metal-soft:linear-gradient(180deg,#FAFBFC 0%,#E9ECF0 100%);
+  --metal-dark:linear-gradient(145deg,#33414F 0%,#0E1B29 48%,#25323F 100%);
+  --metal-orange:linear-gradient(180deg,#FFC179 0%,#FF9D2E 46%,#EE8614 100%);
+  --brushed:repeating-linear-gradient(90deg,rgba(7,19,31,.016) 0 1px,transparent 1px 3px);
+  --hi:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(7,19,31,.07);
+}
+html:not([data-theme="dark"]) body{background:linear-gradient(135deg,#D3D8DF 0%,#EEF0F3 38%,#CDD3DA 100%)}
+html:not([data-theme="dark"]) .main{background:var(--brushed),linear-gradient(165deg,#FCFCFD 0%,#EEF1F4 46%,#F9FAFB 72%,#E8EBEF 100%)}
+/* navbar */
+@media(min-width:901px){
+  html:not([data-theme="dark"]) .side .side-top{background:var(--metal) !important;box-shadow:var(--hi),0 8px 28px rgba(7,19,31,.12) !important}
+  html:not([data-theme="dark"]) .side .menu{background:transparent !important;box-shadow:none !important;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+html:not([data-theme="dark"]) .side .item[aria-current="true"]{background:var(--metal-orange) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -1px 0 rgba(7,19,31,.1)}
+@media(max-width:900px){html:not([data-theme="dark"]) .side{background:var(--metal) !important}}
+/* hero: cool silver light instead of the old cyan */
+html:not([data-theme="dark"]) .hero{background:linear-gradient(180deg,rgba(190,198,209,.5) 0%,rgba(190,198,209,.22) 40%,rgba(255,255,255,0) 90%) !important}
+html:not([data-theme="dark"]) .hero .hue{background:#C4CCD7 !important}
+/* buttons: polished orange, brushed-steel secondary */
+html .btn{background:var(--metal-orange) !important;color:#07131F;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -1px 0 rgba(7,19,31,.1),0 8px 22px rgba(255,157,46,.28) !important}
+html .btn:active,html .btn.clicked{filter:brightness(.95)}
+html .hero-cta .btn-2{background:var(--metal) !important;box-shadow:var(--hi),0 0 0 1px rgba(7,19,31,.09),0 6px 16px rgba(7,19,31,.08) !important}
+html .hero-cta .btn-2:hover{background:#fff !important}
+/* service + project surfaces */
+html:not([data-theme="dark"]) .svc-side .meta-card,html:not([data-theme="dark"]) .svc-side .toc{background:var(--metal) !important;box-shadow:var(--hi),0 10px 28px rgba(7,19,31,.07)}
+html:not([data-theme="dark"]) .svc-side .toc a[aria-current="true"]{background:#fff !important}
+html:not([data-theme="dark"]) .meta-card .btn{background:var(--metal-orange) !important}
+html:not([data-theme="dark"]) .dl span,html:not([data-theme="dark"]) ul.dl li span{background:var(--metal-soft) !important;box-shadow:var(--hi)}
+html:not([data-theme="dark"]) .pj-img:not(:has(img)){background:var(--metal-soft)}
+html:not([data-theme="dark"]) .acc-i{background:var(--metal)}
+html:not([data-theme="dark"]) .acc.open .acc-i{background:var(--metal-orange)}
+/* work page + controls */
+html:not([data-theme="dark"]) .fpill{background:var(--metal) !important;box-shadow:var(--hi)}
+html:not([data-theme="dark"]) .fp-ind{background:var(--metal-orange) !important}
+html:not([data-theme="dark"]) .main.is-work #gallery .g{background:var(--metal) !important}
+html:not([data-theme="dark"]) .ph,html:not([data-theme="dark"]) .ph.alt{background:var(--metal)}
+html:not([data-theme="dark"]) .g:nth-child(n) .ph{background:var(--metal)}
+html:not([data-theme="dark"]) .linkbtn,html:not([data-theme="dark"]) .soc a,html:not([data-theme="dark"]) .side-toggle,html:not([data-theme="dark"]) .theme-seg{background:var(--metal);box-shadow:var(--hi)}
+/* contact form */
+html:not([data-theme="dark"]) .f input[type="text"],html:not([data-theme="dark"]) .f textarea{background:linear-gradient(180deg,#F1F3F6 0%,#F8F9FB 100%);box-shadow:inset 0 1px 2px rgba(7,19,31,.08),inset 0 0 0 1px rgba(7,19,31,.05)}
+html:not([data-theme="dark"]) .f input[type="text"]:focus,html:not([data-theme="dark"]) .f textarea:focus{background:#fff}
+html:not([data-theme="dark"]) .chip-r span{background:var(--metal) !important;box-shadow:var(--hi)}
+html:not([data-theme="dark"]) .chip-r input:checked + span{background:var(--metal-orange) !important}
+html:not([data-theme="dark"]) #view-inquire,html:not([data-theme="dark"]) .inq{background:none}
+
+/* ===== Home "What we do": quiet metal cards =====
+   Title, one line, and one bold element at the bottom. Nothing else. */
 html #view-home #services{padding-left:24px;padding-right:24px}
 html #view-home #services .head.svc-title{max-width:1400px;margin-left:auto;margin-right:auto}
 .bento{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.bc{position:relative;display:flex;flex-direction:column;min-height:clamp(380px,30vw,440px);padding:clamp(24px,2.1vw,32px);border-radius:32px;background:#FFF3E3;color:var(--fg);transition:background .35s ease,transform .45s var(--spring,cubic-bezier(.34,1.56,.64,1))}
-@media(hover:hover){.bc:hover{background:#FFE6C7;transform:translateY(-6px)}}
-.bc:active{background:#FFE6C7}
+.bc{position:relative;display:flex;flex-direction:column;overflow:hidden;min-height:clamp(360px,28vw,420px);padding:clamp(24px,2.1vw,32px);border-radius:32px !important;color:var(--fg);
+  background:var(--metal);box-shadow:var(--hi),0 1px 2px rgba(7,19,31,.05),0 14px 34px rgba(7,19,31,.08);
+  transition:transform .45s var(--spring,cubic-bezier(.34,1.56,.64,1)),box-shadow .35s ease}
+.bc::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 36%,rgba(255,255,255,.7) 50%,transparent 64%);transform:translateX(-130%);transition:transform .9s ease}
+@media(hover:hover){.bc:hover{transform:translateY(-6px);box-shadow:var(--hi),0 2px 4px rgba(7,19,31,.06),0 22px 44px rgba(7,19,31,.12)}.bc:hover::after{transform:translateX(130%)}}
 .bc:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
-.bc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
-.bc h3{font-weight:500;font-size:clamp(24px,2vw,30px);line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
-.bc-ic{flex:none;width:48px;height:48px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--signal)}
-.bc-ic .ic{width:22px;height:22px;stroke:var(--signal);stroke-width:1.5}
-.bc p{margin-top:12px;max-width:15em;font-size:clamp(16px,1.25vw,18px);line-height:1.4;color:var(--t2)}
-.bc-viz{margin-top:auto;padding-top:28px;display:flex}
-/* branding: type specimen + palette */
-.bc-brand{align-items:flex-end;justify-content:space-between}
-.bc-aa{font-weight:500;font-size:clamp(72px,6.4vw,96px);line-height:.8;letter-spacing:-.04em}
-.bc-sw{display:flex;gap:8px;padding-bottom:4px}
-.bc-sw i{width:26px;height:26px;border-radius:50%;background:var(--fg)}
-.bc-sw i:nth-child(2){background:var(--signal)}
-.bc-sw i:nth-child(3){background:#fff;box-shadow:inset 0 0 0 1px rgba(7,19,31,.14)}
-/* debranding: many things become one */
-.bc-debrand{flex-direction:column;align-items:flex-start;gap:8px}
-.bc-chip{display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border-radius:999px;background:#fff;font-size:14px;font-weight:500;line-height:1;white-space:nowrap}
-.bc-chip.ghost{opacity:.55;text-decoration:line-through;text-decoration-color:var(--t3)}
-.bc-chip.dark{background:var(--fg);color:#fff}
-.bc-debrand .bc-chip:nth-child(2){margin-left:22px}
-.bc-debrand .bc-chip:nth-child(3){margin-left:6px}
-/* rebranding: old -> new */
+.bc h3{font-weight:500;font-size:clamp(24px,2vw,30px);line-height:1.1;letter-spacing:-.02em}
+.bc p{margin-top:10px;max-width:14em;font-size:clamp(16px,1.2vw,17px);line-height:1.4;color:var(--t2)}
+.bc-viz{margin-top:auto;padding-top:24px;display:flex;align-items:flex-end}
+.bc-aa{font-weight:500;font-size:clamp(84px,7vw,108px);line-height:.8;letter-spacing:-.04em;background:linear-gradient(180deg,#3A4959 0%,#07131F 55%,#1B2937 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bc-num{display:inline-flex;align-items:center;gap:.12em;background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#07131F}
+.bc-num s{text-decoration-thickness:.04em;color:rgba(7,19,31,.3)}
+.bc-num svg{width:.34em;height:.34em;flex:none;fill:none;stroke:#07131F;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .bc-rebrand{align-items:center;gap:12px}
-.bc-tile{flex:none;width:clamp(64px,5.4vw,80px);aspect-ratio:1;border-radius:20px;background:#fff;display:grid;place-items:center}
+.bc-tile{flex:none;width:clamp(68px,5.6vw,84px);aspect-ratio:1;border-radius:20px !important;display:grid;place-items:center;background:var(--metal-soft);box-shadow:var(--hi),0 6px 14px rgba(7,19,31,.08)}
 .bc-tile svg{width:56%;height:auto}
-.bc-tile.old svg polygon{fill:rgba(7,19,31,.18)}
-.bc-tile.new{background:var(--fg)}
+.bc-tile.old{opacity:.7}
+.bc-tile.old svg polygon{fill:rgba(7,19,31,.22)}
+.bc-tile.new{background:var(--metal-dark);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 8px 18px rgba(7,19,31,.22)}
 .bc-arrow{width:24px;height:24px;flex:none;fill:none;stroke:var(--fg);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-/* logo: one mark */
-.bc-logo{align-items:flex-end;justify-content:space-between;gap:12px}
-.bc-big{width:clamp(88px,7.4vw,112px);aspect-ratio:1;border-radius:24px;background:#fff;display:grid;place-items:center}
-.bc-big svg{width:62%;height:auto}
-.bc-logo .bc-chip{margin-bottom:4px}
+.bc-mark{width:clamp(96px,8vw,120px);display:block;filter:drop-shadow(0 6px 10px rgba(255,157,46,.3))}
+.bc-mark svg{width:100%;height:auto;display:block}
 @media(max-width:900px){
   .bento{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -24px;padding:0 24px 4px;scroll-padding:0 24px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .bento::-webkit-scrollbar{display:none}
-  .bc{flex:0 0 84%;scroll-snap-align:start;min-height:360px;border-radius:28px}
+  .bc{flex:0 0 84%;scroll-snap-align:start;min-height:340px;border-radius:28px !important}
   .bc h3{font-size:26px}
   .bc p{font-size:17px}
-  .bc-aa{font-size:88px}
+  .bc-aa{font-size:96px}
 }
 @media (hover:none){.bc:hover{transform:none}}
-@media (prefers-reduced-motion:reduce){.bc{transition:none}}
+@media (prefers-reduced-motion:reduce){.bc,.bc::after{transition:none}}
 
-/* bento cards: radii (the global rule above forces 14px unless listed) */
-.bc{border-radius:32px !important}
-.bc-ic,.bc-chip,.bc-sw i{border-radius:999px !important}
-.bc-tile{border-radius:20px !important}
-.bc-big{border-radius:24px !important}
-.bc-ic .ic{width:26px;height:26px}
-@media(max-width:900px){.bc{border-radius:28px !important}}
+/* home: more room between the service cards and the scroll dots */
+@media(max-width:900px){html #view-home #services .svc-dots{margin-top:40px !important}}
+
+/* hero: the small icon discs match the metal */
+html:not([data-theme="dark"]) .hero h1 .ic.inl{background:var(--metal) !important;box-shadow:var(--hi),0 4px 10px rgba(7,19,31,.1)}
+/* contact page: silver, not the old cyan tint or grid */
+html:not([data-theme="dark"]) .main:has(#view-inquire:not([hidden])){background:var(--brushed),linear-gradient(165deg,#FCFCFD 0%,#EEF1F4 46%,#F9FAFB 72%,#E4E8EC 100%) !important}
+html:not([data-theme="dark"]) #view-inquire,html:not([data-theme="dark"]) #view-inquire .inq,html:not([data-theme="dark"]) #view-inquire::before,html:not([data-theme="dark"]) #view-inquire::after,html:not([data-theme="dark"]) .inq::before,html:not([data-theme="dark"]) .inq::after{background:none !important;background-image:none !important}
