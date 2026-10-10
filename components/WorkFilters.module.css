@@ -1,11 +1,11 @@
-/* Outer track: AIR 1 */
+/* Outer track: AIR 2 */
 .filterContainer {
   display: inline-flex;
   align-items: center;
   max-width: 100%;
   padding: 4px;
   gap: 4px;
-  background-color: var(--air);
+  background-color: var(--air-2);
   border-radius: 9999px;
 }
 
@@ -35,9 +35,9 @@
   outline-offset: 2px;
 }
 
-/* Selected: AIR 2, with full-strength text (flat, no shadow) */
+/* Selected: AIR 1, with full-strength text (flat, no shadow) */
 .filterPill.active {
-  background-color: var(--air-2);
+  background-color: var(--air);
   color: var(--fg);
 }
 
