@@ -35,7 +35,7 @@ app/                  Routes (one folder per page), layout, global styles
 components/           SiteShell (navigation, colour mode), WorkGallery, ProjectView,
                       ServiceView, InquiryForm, ServicesGrid, ProjectTile, icons
 lib/
-  site.ts             Email, social links, location, Work lock switch
+  site.ts             Email, location, Work lock switch
   services.ts         Service page content
   projects.ts         Project types, chapters per service, helpers
 content/projects.json Portfolio projects
