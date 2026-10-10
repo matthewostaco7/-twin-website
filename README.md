@@ -31,8 +31,8 @@ Old `#/work`-style links from the single-page version redirect to the new URLs.
 
 ```
 app/                  Routes (one folder per page), layout, global styles
-  globals.css         All styles: design tokens on :root, responsive rules, motion
-components/           SiteShell (sidebar, footer, theme), WorkGallery, ProjectView,
+  globals.css         All styles, in 11 labelled sections (tokens first, dark mode last)
+components/           SiteShell (navigation, colour mode), WorkGallery, ProjectView,
                       ServiceView, InquiryForm, ServicesGrid, ProjectTile, icons
 lib/
   site.ts             Email, social links, location, Work lock switch
@@ -45,7 +45,7 @@ public/fonts/         Neue Montreal (IBM Plex Mono loads from Google Fonts)
 
 ## Editing content
 
-- **Contact details and social links:** `lib/site.ts`
+- **Contact details:** `lib/site.ts` (shown on the Contact page)
 - **Show the Work gallery:** set `workLocked: false` in `lib/site.ts`. This removes the "Unlocking Soon" overlay.
 - **Services:** `lib/services.ts`
 - **Projects:** `content/projects.json`. Put images in `public/images/projects/` and reference them as `/images/projects/<file>`. Each project has:
@@ -55,6 +55,16 @@ public/fonts/         Neue Montreal (IBM Plex Mono loads from Google Fonts)
   - `sections`: images per chapter. The chapter keys depend on the type and are listed in `SECTION_DEFS` in `lib/projects.ts`.
 
 If `projects` is empty, the gallery shows placeholder tiles.
+
+## Design system
+
+`app/globals.css` follows a few fixed rules, so new pages stay consistent:
+
+- **Grid:** content sits in a 12-column grid inside a 1200px column (`.wrap`), with 24px gutters. Every page starts at the same left edge.
+- **Spacing:** multiples of 8 only (`--s1` to `--s7`). `--top` is the space above a page's first line.
+- **Type:** five sizes. `h1` page title, `h2` section, `h3` subsection or card, `.lead` for the intro, body for everything else. Mono is for small labels only. Headings are weight 500, text 400.
+- **State:** the current page, tab, filter and chapter is always the orange pill. Hover only changes colour.
+- **Colour and fonts:** brand colours and font families are tokens on `:root`. Dark mode swaps them in one block and applies to Work, projects and Story.
 
 ## Contact form
 

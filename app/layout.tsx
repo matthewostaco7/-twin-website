@@ -17,12 +17,12 @@ export const viewport: Viewport = {
   themeColor: "#FFFFFF",
 };
 
-// Runs before paint: enables reveal animations and applies the saved dark mode on dark-capable pages, without a flash.
-const preload = `try{var d=document.documentElement;d.classList.add("js");var t=localStorage.getItem("twin-theme");if(/^\\/(work|story)(\\/|$)/.test(location.pathname)){d.setAttribute("data-darkable","");if(t==="dark")d.setAttribute("data-theme","dark")}}catch(e){}`;
+// Runs before paint: applies the saved dark mode on the pages that have it (Work, projects, Story), so there is no flash.
+const preload = `try{if(/^\\/(work|story)(\\/|$)/.test(location.pathname)&&localStorage.getItem("twin-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={site.workLocked ? "work-locked" : undefined} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: preload }} />
         <link rel="preload" href="/fonts/NeueMontreal-Regular.otf" as="font" type="font/otf" crossOrigin="" />

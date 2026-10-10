@@ -1,24 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { IconBack, IconClear } from "./icons";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { NEED_OPTIONS } from "@/lib/services";
 import { site } from "@/lib/site";
 
 type Fields = { name: string; contact: string; company: string; project: string };
-
-/** Text field with a soft clear (x) button. */
-function Clearable({ children, value, onClear, area, label }: { children: ReactNode; value: string; onClear: () => void; area?: boolean; label: string }) {
-  return (
-    <span className={"clr" + (area ? " ta" : "") + (value ? " has" : "")}>
-      {children}
-      <button type="button" className="clr-x" aria-label={"Clear " + label} onMouseDown={(e) => e.preventDefault()} onClick={onClear}>
-        <IconClear />
-      </button>
-    </span>
-  );
-}
 
 /** Contact form. No backend: it opens the visitor's email app, pre-filled. */
 export default function InquiryForm() {
@@ -48,7 +34,6 @@ export default function InquiryForm() {
     setF((s) => ({ ...s, [k]: v }));
     if (k === "name" || k === "contact") setErr((e) => ({ ...e, [k]: false }));
   };
-  const clear = (k: keyof Fields) => () => { set(k)(""); refs[k].current?.focus(); };
 
   // "Not sure" stands alone; any specific pick clears it
   const toggleNeed = (v: string, on: boolean) => {
@@ -95,65 +80,67 @@ export default function InquiryForm() {
 
   return (
     <div id="view-inquire">
-      <section className="inq">
-        <Link className="back" href="/" aria-label="Back to home" title="Home"><IconBack /></Link>
-        <div className="inq-in">
-          <h1 id="inqTitle" tabIndex={-1} ref={refs.title}>Twin, let&rsquo;s talk?</h1>
+      <section className="inq wrap">
+        <div className="inq-grid">
+          <header className="inq-head">
+            <h1 id="inqTitle" tabIndex={-1} ref={refs.title}>Twin, let&rsquo;s talk?</h1>
+            <p className="inq-alt">
+              Prefer email? <a href={"mailto:" + site.email}>{site.email}</a>
+              <br />
+              <span className="t3">{site.location}</span>
+            </p>
+          </header>
 
-          <form id="inqForm" noValidate onSubmit={submit} hidden={!!sent}>
-            <div className="f">
-              <label htmlFor="iName">Name</label>
-              <Clearable value={f.name} onClear={clear("name")} label="name">
+          <div className="inq-main">
+            <form id="inqForm" noValidate onSubmit={submit} hidden={!!sent}>
+              <div className="f">
+                <label htmlFor="iName">Name</label>
                 <input id="iName" ref={refs.name} name="name" type="text" enterKeyHint="next" autoComplete="name" autoCapitalize="words" required
-                  aria-invalid={err.name} value={f.name} onChange={(e) => set("name")(e.target.value)} />
-              </Clearable>
-              <p className="ferr" hidden={!err.name}>Required</p>
-            </div>
-            <div className="f">
-              <label htmlFor="iContact">Email</label>
-              <Clearable value={f.contact} onClear={clear("contact")} label="contact">
+                  aria-invalid={err.name} aria-describedby={err.name ? "eName" : undefined} value={f.name} onChange={(e) => set("name")(e.target.value)} />
+                <p className="ferr" id="eName" hidden={!err.name}>Required</p>
+              </div>
+              <div className="f">
+                <label htmlFor="iContact">Email</label>
                 <input id="iContact" ref={refs.contact} name="contact" type="text" enterKeyHint="next" inputMode="email" autoComplete="email" autoCapitalize="off" spellCheck={false} required
-                  aria-invalid={err.contact} value={f.contact} onChange={(e) => set("contact")(e.target.value)} />
-              </Clearable>
-              <p className="ferr" hidden={!err.contact}>Required</p>
-            </div>
-            <div className="f">
-              <label htmlFor="iCompany">Company</label>
-              <Clearable value={f.company} onClear={clear("company")} label="company">
+                  aria-invalid={err.contact} aria-describedby={err.contact ? "eContact" : undefined} value={f.contact} onChange={(e) => set("contact")(e.target.value)} />
+                <p className="ferr" id="eContact" hidden={!err.contact}>Required</p>
+              </div>
+              <div className="f">
+                <label htmlFor="iCompany">Company</label>
                 <input id="iCompany" ref={refs.company} name="company" type="text" enterKeyHint="next" autoComplete="organization" autoCapitalize="words"
                   value={f.company} onChange={(e) => set("company")(e.target.value)} />
-              </Clearable>
-            </div>
-            <fieldset className="f" id="needSet">
-              <legend>What do you need? <span className="eyebrow">Pick one or more</span></legend>
-              <div className="opts">
-                {NEED_OPTIONS.map((o, i) => (
-                  <label key={o} className="chip-r">
-                    <input type="checkbox" name="need" value={o} ref={i === 0 ? refs.need : undefined} checked={need.includes(o)} onChange={(e) => toggleNeed(o, e.target.checked)} />
-                    <span>{o}</span>
-                  </label>
-                ))}
               </div>
-              <p className="ferr" hidden={!err.need}>Pick one</p>
-            </fieldset>
-            <div className="f">
-              <label htmlFor="iProj">Tell us about the project <span className="opt">Optional</span></label>
-              <Clearable value={f.project} onClear={clear("project")} area label="project">
+              <fieldset className="f" id="needSet">
+                <legend>What do you need? <span className="hint">Pick one or more</span></legend>
+                <div className="opts">
+                  {NEED_OPTIONS.map((o, i) => (
+                    <label key={o} className="chip-r">
+                      <input type="checkbox" name="need" value={o} ref={i === 0 ? refs.need : undefined} checked={need.includes(o)} onChange={(e) => toggleNeed(o, e.target.checked)} />
+                      <span>{o}</span>
+                    </label>
+                  ))}
+                </div>
+                <p className="ferr" hidden={!err.need}>Pick one</p>
+              </fieldset>
+              <div className="f">
+                <label htmlFor="iProj">Tell us about the project <span className="hint">Optional</span></label>
                 <textarea id="iProj" ref={refs.project} name="project" rows={5} placeholder="What are you trying to build, change, or become?"
                   value={f.project} onChange={(e) => set("project")(e.target.value)} />
-              </Clearable>
-            </div>
-            <div className="inq-actions"><button className="btn" type="submit" onClick={(e) => e.currentTarget.classList.add("is-sent")}>Submit</button></div>
-          </form>
+              </div>
+              <div><button className="btn" type="submit">Submit</button></div>
+            </form>
 
-          <div className="done" id="inqDone" hidden={!sent}>
-            <h2>Almost there.</h2>
-            <p>Your email app opened with your inquiry. Press send to finish.</p>
-            <button className="linkbtn" type="button" onClick={copy}>{copyLabel}</button>
-            <p className="done-s">
-              Nothing opened? <a href={sent?.href || "#"}>Open it again</a> or write to <a data-email href={"mailto:" + site.email}>{site.email}</a>.
-            </p>
-            <button type="button" className="linkbtn" onClick={() => { setSent(null); toTop(); }}>Edit inquiry</button>
+            <div className="done" id="inqDone" hidden={!sent}>
+              <h2>Almost there.</h2>
+              <p className="lead">Your email app opened with your inquiry. Press send to finish.</p>
+              <div className="done-actions">
+                <button className="btn btn-2" type="button" onClick={copy}>{copyLabel}</button>
+                <button className="btn btn-2" type="button" onClick={() => { setSent(null); toTop(); }}>Edit inquiry</button>
+              </div>
+              <p className="done-s">
+                Nothing opened? <a href={sent?.href || "#"}>Open it again</a> or write to <a href={"mailto:" + site.email}>{site.email}</a>.
+              </p>
+            </div>
           </div>
         </div>
       </section>
