@@ -226,8 +226,9 @@ p{text-wrap:pretty}
 
 .svc-more{padding:var(--s2) 0 0}
 .svc-more .mono{display:block;margin-bottom:var(--s2)}
-.svc-more div{display:flex;flex-wrap:wrap;gap:var(--s1)}
-.svc-more a{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:var(--card);color:var(--t2);font-size:var(--fs-small);transition:background .2s,color .2s}
+.svc-more div{display:flex;flex-wrap:nowrap;gap:4px}
+.svc-more a{display:inline-flex;align-items:center;flex:0 0 auto;min-height:32px;padding:0 8px;border-radius:999px;background:var(--card);color:var(--t2);font-size:var(--fs-mono);white-space:nowrap;transition:background .2s,color .2s}
+@media(min-width:1200px){.svc-more a{padding:0 12px}}
 @media(hover:hover){.svc-more a:not([aria-current]):hover{color:var(--fg)}}
 .svc-more a[aria-current="page"]{background:var(--signal);color:var(--on-signal);font-weight:500}
 
@@ -372,7 +373,9 @@ p{text-wrap:pretty}
 
 /* 11 · FINISH -------------------------------------------------------------
    Calm hover movement and form details. Flat surfaces: no gradients beyond the hero's original
-   faint tint, no glass, no glow, no shadows, no hard edges. */
+   faint tint and the Contact page's soft light, no glass, no glow, no shadows, no hard edges. */
+/* Contact keeps its soft blue light at the top; every other page is plain white */
+.main.is-contact{background:radial-gradient(60% 640px at 6% -8%,rgba(146,217,238,.20),transparent 72%),var(--bg);background-repeat:no-repeat}
 .btn{transition:filter .2s,background .2s}
 .bc{transition:background .3s,transform .5s var(--ease)}
 @media(hover:hover){.bc:hover{transform:translateY(-6px)}}

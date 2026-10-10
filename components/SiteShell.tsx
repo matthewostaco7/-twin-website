@@ -128,7 +128,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
           </div>
         </aside>
 
-        <main className="main" id="main" tabIndex={-1} ref={mainRef}>
+        <main className={"main" + (v.isContact ? " is-contact" : "")} id="main" tabIndex={-1} ref={mainRef}>
           <div className="m-top">
             <Link href="/" aria-label="TWIN home"><Mark />TWIN</Link>
           </div>
