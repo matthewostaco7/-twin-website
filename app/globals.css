@@ -2660,7 +2660,11 @@ html .acc,html .acc + .acc{border-radius:0 !important}
 
 /* desktop: the floating navbar shows on every page, so pages that start at the top leave room for it */
 @media(min-width:901px){
-  html #view-project:not([hidden]) .pj-side,html #view-project:not([hidden]) .pj-scroll{padding-top:calc(72px + 8px) !important}
-  html .svc-page{padding-top:calc(72px + 16px) !important}
-  html .inq{padding-top:calc(72px + 16px)}
+  html #view-project:not([hidden]) .pj-side,html #view-project:not([hidden]) .pj-scroll{padding-top:calc(72px + 40px) !important}
+  html .svc-page{padding-top:calc(72px + 48px) !important}
+  html .inq{padding-top:calc(72px + 48px)}
+  /* service + contact: the navbar hides while scrolling down and returns on scroll up */
+  .side{transition:transform .35s cubic-bezier(.4,0,.2,1)}
+  .app.nav-hidden .side{transform:translateY(calc(-100% - 12px))}
 }
+@media(prefers-reduced-motion:reduce){.side{transition:none !important}}

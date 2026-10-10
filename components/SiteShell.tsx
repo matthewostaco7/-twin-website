@@ -167,6 +167,25 @@ export default function SiteShell({ children }: { children: ReactNode }) {
     return () => { m.removeEventListener("wheel", onWheel); removeEventListener("keydown", onKey); };
   }, [v.isHome]);
 
+  // desktop: on service and contact pages the navbar slides away when scrolling down and returns on scroll up
+  const autoHide = v.isSvc || v.isInq;
+  useEffect(() => {
+    const main = mainRef.current;
+    const app = document.querySelector(".app");
+    if (!main || !app || !autoHide) return;
+    let last = main.scrollTop, hidden = false;
+    const set = (h: boolean) => { if (h !== hidden) { hidden = h; app.classList.toggle("nav-hidden", h); } };
+    const onScroll = () => {
+      const y = main.scrollTop, d = y - last;
+      if (y < 24) set(false);
+      else if (d > 6) set(true);
+      else if (d < -6) set(false);
+      if (Math.abs(d) > 6 || y < 24) last = y;
+    };
+    main.addEventListener("scroll", onScroll, { passive: true });
+    return () => { main.removeEventListener("scroll", onScroll); app.classList.remove("nav-hidden"); };
+  }, [autoHide, pathname]);
+
   // Escape closes the current page
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
