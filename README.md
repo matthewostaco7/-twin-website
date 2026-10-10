@@ -31,7 +31,7 @@ Old `#/work`-style links from the single-page version redirect to the new URLs.
 
 ```
 app/                  Routes (one folder per page), layout, global styles
-  globals.css         All styles, in 10 labelled sections (tokens first)
+  globals.css         All styles, in 11 labelled sections (tokens first)
 components/           SiteShell (navigation, colour mode), WorkGallery, ProjectView,
                       ServiceView, InquiryForm, ServicesGrid, ProjectTile, icons
 lib/
