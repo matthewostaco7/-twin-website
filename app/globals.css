@@ -528,3 +528,6 @@ p{text-wrap:pretty}
 @media(max-width:1439px){.stk-c,.stk-b{display:none}.stk-a{left:var(--pad);top:24px}.stk-d{right:var(--pad);bottom:24px}}
 @media(max-width:900px){.stk{width:52px}.stk-a{top:16px}.stk-d{bottom:16px}}
 @media(max-width:480px){.stk{width:44px}.stk-a{top:14px}.stk-d{bottom:14px}}
+
+/* intro: the key words stay full ink; the connecting words step back so the eye lands on what matters */
+.intro .lo{color:rgba(7,19,31,.5)}

@@ -41,11 +41,11 @@ export default function HomePage() {
         <Stickers />
         <div className="wrap">
           <p className="intro">
-            We&rsquo;re <span className="cr cr-hl">Twin</span>, an{" "}
-            <span className="cr cr-ul">independent branding studio</span>. We build brand identities for{" "}
-            <span className="nw"><span className="cr cr-hl2"><IconFounder />founders</span></span> who don&rsquo;t want to look like{" "}
-            everyone{" "}
-            <span className="nw">else.<IconFingerprint /></span>
+            <span className="lo">We&rsquo;re</span> <span className="cr cr-hl">Twin</span><span className="lo">, an</span>{" "}
+            <span className="cr cr-ul">independent branding studio</span><span className="lo">. We build brand identities for</span>{" "}
+            <span className="nw"><span className="cr cr-hl2"><IconFounder />founders</span></span>{" "}
+            <span className="lo">who don&rsquo;t want to look like</span>{" "}
+            <span className="nw">everyone else.<IconFingerprint /></span>
           </p>
         </div>
       </section>
