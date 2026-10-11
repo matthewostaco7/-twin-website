@@ -50,7 +50,7 @@ function Cast({ bases }: { bases: Pt[][] }) {
   const sweep = (r: Pt[]) =>
     hull(r.concat(r.map((q) => [q[0] + GROUND[0] * REACH, q[1] + GROUND[1] * REACH]))).map((q) => q.join(",")).join(" ");
   return (
-    <g fill="#A07F4F" opacity={0.15}>
+    <g fill="#A07F4F" opacity={0.07}>
       {bases.map((r, i) => (
         <polygon key={i} points={sweep(r)} />
       ))}
