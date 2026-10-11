@@ -12,6 +12,8 @@ export default function HomePage() {
   return (
     <div id="view-home">
       <header className="hero" id="top">
+        <svg className="dd dd-star" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5v38M7.5 14.5l33 19M40.5 14.5l-33 19" /></svg>
+        <svg className="dd dd-arrow" viewBox="0 0 96 96" aria-hidden="true"><path d="M8 10C44 4 84 26 72 80M72 80L56 66M72 80L88 68" /></svg>
         <h1 className="hero-big">
           Look like yourself.
         </h1>
@@ -21,6 +23,20 @@ export default function HomePage() {
           <a className="btn btn-2" href="#services">Our services</a>
         </div>
       </header>
+
+      <section className="showcase" aria-hidden="true">
+        <div className="wrap">
+          <div className="sc">
+            <span className="sc-aa">Aa</span>
+            <span className="sc-pair">
+              <span className="sc-tile old"><svg viewBox="0 0 40 40"><rect x="7" y="7" width="26" height="26" rx="3" /></svg></span>
+              <svg className="sc-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+              <span className="sc-tile new"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" /></svg></span>
+            </span>
+            <svg className="sc-tri" viewBox="0 0 100 100"><polygon points="50,8 96,92 4,92" /></svg>
+          </div>
+        </div>
+      </section>
 
       <section className="sec intro-sec" aria-label="About Twin">
         <div className="wrap">
