@@ -21,8 +21,8 @@ export default function HomePage() {
           <span className="nw">else.<IconFingerprint /></span>
         </p>
         <div className="hero-cta">
-          <Link className="btn" href="/work">Work</Link>
-          <Link className="btn btn-2" href="/contact">Start a project</Link>
+          <Link className="btn" href="/work">See our work</Link>
+          <a className="btn btn-2" href="#services">Our services</a>
         </div>
       </header>
 
