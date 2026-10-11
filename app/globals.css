@@ -141,7 +141,7 @@ p{text-wrap:pretty}
 .ic.inl.r{margin:0 0 0 .1em}
 .hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s2)}
 .hero-big{max-width:none !important;font-size:var(--fs-hero) !important;line-height:var(--lh-hero) !important;letter-spacing:var(--ls-hero) !important;font-weight:500;text-wrap:balance}
-.hero-sub{max-width:20em;font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);color:var(--t2)}
+.hero-sub{max-width:22em;font-size:var(--fs-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2);color:var(--t2)}
 /* the subhead is large text from ~700px up, where a softer tint still clears 3:1 */
 @media(min-width:700px){.hero-sub{color:var(--t2-soft)}}
 .intro{max-width:16em;margin:0 auto;font-size:var(--fs-h1);line-height:var(--lh-h1);letter-spacing:var(--ls-h1);text-wrap:balance}
