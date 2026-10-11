@@ -181,8 +181,7 @@ p{text-wrap:pretty}
 .bc-graphic{--noise:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .1  .3 0 0 0 -.115'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 .bc-graphic,.bc-tab,.bc-paper,.bc-front{background-image:var(--noise);background-size:160px 160px}
 .bc-info{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);margin-top:var(--s2);padding:0 4px}
-.bc-go{display:inline-block;font-size:var(--fs-h3);line-height:1;transition:transform .2s,color .2s}
-@media(hover:hover){.bc:hover .bc-go{transform:translateX(4px);color:var(--signal)}.bc:hover .bc-graphic{transform:translateY(-6px)}.bc:hover .bc-paper{transform:translateY(-10px)}}
+@media(hover:hover){.bc:hover .bc-go{background:var(--signal);border-color:var(--signal)}.bc:hover .bc-go svg{transform:translate(2px,-2px)}.bc:hover .bc-graphic{transform:translateY(-6px)}.bc:hover .bc-paper{transform:translateY(-10px)}}
 .bc:focus-visible{outline:2px solid var(--signal);outline-offset:4px;border-radius:24px}
 
 
@@ -508,3 +507,8 @@ p{text-wrap:pretty}
 .thanks .lead{font-size:var(--fs-bodyl);margin:0}
 .thanks-note{font-size:var(--fs-small);color:var(--t2)}
 .thanks .btn{margin-top:var(--s2);min-width:160px}
+
+/* the card's "open" affordance: a circled up-right arrow, which reads as "go to this page" rather than "next slide" */
+.bc-go{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--edge);background:transparent;transition:background .2s,border-color .2s}
+.bc-go svg{width:22px;height:22px;fill:none;stroke:var(--fg);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.bc:active .bc-go{background:var(--signal);border-color:var(--signal)}
