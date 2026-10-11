@@ -17,7 +17,7 @@ export default function HomePage() {
         </h1>
         <p className="hero-sub">Brands built in weeks, not months.</p>
         <div className="hero-cta">
-          <Link className="btn" href="/work">See our work</Link>
+          <Link className="btn" href="/work">View our works</Link>
           <a className="btn btn-2" href="#services">Our services</a>
         </div>
       </header>
