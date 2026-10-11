@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ServicesGrid from "@/components/ServicesGrid";
-import { IconFingerprint, IconFounder } from "@/components/icons";
+import { IconFingerprint, IconFounder, Mark, SERVICE_ICONS } from "@/components/icons";
+import { SERVICES, SERVICE_SLUGS } from "@/lib/services";
 
 const STEPS = [
   { title: "See our work", line: "Browse the brands we have built.", href: "/work" },
@@ -12,14 +13,26 @@ export default function HomePage() {
   return (
     <div id="view-home">
       <header className="hero" id="top">
-        <h1>
-          We&rsquo;re <mark className="hl">Twin</mark>, a <span className="ul">visual branding</span> studio. We build brand identities
-          for <span className="nw"><IconFounder />founders</span> who don&rsquo;t want to look like everyone{" "}
-          <span className="nw">else.<IconFingerprint /></span>
+        <h1 className="hero-big">
+          Look like <span className="hero-chip" aria-hidden="true"><Mark /></span>
+          <br />yourself.
         </h1>
+        <p className="hero-sub">
+          We&rsquo;re Twin, a visual branding studio. We build brand identities for{" "}
+          <span className="nw"><IconFounder />founders</span> who don&rsquo;t want to look like everyone{" "}
+          <span className="nw">else.<IconFingerprint /></span>
+        </p>
+        <nav className="hero-pills" aria-label="Services">
+          {SERVICE_SLUGS.map((slug) => (
+            <Link key={slug} className="hp" href={"/services/" + slug}>
+              <span className={"hp-ic hp-" + slug} aria-hidden="true">{SERVICE_ICONS[slug]}</span>
+              {SERVICES[slug].name}
+            </Link>
+          ))}
+        </nav>
         <div className="hero-cta">
           <Link className="btn" href="/work">Work</Link>
-          <a className="btn btn-2" href="#services">Our Services</a>
+          <Link className="btn btn-2" href="/contact">Start a project</Link>
         </div>
       </header>
 

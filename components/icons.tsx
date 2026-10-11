@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { ReactNode, SVGProps } from "react";
 
 type P = SVGProps<SVGSVGElement>;
 
@@ -21,6 +21,14 @@ export const IconFounder = () => (
 export const IconFingerprint = () => (
   <svg className="ic inl r" viewBox="0 .75 24 24" aria-hidden="true"><path d="M5.5 17.5V12a6.5 6.5 0 0 1 13 0v2" /><path d="M8.7 19v-7a3.3 3.3 0 0 1 6.6 0v4.5" /><path d="M12 12v8" /></svg>
 );
+
+/** Service icons, by slug */
+export const SERVICE_ICONS: Record<string, ReactNode> = {
+  branding: <Ic><path d="M12 3l2.4 5.2 5.6.7-4.1 3.9 1 5.6L12 15.6 7.1 18.4l1-5.6L4 8.9l5.6-.7z" /></Ic>,
+  debranding: <Ic><circle cx="12" cy="12" r="7" /></Ic>,
+  rebranding: <Ic><path d="M20 11a8 8 0 0 0-14-4M4 5v3h3M4 13a8 8 0 0 0 14 4M20 19v-3h-3" /></Ic>,
+  logo: <Ic><path d="M5 19L12 5l7 14z" /></Ic>,
+};
 
 // Navigation
 export const IconHome = () => <Ic><path d="M5 10.5 12 5l7 5.5V18a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18z" /></Ic>;
