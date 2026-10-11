@@ -141,10 +141,10 @@ p{text-wrap:pretty}
 .hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s2)}
 .hero-big{max-width:none !important;font-size:clamp(56px,calc(56px + 84 * (100vw - 360px) / 1080),136px) !important;line-height:.92 !important;letter-spacing:-.045em !important;font-weight:500;text-wrap:balance}
 .hero-sub{max-width:30em;font-size:var(--fs-bodyl);line-height:1.5;color:var(--t2)}
-.intro{max-width:20em;margin-bottom:var(--s7);font-size:var(--fs-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2);text-wrap:balance}
+.intro{max-width:20em;margin:0 auto;font-size:var(--fs-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2);text-wrap:balance}
 .hero{gap:var(--s4);padding-bottom:calc(var(--s7) * 2)}
-#view-home #services{position:relative;margin-top:calc(-1 * var(--s7));border-radius:48px 48px 0 0;background:var(--air-2)}
-@media(max-width:900px){#view-home #services{margin-top:calc(-1 * var(--s5));border-radius:32px 32px 0 0}}
+#view-home .intro-sec{position:relative;display:flex;align-items:center;justify-content:center;min-height:min(560px,70svh);margin-top:calc(-1 * var(--s7));border-radius:48px 48px 0 0;background:var(--air-2);text-align:center}
+@media(max-width:900px){#view-home .intro-sec{margin-top:calc(-1 * var(--s5));border-radius:32px 32px 0 0;min-height:0}}
 @media(max-width:900px){
   /* the hero's wash runs up behind the logo bar, so there is no band between them */
   .m-top{position:relative;z-index:1}

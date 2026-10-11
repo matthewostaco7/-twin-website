@@ -22,13 +22,18 @@ export default function HomePage() {
         </div>
       </header>
 
-      <section className="sec" id="services">
+      <section className="sec intro-sec" aria-label="About Twin">
         <div className="wrap">
           <p className="intro">
             We&rsquo;re Twin, a visual branding studio. We build brand identities for{" "}
             <span className="nw"><IconFounder />founders</span> who don&rsquo;t want to look like everyone{" "}
             <span className="nw">else.<IconFingerprint /></span>
           </p>
+        </div>
+      </section>
+
+      <section className="sec" id="services">
+        <div className="wrap">
           <h2 className="sec-title">What we do</h2>
           <ServicesGrid />
         </div>
