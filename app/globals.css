@@ -540,3 +540,7 @@ p{text-wrap:pretty}
 .bc-go svg{stroke:var(--signal);stroke-width:2.2}
 @media(hover:hover){.bc:hover .bc-go svg{stroke:var(--on-signal)}}
 .bc:active .bc-go svg{stroke:var(--on-signal)}
+
+/* lighter arrow button: a softer tint of SIGNAL, thinner arrow; full SIGNAL fill on hover and tap */
+.bc-go{border-color:color-mix(in srgb,var(--signal) 55%,#fff)}
+.bc-go svg{stroke:color-mix(in srgb,var(--signal) 80%,#fff);stroke-width:1.8}
