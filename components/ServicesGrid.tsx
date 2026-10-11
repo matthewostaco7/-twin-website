@@ -19,9 +19,22 @@ function Cube({ cx, cy, a, tone }: { cx: number; cy: number; a: number; tone: To
   );
 }
 
-/** A flat cast shadow that starts at the base corners of a shape and falls down and to the left, away from a light at the upper left. */
-function Cast({ pts }: { pts: number[][] }) {
-  return <polygon className="iso-shadow" points={pts.map((p) => p.join(",")).join(" ")} />;
+type Pt = number[];
+
+/**
+ * A flat cast shadow. Each chain is a run of the shape's base edges; the shadow is that run
+ * swept along v (light from the upper left, so it falls down and to the right). The part under
+ * the lit face is lighter than the part under the shaded face, and both multiply into the folder.
+ */
+function Cast({ lit, dark, v }: { lit: Pt[]; dark: Pt[]; v: Pt }) {
+  const sweep = (c: Pt[]) =>
+    c.concat(c.map((p) => [p[0] + v[0], p[1] + v[1]]).reverse()).map((p) => p.join(",")).join(" ");
+  return (
+    <g>
+      <polygon className="iso-shadow lit" points={sweep(lit)} />
+      <polygon className="iso-shadow dark" points={sweep(dark)} />
+    </g>
+  );
 }
 
 const Iso = ({ box, children }: { box: string; children: ReactNode }) => (
@@ -34,8 +47,8 @@ const Iso = ({ box, children }: { box: string; children: ReactNode }) => (
 const VISUALS: Record<string, ReactNode> = {
   // built up from the ground: three blocks stepping up
   branding: (
-    <Iso box="30 60 106 134">
-      <Cast pts={[[53.75, 142], [78, 156], [102, 170], [126.25, 156], [116.25, 176], [92, 190], [43.75, 162]]} />
+    <Iso box="40 60 130 160">
+      <Cast lit={[[53.75, 142], [78, 156], [102, 170]]} dark={[[102, 170], [126.25, 156]]} v={[30, 44]} />
       <Cube cx={78} cy={100} a={28} tone="signal" />
       <Cube cx={78} cy={72} a={28} tone="signal" />
       <Cube cx={102} cy={114} a={28} tone="signal" />
@@ -43,8 +56,8 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // many parts reduced to one
   debranding: (
-    <Iso box="34 40 114 108">
-      <Cast pts={[[55.5, 98], [78, 111], [100, 124], [122, 111], [144.5, 98], [134.5, 118], [112, 131], [90, 144], [68, 131], [45.5, 118]]} />
+    <Iso box="44 40 130 126">
+      <Cast lit={[[55.5, 98], [78, 111], [100, 124]]} dark={[[100, 124], [122, 111], [144.5, 98]]} v={[26, 40]} />
       <Cube cx={100} cy={46} a={26} tone="air" />
       <Cube cx={78} cy={59} a={26} tone="air" />
       <Cube cx={122} cy={59} a={26} tone="air" />
@@ -53,9 +66,9 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // old to new
   rebranding: (
-    <Iso box="6 60 184 94">
-      <Cast pts={[[22, 115], [48, 130], [74, 115], [64, 135], [38, 150], [12, 135]]} />
-      <Cast pts={[[126, 115], [152, 130], [178, 115], [168, 135], [142, 150], [116, 135]]} />
+    <Iso box="14 60 196 110">
+      <Cast lit={[[22, 115], [48, 130]]} dark={[[48, 130], [74, 115]]} v={[24, 36]} />
+      <Cast lit={[[126, 115], [152, 130]]} dark={[[152, 130], [178, 115]]} v={[24, 36]} />
       <Cube cx={48} cy={70} a={30} tone="air" />
       <path className="iso-arrow" d="M88 112h24m-8-8l8 8-8 8" />
       <Cube cx={152} cy={70} a={30} tone="signal" />
@@ -63,8 +76,8 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // one mark: a soft pyramid
   logo: (
-    <Iso box="34 22 124 140">
-      <Cast pts={[[52, 104], [100, 138], [148, 104], [138, 124], [90, 158], [42, 124]]} />
+    <Iso box="40 28 150 168">
+      <Cast lit={[[52, 104], [100, 138]]} dark={[[100, 138], [148, 104]]} v={[34, 52]} />
       <g className="iso iso-signal">
         <polygon className="l" points="100,30 52,104 100,138" />
         <polygon className="r" points="100,30 100,138 148,104" />

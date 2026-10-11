@@ -187,7 +187,10 @@ p{text-wrap:pretty}
 
 .bc-viz{position:absolute;inset:52px var(--s3) 36px}
 .iso-art{display:block;width:100%;height:100%;overflow:visible}
-.iso-shadow{fill:color-mix(in srgb,#B8650F 24%,var(--ff))}
+/* multiply, so the folder's paper grain shows through the shadow; the part under the shaded face is darker */
+.iso-shadow{mix-blend-mode:multiply}
+.iso-shadow.lit{fill:#E9E9E9}
+.iso-shadow.dark{fill:#D3D3D3}
 .iso polygon{stroke-width:4;stroke-linejoin:round}
 .iso-signal .t{--c:color-mix(in srgb,var(--signal) 42%,#fff)}
 .iso-signal .l{--c:color-mix(in srgb,var(--signal) 74%,#fff)}
