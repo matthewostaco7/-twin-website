@@ -1,11 +1,25 @@
 import Link from "next/link";
 import ServicesGrid from "@/components/ServicesGrid";
+import { SERVICES, SERVICE_SLUGS } from "@/lib/services";
 import { IconFingerprint, IconFounder } from "@/components/icons";
 
-const STEPS = [
-  { title: "See our work", line: "Browse the brands we have built.", href: "/work" },
-  { title: "Pick a service", line: "Branding, debranding, rebranding or logo.", href: "/#services" },
-  { title: "Tell us what you need", line: "Send a short brief. We reply with a plan.", href: "/contact" },
+const FAQS = [
+  {
+    q: "Which service do I need?",
+    a: "Branding builds a new identity from scratch, rebranding updates an existing one, debranding strips one back to what matters, and logo is a single mark. Not sure? Choose \u201CNot sure\u201D on the contact form and we will point you to one.",
+  },
+  {
+    q: "How long does a project take?",
+    a: SERVICE_SLUGS.map((slug) => SERVICES[slug].name + ": " + SERVICES[slug].timeline.toLowerCase()).join(". ") + ".",
+  },
+  {
+    q: "How many revisions do I get?",
+    a: "Every service includes 2 rounds of revisions.",
+  },
+  {
+    q: "How do I start?",
+    a: "Send a short brief on the contact page. Tell us what you need and we reply with a plan.",
+  },
 ];
 
 export default function HomePage() {
@@ -39,21 +53,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="sec guide" id="start" aria-labelledby="start-title">
+      <section className="sec faq" id="faq" aria-labelledby="faq-title">
         <div className="wrap">
-          <h2 className="sec-title" id="start-title">How to start</h2>
-          <ol className="steps">
-            {STEPS.map((st, i) => (
-              <li key={st.title}>
-                <Link className="step" href={st.href}>
-                  <span className="mono">0{i + 1}</span>
-                  <span className="step-t">{st.title}</span>
-                  <span className="step-d">{st.line}</span>
-                  <span className="step-go" aria-hidden="true">&rarr;</span>
-                </Link>
-              </li>
+          <h2 className="sec-title" id="faq-title">FAQs</h2>
+          <div className="faq-list">
+            {FAQS.map((f) => (
+              <details key={f.q}>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
     </div>
