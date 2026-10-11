@@ -15,11 +15,7 @@ export default function HomePage() {
         <h1 className="hero-big">
           Look like yourself.
         </h1>
-        <p className="hero-sub">
-          We&rsquo;re Twin, a visual branding studio. We build brand identities for{" "}
-          <span className="nw"><IconFounder />founders</span> who don&rsquo;t want to look like everyone{" "}
-          <span className="nw">else.<IconFingerprint /></span>
-        </p>
+        <p className="hero-sub">Brands built in weeks, not months.</p>
         <div className="hero-cta">
           <Link className="btn" href="/work">See our work</Link>
           <a className="btn btn-2" href="#services">Our services</a>
@@ -28,6 +24,11 @@ export default function HomePage() {
 
       <section className="sec" id="services">
         <div className="wrap">
+          <p className="intro">
+            We&rsquo;re Twin, a visual branding studio. We build brand identities for{" "}
+            <span className="nw"><IconFounder />founders</span> who don&rsquo;t want to look like everyone{" "}
+            <span className="nw">else.<IconFingerprint /></span>
+          </p>
           <h2 className="sec-title">What we do</h2>
           <ServicesGrid />
         </div>
