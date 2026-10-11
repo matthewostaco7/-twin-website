@@ -531,3 +531,6 @@ p{text-wrap:pretty}
 
 /* intro: the key words stay full ink; the connecting words step back so the eye lands on what matters */
 .intro .lo{color:rgba(7,19,31,.5)}
+
+/* clay: the shapes (not their shadows) get the handmade edge and matte grain */
+.bc-viz .iso-art{filter:url(#iso-clay)}

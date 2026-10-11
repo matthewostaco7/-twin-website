@@ -159,6 +159,26 @@ export default function ServicesGrid() {
 
   return (
     <>
+      {/* clay texture for the shapes: a slightly wobbly hand-cut edge, plus a fine matte grain that darkens and lightens the colour a touch */}
+      <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true" focusable="false">
+        <filter id="iso-clay" x="-4%" y="-4%" width="108%" height="108%" colorInterpolationFilters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="5" result="wob" />
+          <feDisplacementMap in="SourceGraphic" in2="wob" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="shape" />
+          {/* grain only where the shape is dark: alpha = 1 - luminance, so the lightest tones stay clean */}
+          <feColorMatrix in="shape" type="matrix" values="0 0 0 0 0.5  0 0 0 0 0.32  0 0 0 0 0.12  -0.3 -1.0 -0.1 0 1.05" result="darkOnly" />
+          <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="11" result="grain" />
+          <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.3 -0.3" result="grainA" />
+          <feComposite in="darkOnly" in2="grainA" operator="in" result="grainDark" />
+          <feComposite in="grainDark" in2="shape" operator="in" result="grainShape" />
+          {/* a darker rim just inside the edge */}
+          <feMorphology in="shape" operator="erode" radius="1.8" result="core" />
+          <feComposite in="shape" in2="core" operator="out" result="rim" />
+          <feFlood floodColor="#8A4F0E" floodOpacity="0.32" result="rimInk" />
+          <feComposite in="rimInk" in2="rim" operator="in" result="rimDark" />
+          <feBlend in="grainShape" in2="shape" mode="multiply" result="withGrain" />
+          <feBlend in="rimDark" in2="withGrain" mode="multiply" />
+        </filter>
+      </svg>
       <div className="bento" ref={grid}>
         {SERVICE_SLUGS.map((slug) => (
           <Link key={slug} className="bc rv" href={"/services/" + slug}>
