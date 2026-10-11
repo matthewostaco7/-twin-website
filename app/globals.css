@@ -11,7 +11,7 @@
 :root{
   /* brand colours (unchanged) */
   --bg:#FFFFFF; --fg:#07131F; --signal:#FF9D2E; --card:#F2F2F2; --air:#E2E8F0;
-  --t2:rgba(7,19,31,.68); --t3:rgba(7,19,31,.58); --line:rgba(7,19,31,.12);
+  --t2:rgba(7,19,31,.62); --t2-soft:rgba(7,19,31,.52); --t3:rgba(7,19,31,.58); --line:rgba(7,19,31,.12);
   --h1:#D9E4F7; --h2:#E7DFF7; --h3:#FBE4CF; --h4:#D6EFE2; --h5:#F8DDE5; --h6:#D3EDF4; --h7:#F6EECB; --h8:#E3E8F0;
   /* surfaces that were already in use, named once */
   --air-2:#F7F9FB;            /* AIR 2: the light neutral that pairs with AIR 1 */
@@ -142,6 +142,8 @@ p{text-wrap:pretty}
 .hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s2)}
 .hero-big{max-width:none !important;font-size:var(--fs-hero) !important;line-height:var(--lh-hero) !important;letter-spacing:var(--ls-hero) !important;font-weight:500;text-wrap:balance}
 .hero-sub{max-width:20em;font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);color:var(--t2)}
+/* the subhead is large text from ~700px up, where a softer tint still clears 3:1 */
+@media(min-width:700px){.hero-sub{color:var(--t2-soft)}}
 .intro{max-width:16em;margin:0 auto;font-size:var(--fs-h1);line-height:var(--lh-h1);letter-spacing:var(--ls-h1);text-wrap:balance}
 @media(min-width:901px){.intro{font-size:var(--fs-display);line-height:var(--lh-display);letter-spacing:var(--ls-display)}}
 .hero{gap:var(--s4);padding-bottom:calc(var(--s7) * 2)}
