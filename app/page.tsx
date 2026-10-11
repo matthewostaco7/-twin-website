@@ -39,9 +39,11 @@ export default function HomePage() {
       <section className="sec intro-sec" aria-label="About Twin">
         <div className="wrap">
           <p className="intro">
-            We&rsquo;re Twin, an independent branding studio. We build brand identities for{" "}
-            <span className="nw"><IconFounder />founders</span> who don&rsquo;t want to look like everyone{" "}
-            <span className="nw">else.<IconFingerprint /></span>
+            We&rsquo;re <span className="cr cr-hl">Twin</span>, an{" "}
+            <span className="cr cr-ul">independent branding studio</span>. We build brand identities for{" "}
+            <span className="nw"><IconFounder /><span className="cr cr-hl2">founders</span></span> who don&rsquo;t want to look like{" "}
+            <span className="cr cr-ul2">everyone</span>{" "}
+            <span className="nw"><span className="cr cr-ul2">else.</span><IconFingerprint /></span>
           </p>
         </div>
       </section>
