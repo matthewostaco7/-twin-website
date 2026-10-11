@@ -41,7 +41,7 @@ export default function HomePage() {
           <p className="intro">
             We&rsquo;re <span className="cr cr-hl">Twin</span>, an{" "}
             <span className="cr cr-ul">independent branding studio</span>. We build brand identities for{" "}
-            <span className="nw"><IconFounder /><span className="cr cr-hl2">founders</span></span> who don&rsquo;t want to look like{" "}
+            <span className="nw"><span className="cr cr-hl2"><IconFounder />founders</span></span> who don&rsquo;t want to look like{" "}
             everyone{" "}
             <span className="nw">else.<IconFingerprint /></span>
           </p>
