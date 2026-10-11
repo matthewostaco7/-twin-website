@@ -101,11 +101,12 @@ export default function ServicesGrid() {
   return (
     <>
       <div className="bento" ref={grid}>
-        {SERVICE_SLUGS.map((slug, i) => (
+        {SERVICE_SLUGS.map((slug) => (
           <Link key={slug} className="bc rv" href={"/services/" + slug}>
-            <div className="bc-graphic">
-              <span className="bc-tab mono" aria-hidden="true">0{i + 1}</span>
-              {VISUALS[slug]}
+            <div className="bc-graphic" aria-hidden="true">
+              <span className="bc-tab" />
+              <span className="bc-paper" />
+              <div className="bc-front">{VISUALS[slug]}</div>
             </div>
             <div className="bc-info">
               <h3>{SERVICES[slug].name}</h3>
