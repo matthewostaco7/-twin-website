@@ -70,6 +70,22 @@ If `projects` is empty, the gallery shows placeholder tiles.
 
 There is no backend. Submitting opens the visitor's email app with the inquiry pre-filled and addressed to the email in `lib/site.ts`.
 
+## Secrets stay off the frontend
+
+This is a static site: everything in `app/`, `components/`, `lib/`, `content/` and `public/` is sent to every visitor's browser, so nothing in them can be secret. The only contact detail in the code is the public inbox in `lib/site.ts`.
+
+- Never put API keys, tokens or passwords in this repo, and never prefix a secret with `NEXT_PUBLIC_` (that prefix publishes it to the browser).
+- If a feature ever needs a secret (a form service, email API, CMS), call it from a server route or the host's serverless function, and keep the key in the host's environment settings.
+- `.env` files, `*.pem` and `*.key` are git-ignored.
+- `npm run check:secrets` scans the source and the built `out/` folder for key-like strings and browser-side `process.env` reads. `npm run lint` runs it with the type check.
+
+## HTTPS only
+
+- `public/_headers` (Netlify, Cloudflare Pages) and `vercel.json` (Vercel) send a Strict-Transport-Security header, so browsers refuse plain http after the first visit.
+- A small script in `app/layout.tsx` redirects any plain-http visit to https as a fallback. Localhost is left alone.
+- On GitHub Pages, tick **Enforce HTTPS** in the repo's Pages settings, since it cannot send custom headers.
+- Turn on your host's "force HTTPS" or "redirect http to https" option too, so the redirect happens before the page loads.
+
 ## Deploy
 
 - **Vercel:** import the repo. Framework and settings are detected automatically.

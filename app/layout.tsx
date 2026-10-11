@@ -21,6 +21,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {/* HTTPS only: send plain-http visitors to https (local development is left alone). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if(location.protocol==='http:'&&!/^(localhost|\\[::1\\]|[^.]+\\.local|\\d+\\.\\d+\\.\\d+\\.\\d+)$/.test(location.hostname))location.replace('https:'+location.href.substring(5))",
+          }}
+        />
         <link rel="preload" href="/fonts/NeueMontreal-Regular.otf" as="font" type="font/otf" crossOrigin="" />
         <link rel="preload" href="/fonts/NeueMontreal-Medium.otf" as="font" type="font/otf" crossOrigin="" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
