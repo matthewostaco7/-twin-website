@@ -107,7 +107,6 @@ export default function ServicesGrid() {
               <span className="bc-tab" />
               <span className="bc-paper" />
               <span className="bc-front" />
-              <span className="bc-floor" />
               {VISUALS[slug]}
             </div>
             <div className="bc-info">
