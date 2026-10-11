@@ -139,29 +139,6 @@ p{text-wrap:pretty}
 .hero .ic.inl{box-sizing:border-box;width:.74em;height:.74em;padding:.1em;border-radius:50%;background:#FFF3E3;stroke:var(--signal);stroke-width:1.8;vertical-align:0;margin:0 .1em 0 -.08em}
 .hero .ic.inl.r{margin:0 0 0 .1em}
 .hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s2)}
-.hero-viz{display:flex;justify-content:center;gap:var(--s1);order:3;margin-top:calc(-1 * var(--s2))}
-.hero-cta{order:2}
-.hv{display:grid;place-items:center;width:64px;aspect-ratio:1;border-radius:20px}
-.hv svg{width:50%;height:auto}
-.hv-a{background:var(--tint-card)}
-.hv-aa{font-size:24px;font-weight:500;line-height:1;letter-spacing:-.04em;color:var(--signal)}
-.hv-b{background:var(--signal)}
-.hv-b polygon{fill:var(--fg)}
-.hv-c{background:var(--air)}
-.hv-c svg{width:44%;fill:none;stroke:var(--fg);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.hv-d{background:var(--fg)}
-.hv-d circle{fill:var(--signal)}
-@media(min-width:1280px){
-  .hero-viz{display:block;order:0;margin:0;position:absolute;inset:0;pointer-events:none}
-  .hv{position:absolute;width:clamp(112px,9.5vw,148px);border-radius:32px;animation:hv-float 9s ease-in-out infinite}
-  .hv-aa{font-size:clamp(44px,3.8vw,60px)}
-  .hv-a{left:5%;top:24%;rotate:-8deg}
-  .hv-b{right:6%;top:22%;rotate:7deg;animation-delay:-3s}
-  .hv-c{left:8%;bottom:14%;rotate:6deg;animation-delay:-6s}
-  .hv-d{right:9%;bottom:16%;rotate:-5deg;animation-delay:-1.5s}
-}
-@keyframes hv-float{0%,100%{translate:0 0}50%{translate:0 -12px}}
-@media(prefers-reduced-motion:reduce){.hv{animation:none}}
 @media(max-width:900px){
   /* the hero's wash runs up behind the logo bar, so there is no band between them */
   .m-top{position:relative;z-index:1}
