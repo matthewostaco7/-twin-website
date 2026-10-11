@@ -2,6 +2,12 @@ import Link from "next/link";
 import ServicesGrid from "@/components/ServicesGrid";
 import { IconFingerprint, IconFounder } from "@/components/icons";
 
+const STEPS = [
+  { title: "See our work", line: "Browse the brands we have built.", href: "/work" },
+  { title: "Pick a service", line: "Branding, debranding, rebranding or logo.", href: "/#services" },
+  { title: "Tell us what you need", line: "Send a short brief. We reply with a plan.", href: "/contact" },
+];
+
 export default function HomePage() {
   return (
     <div id="view-home">
@@ -21,6 +27,24 @@ export default function HomePage() {
         <div className="wrap">
           <h2 className="sec-title">What we do</h2>
           <ServicesGrid />
+        </div>
+      </section>
+
+      <section className="sec guide" id="start" aria-labelledby="start-title">
+        <div className="wrap">
+          <h2 className="sec-title" id="start-title">How to start</h2>
+          <ol className="steps">
+            {STEPS.map((st, i) => (
+              <li key={st.title}>
+                <Link className="step" href={st.href}>
+                  <span className="mono">0{i + 1}</span>
+                  <span className="step-t">{st.title}</span>
+                  <span className="step-d">{st.line}</span>
+                  <span className="step-go" aria-hidden="true">&rarr;</span>
+                </Link>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
     </div>
