@@ -173,8 +173,10 @@ p{text-wrap:pretty}
 /* a folder: back panel with a tab, a sheet of paper, and a lighter front panel */
 .bc-tab{position:absolute;left:0;bottom:calc(100% - 1px);width:46%;height:calc(var(--s3) + 1px);border-radius:12px 12px 0 0;background:var(--fb)}
 .bc-tab::after{content:"";position:absolute;left:calc(100% - 1px);bottom:0;width:calc(var(--s3) / 2);height:calc(var(--s3) / 2);background:radial-gradient(circle at 100% 0,transparent calc(var(--s3) / 2 - 1.5px),var(--fb) calc(var(--s3) / 2 - 1px))}
-.bc-paper{position:absolute;left:var(--s3);right:var(--s3);top:92px;height:64px;border-radius:12px 12px 0 0;background:var(--bg);transition:transform .5s var(--ease)}
-.bc-floor{position:absolute;inset:50% 0 0;border-radius:24px;background:var(--ff)}
+.bc-paper{position:absolute;left:var(--s3);right:var(--s3);top:20px;height:64px;border-radius:12px 12px 0 0;background:var(--bg);transition:transform .5s var(--ease)}
+.bc-front{position:absolute;inset:56px 0 0;border-radius:24px;background:var(--ff)}
+/* the floor: one flat colour across the lower half of the folder */
+.bc-floor{position:absolute;inset:50% 0 0;border-radius:0 0 24px 24px;background:color-mix(in srgb,var(--signal) 20%,#fff)}
 .bc-info{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);margin-top:var(--s2);padding:0 4px}
 .bc-go{display:inline-block;font-size:var(--fs-h3);line-height:1;transition:transform .2s,color .2s}
 @media(hover:hover){.bc:hover .bc-go{transform:translateX(4px);color:var(--signal)}.bc:hover .bc-graphic{transform:translateY(-6px)}.bc:hover .bc-paper{transform:translateY(-10px)}}
