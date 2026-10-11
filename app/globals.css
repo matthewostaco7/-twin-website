@@ -523,7 +523,8 @@ p{text-wrap:pretty}
 .stk-ink path{fill:none;stroke:var(--fg);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
 .stk-a{left:calc(var(--pad) + 2%);top:16%;rotate:-12deg}
 .stk-b{right:calc(var(--pad) + 3%);top:14%;rotate:9deg}
-.stk-c{left:calc(var(--pad) + 5%);bottom:13%;rotate:7deg}
+.stk-c{left:calc(var(--pad) + 1%);bottom:8%;rotate:7deg}
 .stk-d{right:calc(var(--pad) + 2%);bottom:15%;rotate:-8deg}
-@media(max-width:1199px){.stk-c,.stk-b{display:none}.stk-a{left:var(--pad);top:24px}.stk-d{right:var(--pad);bottom:24px}}
+@media(max-width:1439px){.stk-c,.stk-b{display:none}.stk-a{left:var(--pad);top:24px}.stk-d{right:var(--pad);bottom:24px}}
 @media(max-width:900px){.stk{width:52px}.stk-a{top:16px}.stk-d{bottom:16px}}
+@media(max-width:480px){.stk{width:44px}.stk-a{top:14px}.stk-d{bottom:14px}}
