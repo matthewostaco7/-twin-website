@@ -463,3 +463,9 @@ p{text-wrap:pretty}
    It is the front panel's own rounded shape, nudged up and blurred, clipped to the folder. */
 .bc-inner{position:absolute;inset:0;overflow:hidden;border-radius:0 24px 24px 24px;pointer-events:none}
 .bc-inshadow{position:absolute;left:0;right:0;top:56px;height:64px;border-radius:24px 24px 0 0;background:rgba(150,100,40,.28);transform:translateY(-9px);filter:blur(8px);mix-blend-mode:multiply}
+
+/* phones: "Our services" lands with the cards and their pagination dots both in view above the tab bar */
+@media(max-width:900px){
+  #view-home #services{scroll-margin-top:-56px}
+  #view-home #services .sec-title{margin-bottom:var(--s4)}
+}
