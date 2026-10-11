@@ -512,3 +512,6 @@ p{text-wrap:pretty}
 .bc-go{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--edge);background:transparent;transition:background .2s,border-color .2s}
 .bc-go svg{width:26px;height:26px;fill:none;stroke:var(--fg);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
 .bc:active .bc-go{background:var(--signal);border-color:var(--signal)}
+
+/* intro icons: ink glyph on the pale circle with a SIGNAL ring, so the glyph clears 4.5:1 and the orange stays in the brand */
+.ic.inl{stroke:var(--fg);stroke-width:2;box-shadow:inset 0 0 0 1.5px var(--signal)}
