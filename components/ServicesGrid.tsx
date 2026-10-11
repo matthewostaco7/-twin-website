@@ -19,6 +19,11 @@ function Cube({ cx, cy, a, tone }: { cx: number; cy: number; a: number; tone: To
   );
 }
 
+/** A flat cast shadow that starts at the base corners of a shape and falls down and a little right. */
+function Cast({ pts }: { pts: number[][] }) {
+  return <polygon className="iso-shadow" points={pts.map((p) => p.join(",")).join(" ")} />;
+}
+
 const Iso = ({ box, children }: { box: string; children: ReactNode }) => (
   <div className="bc-viz">
     <svg className="iso-art" viewBox={box} aria-hidden="true">{children}</svg>
@@ -29,7 +34,8 @@ const Iso = ({ box, children }: { box: string; children: ReactNode }) => (
 const VISUALS: Record<string, ReactNode> = {
   // built up from the ground: three blocks stepping up
   branding: (
-    <Iso box="40 60 100 116">
+    <Iso box="40 60 106 134">
+      <Cast pts={[[53.75, 142], [78, 156], [102, 170], [126.25, 156], [136.25, 176], [112, 190], [63.75, 162]]} />
       <Cube cx={78} cy={100} a={28} tone="signal" />
       <Cube cx={78} cy={72} a={28} tone="signal" />
       <Cube cx={102} cy={114} a={28} tone="signal" />
@@ -37,7 +43,8 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // many parts reduced to one
   debranding: (
-    <Iso box="44 40 112 92">
+    <Iso box="44 40 114 108">
+      <Cast pts={[[55.5, 98], [78, 111], [100, 124], [122, 111], [144.5, 98], [154.5, 118], [132, 131], [110, 144], [88, 131], [65.5, 118]]} />
       <Cube cx={100} cy={46} a={26} tone="air" />
       <Cube cx={78} cy={59} a={26} tone="air" />
       <Cube cx={122} cy={59} a={26} tone="air" />
@@ -46,7 +53,9 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // old to new
   rebranding: (
-    <Iso box="14 60 172 80">
+    <Iso box="14 60 176 94">
+      <Cast pts={[[22, 115], [48, 130], [74, 115], [84, 135], [58, 150], [32, 135]]} />
+      <Cast pts={[[126, 115], [152, 130], [178, 115], [188, 135], [162, 150], [136, 135]]} />
       <Cube cx={48} cy={70} a={30} tone="air" />
       <path className="iso-arrow" d="M88 112h24m-8-8l8 8-8 8" />
       <Cube cx={152} cy={70} a={30} tone="signal" />
@@ -54,7 +63,8 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // one mark: a soft pyramid
   logo: (
-    <Iso box="44 22 112 124">
+    <Iso box="44 22 116 140">
+      <Cast pts={[[52, 104], [100, 138], [148, 104], [158, 124], [110, 158], [62, 124]]} />
       <g className="iso iso-signal">
         <polygon className="l" points="100,30 52,104 100,138" />
         <polygon className="r" points="100,30 100,138 148,104" />
@@ -107,7 +117,6 @@ export default function ServicesGrid() {
               <span className="bc-tab" />
               <span className="bc-paper" />
               <span className="bc-front" />
-              <span className="bc-shade" />
               {VISUALS[slug]}
             </div>
             <div className="bc-info">
