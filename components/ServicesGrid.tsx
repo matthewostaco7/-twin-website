@@ -62,9 +62,12 @@ export default function ServicesGrid() {
       <div className="bento" ref={grid}>
         {SERVICE_SLUGS.map((slug) => (
           <Link key={slug} className="bc rv" href={"/services/" + slug}>
-            <h3>{SERVICES[slug].name}</h3>
-            <p>{SERVICES[slug].line}</p>
-            {VISUALS[slug]}
+            <div className="bc-graphic">{VISUALS[slug]}</div>
+            <div className="bc-info">
+              <h3>{SERVICES[slug].name}</h3>
+              <p>{SERVICES[slug].line}</p>
+              <span className="bc-cta">View Service <span className="bc-go" aria-hidden="true">&rarr;</span></span>
+            </div>
           </Link>
         ))}
       </div>
