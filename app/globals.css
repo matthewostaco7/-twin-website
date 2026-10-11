@@ -477,3 +477,8 @@ p{text-wrap:pretty}
 .bc:nth-child(2) .bc-graphic{--fb:color-mix(in srgb,var(--signal) 24%,#fff)}
 .bc:nth-child(3) .bc-graphic{--fb:color-mix(in srgb,var(--signal) 30%,#fff)}
 .bc:nth-child(4) .bc-graphic{--fb:color-mix(in srgb,var(--signal) 36%,#fff)}
+/* the paper in each folder takes a whisper of the same step, always lighter than the folder behind it */
+.bc:nth-child(1) .bc-paper{background-color:color-mix(in srgb,var(--signal) 2%,#fff)}
+.bc:nth-child(2) .bc-paper{background-color:color-mix(in srgb,var(--signal) 4%,#fff)}
+.bc:nth-child(3) .bc-paper{background-color:color-mix(in srgb,var(--signal) 6%,#fff)}
+.bc:nth-child(4) .bc-paper{background-color:color-mix(in srgb,var(--signal) 8%,#fff)}
