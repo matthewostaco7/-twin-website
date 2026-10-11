@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { SERVICES, SERVICE_SLUGS } from "@/lib/services";
 
 type Tone = "signal" | "air";
@@ -25,45 +25,21 @@ type Pt = number[];
 const LIGHT = [0.55, 0.84];
 
 /**
- * A cast shadow, built the way a renderer softens one: a long, faint, blurry penumbra that runs out
- * past the folder edge (the folder clips it), plus a short, tight, darker contact shadow at the base.
- * Each chain is a run of the shape's base edges swept along the light direction. The part under the
- * lit face is lighter than the part under the shaded face. Colours are warm shades of the paper.
+ * A flat cast shadow. Each chain is a run of the shape's base edges swept along the light direction,
+ * far enough that the folder's edge clips it. Hard-edged, one flat tone per face: lighter under the
+ * lit face, deeper under the shaded face. Warm shades of the paper, low opacity.
  */
 function Cast({ lit, dark }: { lit: Pt[]; dark: Pt[] }) {
-  const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
-  const sweep = (c: Pt[], len: number) =>
+  const FAR = 260;
+  const sweep = (c: Pt[]) =>
     c
-      .concat(c.map((p) => [p[0] + LIGHT[0] * len, p[1] + LIGHT[1] * len]).reverse())
+      .concat(c.map((p) => [p[0] + LIGHT[0] * FAR, p[1] + LIGHT[1] * FAR]).reverse())
       .map((p) => p.join(","))
       .join(" ");
-  const mid = (c: Pt[]) => [c.reduce((n, p) => n + p[0], 0) / c.length, c.reduce((n, p) => n + p[1], 0) / c.length];
-  const FAR = 260, NEAR = 22;
-  const grad = (id: string, c: Pt[], len: number, color: string, from: number, to: number) => {
-    const m = mid(c);
-    return (
-      <linearGradient id={id} gradientUnits="userSpaceOnUse" x1={m[0]} y1={m[1]} x2={m[0] + LIGHT[0] * len} y2={m[1] + LIGHT[1] * len}>
-        <stop offset="0" stopColor={color} stopOpacity={from} />
-        <stop offset="1" stopColor={color} stopOpacity={to} />
-      </linearGradient>
-    );
-  };
   return (
     <>
-      <defs>
-        {grad(uid + "fl", lit, FAR, "#D6C3A6", 0.8, 0.5)}
-        {grad(uid + "fd", dark, FAR, "#C2A982", 0.9, 0.55)}
-        {grad(uid + "nl", lit, NEAR, "#A98C62", 0.5, 0)}
-        {grad(uid + "nd", dark, NEAR, "#9A7A4C", 0.62, 0)}
-      </defs>
-      <g filter="url(#iso-soft)">
-        <polygon points={sweep(lit, FAR)} fill={`url(#${uid}fl)`} />
-        <polygon points={sweep(dark, FAR)} fill={`url(#${uid}fd)`} />
-      </g>
-      <g filter="url(#iso-core)">
-        <polygon points={sweep(lit, NEAR)} fill={`url(#${uid}nl)`} />
-        <polygon points={sweep(dark, NEAR)} fill={`url(#${uid}nd)`} />
-      </g>
+      <polygon points={sweep(lit)} fill="#B79A6E" fillOpacity={0.2} />
+      <polygon points={sweep(dark)} fill="#A07F4F" fillOpacity={0.3} />
     </>
   );
 }
@@ -164,10 +140,6 @@ export default function ServicesGrid() {
 
   return (
     <>
-      <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true" focusable="false">
-        <filter id="iso-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4.5" /></filter>
-        <filter id="iso-core" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.6" /></filter>
-      </svg>
       <div className="bento" ref={grid}>
         {SERVICE_SLUGS.map((slug) => (
           <Link key={slug} className="bc rv" href={"/services/" + slug}>
