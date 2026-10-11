@@ -17,6 +17,12 @@ export default function HomePage() {
           for <span className="nw"><IconFounder />founders</span> who don&rsquo;t want to look like everyone{" "}
           <span className="nw">else.<IconFingerprint /></span>
         </h1>
+        <div className="hero-viz" aria-hidden="true">
+          <span className="hv hv-a"><span className="hv-aa">Aa</span></span>
+          <span className="hv hv-b"><svg viewBox="0 0 100 100"><polygon points="50,12 92,88 8,88" /></svg></span>
+          <span className="hv hv-c"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" /></svg></span>
+          <span className="hv hv-d"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" /></svg></span>
+        </div>
         <div className="hero-cta">
           <Link className="btn" href="/work">Work</Link>
           <a className="btn btn-2" href="#services">Our Services</a>
