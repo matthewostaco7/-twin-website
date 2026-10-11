@@ -174,7 +174,7 @@ p{text-wrap:pretty}
 .bc-tab{position:absolute;left:0;bottom:calc(100% - 1px);width:46%;height:calc(var(--s3) + 1px);border-radius:12px 12px 0 0;background:var(--fb)}
 .bc-tab::after{content:"";position:absolute;left:calc(100% - 1px);bottom:0;width:calc(var(--s3) / 2);height:calc(var(--s3) / 2);background:radial-gradient(circle at 100% 0,transparent calc(var(--s3) / 2 - 1.5px),var(--fb) calc(var(--s3) / 2 - 1px))}
 .bc-paper{position:absolute;left:var(--s3);right:var(--s3);top:20px;height:64px;border-radius:12px 12px 0 0;background:var(--bg);transition:transform .5s var(--ease)}
-.bc-front{position:absolute;inset:56px 0 0;display:flex;padding:var(--s3);border-radius:24px;background:var(--ff)}
+.bc-front{position:absolute;inset:56px 0 0;display:flex;padding:var(--s2) var(--s3) var(--s3);border-radius:24px;background:var(--ff)}
 .bc-info{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);margin-top:var(--s2);padding:0 4px}
 .bc-go{display:inline-block;font-size:var(--fs-h3);line-height:1;transition:transform .2s,color .2s}
 @media(hover:hover){.bc:hover .bc-go{transform:translateX(4px);color:var(--signal)}.bc:hover .bc-graphic{transform:translateY(-6px)}.bc:hover .bc-paper{transform:translateY(-10px)}}
@@ -182,8 +182,8 @@ p{text-wrap:pretty}
 
 
 
-.bc-viz{display:flex;align-items:flex-end;margin-top:auto}
-.iso-art{display:block;height:auto}
+.bc-viz{flex:1;min-width:0;min-height:0}
+.iso-art{display:block;width:100%;height:100%}
 .iso polygon{stroke-width:4;stroke-linejoin:round}
 .iso-signal .t{--c:color-mix(in srgb,var(--signal) 42%,#fff)}
 .iso-signal .l{--c:color-mix(in srgb,var(--signal) 74%,#fff)}
@@ -192,6 +192,9 @@ p{text-wrap:pretty}
 .iso-air .l{--c:var(--air)}
 .iso-air .r{--c:color-mix(in srgb,var(--air) 84%,var(--fg))}
 .iso polygon{fill:var(--c);stroke:var(--c)}
+.iso-floor polygon{stroke-width:8;stroke-linejoin:round}
+.iso-floor .top{fill:color-mix(in srgb,var(--signal) 14%,#fff);stroke:color-mix(in srgb,var(--signal) 14%,#fff)}
+.iso-floor .edge{fill:color-mix(in srgb,var(--signal) 26%,#fff);stroke:color-mix(in srgb,var(--signal) 26%,#fff)}
 .iso-arrow{fill:none;stroke:var(--signal);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .svc-dots{display:none}
 @media(max-width:900px){

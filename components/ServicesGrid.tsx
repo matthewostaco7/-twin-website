@@ -19,9 +19,21 @@ function Cube({ cx, cy, a, tone }: { cx: number; cy: number; a: number; tone: To
   );
 }
 
-const Iso = ({ box, w, children }: { box: string; w: number; children: ReactNode }) => (
+/** A flat isometric floor tile for a shape to rest on. (cx, cy) is its centre, w its half-width. */
+function Floor({ cx, cy, w }: { cx: number; cy: number; w: number }) {
+  const h = w * 0.577;
+  const rhombus = (y: number) => `${cx},${y - h} ${cx + w},${y} ${cx},${y + h} ${cx - w},${y}`;
+  return (
+    <g className="iso-floor">
+      <polygon className="edge" points={rhombus(cy + 7)} />
+      <polygon className="top" points={rhombus(cy)} />
+    </g>
+  );
+}
+
+const Iso = ({ box, children }: { box: string; children: ReactNode }) => (
   <div className="bc-viz">
-    <svg className="iso-art" viewBox={box} style={{ width: `min(100%, ${w}px)` }} aria-hidden="true">{children}</svg>
+    <svg className="iso-art" viewBox={box} aria-hidden="true">{children}</svg>
   </div>
 );
 
@@ -29,7 +41,8 @@ const Iso = ({ box, w, children }: { box: string; w: number; children: ReactNode
 const VISUALS: Record<string, ReactNode> = {
   // built up from the ground: three blocks stepping up
   branding: (
-    <Iso box="40 60 100 116" w={160}>
+    <Iso box="20 60 140 130">
+      <Floor cx={90} cy={148} w={62} />
       <Cube cx={78} cy={100} a={28} tone="signal" />
       <Cube cx={78} cy={72} a={28} tone="signal" />
       <Cube cx={102} cy={114} a={28} tone="signal" />
@@ -37,7 +50,8 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // many parts reduced to one
   debranding: (
-    <Iso box="44 40 112 92" w={190}>
+    <Iso box="26 40 148 104">
+      <Floor cx={100} cy={100} w={66} />
       <Cube cx={100} cy={46} a={26} tone="air" />
       <Cube cx={78} cy={59} a={26} tone="air" />
       <Cube cx={122} cy={59} a={26} tone="air" />
@@ -46,7 +60,9 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // old to new
   rebranding: (
-    <Iso box="14 60 172 80" w={232}>
+    <Iso box="14 60 172 92">
+      <Floor cx={48} cy={116} w={42} />
+      <Floor cx={152} cy={116} w={42} />
       <Cube cx={48} cy={70} a={30} tone="air" />
       <path className="iso-arrow" d="M88 112h24m-8-8l8 8-8 8" />
       <Cube cx={152} cy={70} a={30} tone="signal" />
@@ -54,7 +70,8 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // one mark: a soft pyramid
   logo: (
-    <Iso box="44 22 112 124" w={160}>
+    <Iso box="22 22 156 134">
+      <Floor cx={100} cy={106} w={70} />
       <g className="iso iso-signal">
         <polygon className="l" points="100,30 52,104 100,138" />
         <polygon className="r" points="100,30 100,138 148,104" />
