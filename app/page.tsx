@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ServicesGrid from "@/components/ServicesGrid";
-import { IconFingerprint, IconFounder, Mark, SERVICE_ICONS } from "@/components/icons";
+import { IconFingerprint, IconFounder, SERVICE_ICONS } from "@/components/icons";
 import { SERVICES, SERVICE_SLUGS } from "@/lib/services";
 
 const STEPS = [
@@ -14,8 +14,7 @@ export default function HomePage() {
     <div id="view-home">
       <header className="hero" id="top">
         <h1 className="hero-big">
-          Look like <span className="hero-chip" aria-hidden="true"><Mark /></span>
-          <br />yourself.
+          Look like yourself.
         </h1>
         <p className="hero-sub">
           We&rsquo;re Twin, a visual branding studio. We build brand identities for{" "}
