@@ -144,9 +144,9 @@ p{text-wrap:pretty}
 .hero-sub{max-width:20em;font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);color:var(--t2)}
 .intro{max-width:16em;margin:0 auto;font-size:var(--fs-h1);line-height:var(--lh-h1);letter-spacing:var(--ls-h1);text-wrap:balance}
 @media(min-width:901px){.intro{font-size:var(--fs-display);line-height:var(--lh-display);letter-spacing:var(--ls-display)}}
-.hero{gap:var(--s4);padding-bottom:var(--s5)}
-@media(min-width:901px){.hero{min-height:min(720px,calc(100svh - 160px))}}
-#view-home .intro-sec{display:flex;align-items:center;justify-content:center;text-align:center}
+.hero{gap:var(--s4);padding-bottom:calc(var(--s7) * 2)}
+#view-home .intro-sec{position:relative;display:flex;align-items:center;justify-content:center;min-height:min(560px,70svh);margin-top:calc(-1 * var(--s7));border-radius:48px 48px 0 0;background:var(--air-2);text-align:center}
+@media(max-width:900px){#view-home .intro-sec{margin-top:calc(-1 * var(--s5));border-radius:32px 32px 0 0;min-height:0}}
 @media(max-width:900px){
   /* the hero's wash runs up behind the logo bar, so there is no band between them */
   .m-top{position:relative;z-index:1}
@@ -441,25 +441,3 @@ p{text-wrap:pretty}
 }
 @font-face{font-family:"Neue Montreal";font-weight:400;font-style:normal;font-display:swap;src:local("Neue Montreal Regular"),url(/fonts/NeueMontreal-Regular.otf) format("opentype")}
 @font-face{font-family:"Neue Montreal";font-weight:500;font-style:normal;font-display:swap;src:local("Neue Montreal Medium"),url(/fonts/NeueMontreal-Medium.otf) format("opentype")}
-
-/* hero showcase panel and line doodles */
-.showcase{padding-top:var(--s2)}
-.sc{display:flex;align-items:center;justify-content:space-around;gap:var(--s3);height:clamp(240px,38vw,520px);padding:0 var(--s4);border-radius:40px;background:var(--tint-card)}
-.sc-aa{font-size:calc(var(--fs-hero) * 1.6);font-weight:500;line-height:.8;letter-spacing:-.05em;color:var(--signal)}
-.sc-pair{display:flex;align-items:center;gap:var(--s2)}
-.sc-tile{display:grid;place-items:center;width:clamp(64px,11vw,168px);aspect-ratio:1;border-radius:28%}
-.sc-tile svg{width:56%;height:auto}
-.sc-tile.old{background:var(--air)}
-.sc-tile.old rect{fill:var(--bg)}
-.sc-tile.new{background:var(--signal)}
-.sc-tile.new circle{fill:var(--air)}
-.sc-arrow{width:clamp(20px,3vw,40px);height:auto;fill:none;stroke:var(--signal);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.sc-tri{width:clamp(80px,14vw,200px);height:auto}
-.sc-tri polygon{fill:var(--signal)}
-@media(max-width:900px){.sc{border-radius:28px;padding:0 var(--s3)}.sc-tri{display:none}.sc-aa{font-size:calc(var(--fs-hero) * 1.3)}}
-.dd{display:none;position:absolute;fill:none;stroke:var(--signal);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
-@media(min-width:1100px){
-  .dd{display:block}
-  .dd-star{width:44px;top:calc(var(--top) + 56px);right:18%;rotate:12deg}
-  .dd-arrow{width:84px;bottom:18%;left:20%;rotate:-8deg}
-}
