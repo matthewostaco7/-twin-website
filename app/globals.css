@@ -471,3 +471,9 @@ p{text-wrap:pretty}
   #view-home #services{scroll-margin-top:-56px}
   #view-home #services .sec-title{margin-bottom:var(--s4)}
 }
+
+/* each folder takes the next step of the SIGNAL orange: same hue, a little more colour per service */
+.bc:nth-child(1) .bc-graphic{--fb:color-mix(in srgb,var(--signal) 18%,#fff)}
+.bc:nth-child(2) .bc-graphic{--fb:color-mix(in srgb,var(--signal) 24%,#fff)}
+.bc:nth-child(3) .bc-graphic{--fb:color-mix(in srgb,var(--signal) 30%,#fff)}
+.bc:nth-child(4) .bc-graphic{--fb:color-mix(in srgb,var(--signal) 36%,#fff)}
