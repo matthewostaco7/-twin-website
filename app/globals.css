@@ -169,7 +169,10 @@ p{text-wrap:pretty}
 /* service cards: title, one line, one bold element */
 .bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gutter)}
 .bc{display:flex;flex-direction:column;width:100%;color:var(--fg)}
-.bc-graphic{display:flex;align-items:flex-end;height:280px;padding:24px;border-radius:24px;background:var(--tint-card);transition:transform .5s var(--ease)}
+.bc-graphic{position:relative;display:flex;align-items:flex-end;height:280px;margin-top:var(--s3);padding:24px;border-radius:0 24px 24px 24px;background:var(--tint-card);transition:transform .5s var(--ease)}
+/* folder tab: sits on the top-left edge, with a curved join into the body */
+.bc-tab{position:absolute;left:0;bottom:100%;display:flex;align-items:center;height:var(--s3);padding:0 var(--s2);border-radius:16px 16px 0 0;background:var(--tint-card);color:var(--t2)}
+.bc-tab::after{content:"";position:absolute;left:100%;bottom:0;width:var(--s3);height:var(--s3);background:radial-gradient(circle at 100% 0,transparent calc(var(--s3) - .5px),var(--tint-card) var(--s3))}
 .bc-info{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);margin-top:var(--s2);padding:0 4px}
 .bc-go{display:inline-block;font-size:var(--fs-h3);line-height:1;transition:transform .2s,color .2s}
 @media(hover:hover){.bc:hover .bc-go{transform:translateX(4px);color:var(--signal)}.bc:hover .bc-graphic{transform:translateY(-6px)}}
