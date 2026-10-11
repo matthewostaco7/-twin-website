@@ -512,10 +512,3 @@ p{text-wrap:pretty}
 .bc-go{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--edge);background:transparent;transition:background .2s,border-color .2s}
 .bc-go svg{width:22px;height:22px;fill:none;stroke:var(--fg);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
 .bc:active .bc-go{background:var(--signal);border-color:var(--signal)}
-
-/* a stack of papers: two more sheets behind the top one, each a little off-square, so it reads as loose papers in the folder */
-.bc-paper-2{top:14px;left:calc(var(--s3) + 8px);right:calc(var(--s3) - 4px);rotate:1.6deg}
-.bc-paper-3{top:10px;left:calc(var(--s3) - 6px);right:calc(var(--s3) + 10px);rotate:-2.4deg}
-.bc .bc-paper.bc-paper-2{background-color:#F1ECE4}
-.bc .bc-paper.bc-paper-3{background-color:#E6DFD4}
-@media(hover:hover){.bc:hover .bc-paper-2{transform:translateY(-14px)}.bc:hover .bc-paper-3{transform:translateY(-18px)}}

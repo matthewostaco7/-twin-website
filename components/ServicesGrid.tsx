@@ -164,8 +164,6 @@ export default function ServicesGrid() {
           <Link key={slug} className="bc rv" href={"/services/" + slug}>
             <div className="bc-graphic" aria-hidden="true">
               <span className="bc-tab" />
-              <span className="bc-paper bc-paper-3" />
-              <span className="bc-paper bc-paper-2" />
               <span className="bc-paper" />
               <span className="bc-inner"><span className="bc-inshadow" /></span>
               <span className="bc-front" />
