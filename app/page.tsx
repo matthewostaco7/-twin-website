@@ -27,7 +27,7 @@ export default function HomePage() {
     <div id="view-home">
       <header className="hero" id="top">
         <h1 className="hero-big">
-          Look like yourself.
+          Start to look like yourself.
         </h1>
         <p className="hero-sub">Brands built in weeks, not months.</p>
         <div className="hero-cta">
