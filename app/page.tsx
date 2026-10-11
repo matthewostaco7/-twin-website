@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ServicesGrid from "@/components/ServicesGrid";
+import Stickers from "@/components/Stickers";
 import { SERVICES, SERVICE_SLUGS } from "@/lib/services";
 import { IconFingerprint, IconFounder } from "@/components/icons";
 
@@ -37,6 +38,7 @@ export default function HomePage() {
       </header>
 
       <section className="sec intro-sec" aria-label="About Twin">
+        <Stickers />
         <div className="wrap">
           <p className="intro">
             We&rsquo;re <span className="cr cr-hl">Twin</span>, an{" "}
