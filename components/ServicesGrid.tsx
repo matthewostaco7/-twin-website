@@ -4,21 +4,62 @@ import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { SERVICES, SERVICE_SLUGS } from "@/lib/services";
 
-/** One bold element at the bottom of each card: a quiet picture of the service. */
+type Tone = "signal" | "air";
+
+/** One soft isometric block. (cx, cy) is its top corner; a is the edge length. */
+function Cube({ cx, cy, a, tone }: { cx: number; cy: number; a: number; tone: Tone }) {
+  const k = a * 0.866, m = a / 2;
+  const f = (pts: number[][]) => pts.map((p) => p.join(",")).join(" ");
+  return (
+    <g className={"iso iso-" + tone}>
+      <polygon className="l" points={f([[cx - k, cy + m], [cx, cy + a], [cx, cy + 2 * a], [cx - k, cy + 1.5 * a]])} />
+      <polygon className="r" points={f([[cx + k, cy + m], [cx, cy + a], [cx, cy + 2 * a], [cx + k, cy + 1.5 * a]])} />
+      <polygon className="t" points={f([[cx, cy], [cx + k, cy + m], [cx, cy + a], [cx - k, cy + m]])} />
+    </g>
+  );
+}
+
+const Iso = ({ box, w, children }: { box: string; w: number; children: ReactNode }) => (
+  <div className="bc-viz">
+    <svg className="iso-art" viewBox={box} style={{ width: `min(100%, ${w}px)` }} aria-hidden="true">{children}</svg>
+  </div>
+);
+
+/** One element at the bottom of each card: a soft isometric picture of the service. */
 const VISUALS: Record<string, ReactNode> = {
-  branding: <div className="bc-viz"><span className="bc-aa">Aa</span></div>,
-  debranding: <div className="bc-viz"><span className="bc-aa bc-num"><s>9</s><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>1</span></div>,
-  rebranding: (
-    <div className="bc-viz bc-rebrand">
-      <span className="bc-tile old"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="3" /></svg></span>
-      <svg className="bc-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
-      <span className="bc-tile new"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14" /></svg></span>
-    </div>
+  // built up from the ground: three blocks stepping up
+  branding: (
+    <Iso box="40 60 100 116" w={160}>
+      <Cube cx={78} cy={100} a={28} tone="signal" />
+      <Cube cx={78} cy={72} a={28} tone="signal" />
+      <Cube cx={102} cy={114} a={28} tone="signal" />
+    </Iso>
   ),
+  // many parts reduced to one
+  debranding: (
+    <Iso box="44 40 112 92" w={190}>
+      <Cube cx={100} cy={46} a={26} tone="air" />
+      <Cube cx={78} cy={59} a={26} tone="air" />
+      <Cube cx={122} cy={59} a={26} tone="air" />
+      <Cube cx={100} cy={72} a={26} tone="signal" />
+    </Iso>
+  ),
+  // old to new
+  rebranding: (
+    <Iso box="14 60 172 80" w={232}>
+      <Cube cx={48} cy={70} a={30} tone="air" />
+      <path className="iso-arrow" d="M88 112h24m-8-8l8 8-8 8" />
+      <Cube cx={152} cy={70} a={30} tone="signal" />
+    </Iso>
+  ),
+  // one mark: a soft pyramid
   logo: (
-    <div className="bc-viz">
-      <span className="bc-shape"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,8 96,92 4,92" /></svg></span>
-    </div>
+    <Iso box="44 22 112 124" w={160}>
+      <g className="iso iso-signal">
+        <polygon className="l" points="100,30 52,104 100,138" />
+        <polygon className="r" points="100,30 100,138 148,104" />
+      </g>
+    </Iso>
   ),
 };
 
