@@ -165,6 +165,7 @@ export default function ServicesGrid() {
             <div className="bc-graphic" aria-hidden="true">
               <span className="bc-tab" />
               <span className="bc-paper" />
+              <span className="bc-inner"><span className="bc-inshadow" /></span>
               <span className="bc-front" />
               <div className="bc-cast">
                 <svg className="iso-art iso-cast" viewBox={VISUALS[slug].box}>{VISUALS[slug].cast}</svg>
