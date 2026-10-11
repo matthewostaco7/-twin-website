@@ -26,6 +26,12 @@ export default function HomePage() {
   return (
     <div id="view-home">
       <header className="hero" id="top">
+        <div className="hero-bg" aria-hidden="true">
+          <svg className="hb hb-clock" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" /><path d="M60 30v32l22 12" /></svg>
+          <svg className="hb hb-cal" viewBox="0 0 120 120"><rect x="12" y="20" width="96" height="86" rx="14" /><path d="M12 46h96M38 10v18M82 10v18" /><circle cx="38" cy="68" r="5" /><circle cx="60" cy="68" r="5" /><circle cx="82" cy="68" r="5" /><circle cx="38" cy="88" r="5" /><circle cx="60" cy="88" r="5" /></svg>
+          <svg className="hb hb-laptop" viewBox="0 0 160 110"><rect x="26" y="12" width="108" height="70" rx="9" /><path d="M8 94h144l-10 8H18z" /></svg>
+          <svg className="hb hb-mood" viewBox="0 0 120 120"><rect x="10" y="10" width="62" height="48" rx="8" /><rect x="80" y="10" width="30" height="30" rx="8" /><circle cx="95" cy="64" r="15" /><rect x="10" y="66" width="30" height="44" rx="8" /><rect x="48" y="66" width="34" height="44" rx="8" /></svg>
+        </div>
         <h1 className="hero-big">
           Start to look like yourself.
         </h1>

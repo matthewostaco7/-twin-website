@@ -508,3 +508,20 @@ p{text-wrap:pretty}
 .thanks .lead{font-size:var(--fs-bodyl);margin:0}
 .thanks-note{font-size:var(--fs-small);color:var(--t2)}
 .thanks .btn{margin-top:var(--s2);min-width:160px}
+
+/* hero background: a few work-desk objects, blurred and almost invisible, so they lift the page without competing with it */
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.hero>*:not(.hero-bg){position:relative;z-index:1}
+.hb{position:absolute;fill:var(--signal);stroke:var(--signal);stroke-width:5;stroke-linejoin:round;stroke-linecap:round;opacity:.1;filter:blur(7px)}
+.hb-clock,.hb-cal,.hb-mood{fill:none}
+.hb-clock{width:clamp(110px,12vw,190px);left:7%;top:24%;rotate:-8deg}
+.hb-cal{width:clamp(120px,13vw,200px);right:8%;top:20%;rotate:7deg}
+.hb-laptop{width:clamp(160px,17vw,260px);left:11%;bottom:12%;rotate:4deg}
+.hb-mood{width:clamp(110px,12vw,180px);right:12%;bottom:14%;rotate:-6deg}
+@media(max-width:900px){
+  .hb{opacity:.09;filter:blur(5px)}
+  .hb-clock{width:88px;left:-14px;top:19%}
+  .hb-cal{width:96px;right:-14px;top:15%}
+  .hb-laptop{width:130px;left:-10px;bottom:21%}
+  .hb-mood{width:90px;right:-6px;bottom:23%}
+}
