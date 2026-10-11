@@ -19,6 +19,12 @@ function Cube({ cx, cy, a, tone }: { cx: number; cy: number; a: number; tone: To
   );
 }
 
+/** A flat, hard-edged cast shadow lying under a shape. (cx, cy) is its centre, w its half-width. */
+function Shadow({ cx, cy, w }: { cx: number; cy: number; w: number }) {
+  const h = w * 0.577;
+  return <polygon className="iso-shadow" points={`${cx},${cy - h} ${cx + w},${cy} ${cx},${cy + h} ${cx - w},${cy}`} />;
+}
+
 const Iso = ({ box, children }: { box: string; children: ReactNode }) => (
   <div className="bc-viz">
     <svg className="iso-art" viewBox={box} aria-hidden="true">{children}</svg>
@@ -29,7 +35,8 @@ const Iso = ({ box, children }: { box: string; children: ReactNode }) => (
 const VISUALS: Record<string, ReactNode> = {
   // built up from the ground: three blocks stepping up
   branding: (
-    <Iso box="40 60 100 116">
+    <Iso box="20 60 140 130">
+      <Shadow cx={94} cy={150} w={60} />
       <Cube cx={78} cy={100} a={28} tone="signal" />
       <Cube cx={78} cy={72} a={28} tone="signal" />
       <Cube cx={102} cy={114} a={28} tone="signal" />
@@ -37,7 +44,8 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // many parts reduced to one
   debranding: (
-    <Iso box="44 40 112 92">
+    <Iso box="26 40 148 104">
+      <Shadow cx={104} cy={104} w={64} />
       <Cube cx={100} cy={46} a={26} tone="air" />
       <Cube cx={78} cy={59} a={26} tone="air" />
       <Cube cx={122} cy={59} a={26} tone="air" />
@@ -46,7 +54,9 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // old to new
   rebranding: (
-    <Iso box="14 60 172 80">
+    <Iso box="14 60 172 92">
+      <Shadow cx={52} cy={118} w={40} />
+      <Shadow cx={156} cy={118} w={40} />
       <Cube cx={48} cy={70} a={30} tone="air" />
       <path className="iso-arrow" d="M88 112h24m-8-8l8 8-8 8" />
       <Cube cx={152} cy={70} a={30} tone="signal" />
@@ -54,7 +64,8 @@ const VISUALS: Record<string, ReactNode> = {
   ),
   // one mark: a soft pyramid
   logo: (
-    <Iso box="44 22 112 124">
+    <Iso box="22 22 156 134">
+      <Shadow cx={106} cy={110} w={68} />
       <g className="iso iso-signal">
         <polygon className="l" points="100,30 52,104 100,138" />
         <polygon className="r" points="100,30 100,138 148,104" />
