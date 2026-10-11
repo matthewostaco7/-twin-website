@@ -21,28 +21,48 @@ function Cube({ cx, cy, a, tone }: { cx: number; cy: number; a: number; tone: To
 
 type Pt = number[];
 
-// light from the upper left: shadows fall down and to the right
-const LIGHT = [0.55, 0.84];
+// Light from the upper left. On the floor plane of an isometric view, a shadow runs along the ground
+// axis, which is 30 degrees below horizontal, so it stays parallel to the shapes' own edges.
+const GROUND = [Math.cos(Math.PI / 6), Math.sin(Math.PI / 6)];
+
+const hull = (pts: Pt[]): Pt[] => {
+  const p = [...pts].sort((x, y) => x[0] - y[0] || x[1] - y[1]);
+  const cross = (o: Pt, a: Pt, b: Pt) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const half = (list: Pt[]) => {
+    const h: Pt[] = [];
+    for (const q of list) {
+      while (h.length > 1 && cross(h[h.length - 2], h[h.length - 1], q) <= 0) h.pop();
+      h.push(q);
+    }
+    h.pop();
+    return h;
+  };
+  return half(p).concat(half([...p].reverse()));
+};
 
 /**
- * A flat cast shadow. Each chain is a run of the shape's base edges swept along the light direction,
- * far enough that the folder's edge clips it. Hard-edged, one flat tone per face: lighter under the
- * lit face, deeper under the shaded face. Warm shades of the paper, low opacity.
+ * A flat cast shadow. Each footprint is a shape's base on the floor; its shadow is that footprint
+ * swept along the ground axis, far enough that the folder's edge clips it. The union is drawn as one
+ * group so overlaps are not darker. Warm shade of the paper, low opacity, hard edged.
  */
-function Cast({ lit, dark }: { lit: Pt[]; dark: Pt[] }) {
-  const FAR = 260;
-  const sweep = (c: Pt[]) =>
-    c
-      .concat(c.map((p) => [p[0] + LIGHT[0] * FAR, p[1] + LIGHT[1] * FAR]).reverse())
-      .map((p) => p.join(","))
-      .join(" ");
+function Cast({ bases }: { bases: Pt[][] }) {
+  const REACH = 300;
+  const sweep = (r: Pt[]) =>
+    hull(r.concat(r.map((q) => [q[0] + GROUND[0] * REACH, q[1] + GROUND[1] * REACH]))).map((q) => q.join(",")).join(" ");
   return (
-    <>
-      <polygon points={sweep(lit)} fill="#B79A6E" fillOpacity={0.2} />
-      <polygon points={sweep(dark)} fill="#A07F4F" fillOpacity={0.3} />
-    </>
+    <g fill="#A07F4F" opacity={0.26}>
+      {bases.map((r, i) => (
+        <polygon key={i} points={sweep(r)} />
+      ))}
+    </g>
   );
 }
+
+/** Footprint of a cube whose top corner is (cx, cy) with edge a. */
+const foot = (cx: number, cy: number, a: number): Pt[] => {
+  const k = a * 0.866;
+  return [[cx - k, cy + 1.5 * a], [cx, cy + 2 * a], [cx + k, cy + 1.5 * a], [cx, cy + a]];
+};
 
 type Visual = { box: string; cast: ReactNode; art: ReactNode };
 
@@ -51,7 +71,7 @@ const VISUALS: Record<string, Visual> = {
   // built up from the ground: three blocks stepping up
   branding: {
     box: "40 60 100 116",
-    cast: <Cast lit={[[53.75, 142], [78, 156], [102, 170]]} dark={[[102, 170], [126.25, 156]]} />,
+    cast: <Cast bases={[foot(78, 100, 28), foot(102, 114, 28)]} />,
     art: (
       <>
         <Cube cx={78} cy={100} a={28} tone="signal" />
@@ -63,7 +83,7 @@ const VISUALS: Record<string, Visual> = {
   // many parts reduced to one
   debranding: {
     box: "44 40 112 92",
-    cast: <Cast lit={[[55.5, 98], [78, 111], [100, 124]]} dark={[[100, 124], [122, 111], [144.5, 98]]} />,
+    cast: <Cast bases={[foot(78, 59, 26), foot(122, 59, 26), foot(100, 72, 26)]} />,
     art: (
       <>
         <Cube cx={100} cy={46} a={26} tone="air" />
@@ -78,8 +98,7 @@ const VISUALS: Record<string, Visual> = {
     box: "14 60 172 80",
     cast: (
       <>
-        <Cast lit={[[22, 115], [48, 130]]} dark={[[48, 130], [74, 115]]} />
-        <Cast lit={[[126, 115], [152, 130]]} dark={[[152, 130], [178, 115]]} />
+        <Cast bases={[foot(48, 70, 30), foot(152, 70, 30)]} />
       </>
     ),
     art: (
@@ -93,7 +112,7 @@ const VISUALS: Record<string, Visual> = {
   // one mark: a soft pyramid
   logo: {
     box: "44 22 112 124",
-    cast: <Cast lit={[[52, 104], [100, 138]]} dark={[[100, 138], [148, 104]]} />,
+    cast: <Cast bases={[[[52, 104], [100, 138], [148, 104], [100, 70]]]} />,
     art: (
       <g className="iso iso-signal">
         <polygon className="l" points="100,30 52,104 100,138" />
