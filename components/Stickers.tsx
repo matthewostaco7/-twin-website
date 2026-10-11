@@ -26,17 +26,17 @@ function Sticker({ n, fill, back, className, children }: Props) {
 export default function Stickers() {
   return (
     <div className="stickers" aria-hidden="true">
-      <Sticker n={0} fill="#FFD7A3" back="#FF9D2E" className="stk-a">
+      <Sticker n={0} fill="#FFFFFF" back="#FF9D2E" className="stk-a">
         <path d="M60 30l7 23 23 7-23 7-7 23-7-23-23-7 23-7z" />
       </Sticker>
-      <Sticker n={1} fill="#F1F5F9" back="#B4C0D0" className="stk-b">
+      <Sticker n={1} fill="#FFFFFF" back="#B4C0D0" className="stk-b">
         <path d="M40 82l5-17 31-31 12 12-31 31z" />
         <path d="M70 40l12 12" />
       </Sticker>
-      <Sticker n={2} fill="#FFE6C8" back="#F2A24A" className="stk-c">
+      <Sticker n={2} fill="#FFFFFF" back="#F2A24A" className="stk-c">
         <path d="M34 36h52a8 8 0 0 1 8 8v26a8 8 0 0 1-8 8H62L44 94V78H34a8 8 0 0 1-8-8V44a8 8 0 0 1 8-8z" />
       </Sticker>
-      <Sticker n={3} fill="#F1F5F9" back="#B4C0D0" className="stk-d">
+      <Sticker n={3} fill="#FFFFFF" back="#B4C0D0" className="stk-d">
         <path d="M42 32l42 30-20 4-8 20z" />
       </Sticker>
     </div>

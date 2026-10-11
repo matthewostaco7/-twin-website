@@ -534,3 +534,9 @@ p{text-wrap:pretty}
 
 /* clay: the shapes (not their shadows) get the handmade edge and matte grain */
 .bc-viz .iso-art{filter:url(#iso-clay)}
+
+/* card arrow: SIGNAL ring and arrow; on hover or tap the circle fills and the arrow turns ink so it stays visible */
+.bc-go{border-color:var(--signal)}
+.bc-go svg{stroke:var(--signal);stroke-width:2.2}
+@media(hover:hover){.bc:hover .bc-go svg{stroke:var(--on-signal)}}
+.bc:active .bc-go svg{stroke:var(--on-signal)}
