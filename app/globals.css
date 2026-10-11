@@ -457,3 +457,7 @@ p{text-wrap:pretty}
 
 /* an icon inside a crayon highlight lets the colour show through its circle */
 .cr .ic.inl{background:rgba(255,243,227,.5)}
+
+/* inside the folder: a precise horizontal shadow where the front panel meets the paper and back panel,
+   sharp at the panel's edge and fading softly upward */
+.bc-front::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:26px;pointer-events:none;mix-blend-mode:multiply;background:linear-gradient(to top,rgba(150,100,40,.34),rgba(150,100,40,.14) 40%,rgba(150,100,40,0))}
