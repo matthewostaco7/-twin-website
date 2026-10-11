@@ -176,7 +176,7 @@ export default function ServicesGrid() {
             </div>
             <div className="bc-info">
               <h3>{SERVICES[slug].name}</h3>
-              <span className="bc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" /></svg></span>
+              <span className="bc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 17.5L17.5 6.5M8.5 6.5h9v9" /></svg></span>
             </div>
           </Link>
         ))}
