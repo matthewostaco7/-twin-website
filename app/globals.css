@@ -153,10 +153,8 @@ p{text-wrap:pretty}
 .bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gutter)}
 .bc{display:flex;flex-direction:column;width:100%;color:var(--fg)}
 .bc-graphic{display:flex;align-items:flex-end;height:280px;padding:24px;border-radius:24px;background:var(--tint-card);transition:transform .5s var(--ease)}
-.bc-info{margin-top:var(--s2);padding:0 4px}
-.bc-info p{margin-top:4px}
-.bc-cta{display:flex;align-items:center;gap:6px;margin-top:var(--s1);font-size:var(--fs-small);font-weight:600}
-.bc-go{display:inline-block;transition:transform .2s,color .2s}
+.bc-info{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);margin-top:var(--s2);padding:0 4px}
+.bc-go{display:inline-block;font-size:24px;line-height:1;transition:transform .2s,color .2s}
 @media(hover:hover){.bc:hover .bc-go{transform:translateX(4px);color:var(--signal)}.bc:hover .bc-graphic{transform:translateY(-6px)}}
 .bc:focus-visible{outline:2px solid var(--signal);outline-offset:4px;border-radius:24px}
 

@@ -65,8 +65,7 @@ export default function ServicesGrid() {
             <div className="bc-graphic">{VISUALS[slug]}</div>
             <div className="bc-info">
               <h3>{SERVICES[slug].name}</h3>
-              <p>{SERVICES[slug].line}</p>
-              <span className="bc-cta">View Service <span className="bc-go" aria-hidden="true">&rarr;</span></span>
+              <span className="bc-go" aria-hidden="true">&rarr;</span>
             </div>
           </Link>
         ))}
