@@ -141,17 +141,6 @@ p{text-wrap:pretty}
 .hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s2)}
 .hero-big{max-width:none !important;font-size:clamp(56px,calc(56px + 84 * (100vw - 360px) / 1080),136px) !important;line-height:.92 !important;letter-spacing:-.045em !important;font-weight:500;text-wrap:balance}
 .hero-sub{max-width:30em;font-size:var(--fs-bodyl);line-height:1.5;color:var(--t2)}
-.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s1)}
-.hp{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:8px 20px 8px 8px;border-radius:999px;background:var(--air-2);color:var(--fg);font-weight:500;transition:background .2s}
-@media(hover:hover){.hp:hover{background:var(--air)}}
-.hp:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
-.hp-ic{display:grid;place-items:center;width:40px;height:40px;border-radius:14px;background:var(--tint)}
-.hp-ic .ic{width:22px;height:22px;stroke:var(--fg)}
-.hp-branding{background:var(--signal)}
-.hp-debranding{background:var(--air)}
-.hp-rebranding{background:var(--tint)}
-.hp-logo{background:var(--fg)}
-.hp-logo .ic{stroke:var(--signal)}
 .hero .hero-sub .ic.inl{width:1.5em;height:1.5em;padding:.26em;vertical-align:-.42em;margin:0 .12em 0 0}
 .hero .hero-sub .ic.inl.r{margin:0 0 0 .12em}
 .hero{gap:var(--s4);padding-bottom:calc(var(--s7) * 2)}

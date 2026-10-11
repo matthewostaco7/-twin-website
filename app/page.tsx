@@ -1,7 +1,6 @@
 import Link from "next/link";
 import ServicesGrid from "@/components/ServicesGrid";
-import { IconFingerprint, IconFounder, SERVICE_ICONS } from "@/components/icons";
-import { SERVICES, SERVICE_SLUGS } from "@/lib/services";
+import { IconFingerprint, IconFounder } from "@/components/icons";
 
 const STEPS = [
   { title: "See our work", line: "Browse the brands we have built.", href: "/work" },
@@ -21,14 +20,6 @@ export default function HomePage() {
           <span className="nw"><IconFounder />founders</span> who don&rsquo;t want to look like everyone{" "}
           <span className="nw">else.<IconFingerprint /></span>
         </p>
-        <nav className="hero-pills" aria-label="Services">
-          {SERVICE_SLUGS.map((slug) => (
-            <Link key={slug} className="hp" href={"/services/" + slug}>
-              <span className={"hp-ic hp-" + slug} aria-hidden="true">{SERVICE_ICONS[slug]}</span>
-              {SERVICES[slug].name}
-            </Link>
-          ))}
-        </nav>
         <div className="hero-cta">
           <Link className="btn" href="/work">Work</Link>
           <Link className="btn btn-2" href="/contact">Start a project</Link>
