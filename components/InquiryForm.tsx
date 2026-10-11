@@ -21,6 +21,7 @@ export default function InquiryForm() {
     need: useRef<HTMLInputElement>(null),
     title: useRef<HTMLHeadingElement>(null),
   };
+  const thanks = useRef<HTMLDialogElement>(null);
 
   // /contact?need=Branding preselects a service
   useEffect(() => {
@@ -62,6 +63,7 @@ export default function InquiryForm() {
     window.location.href = href;
     setSent({ href, text: "To: " + site.email + "\r\nSubject: " + subject + "\r\n\r\n" + body });
     toTop();
+    thanks.current?.showModal();
   };
 
   const copy = () => {
@@ -141,6 +143,25 @@ export default function InquiryForm() {
           </div>
         </div>
       </section>
+
+      {/* thank-you pop-up: a native modal dialog, so focus is trapped, Esc closes it and focus returns afterwards */}
+      <dialog
+        ref={thanks}
+        className="thanks"
+        aria-labelledby="thanksTitle"
+        aria-describedby="thanksBody"
+        onClick={(e) => { if (e.target === e.currentTarget) e.currentTarget.close(); }}
+      >
+        <div className="thanks-card">
+          <span className="thanks-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+          </span>
+          <h2 id="thanksTitle">Thank you.</h2>
+          <p id="thanksBody" className="lead">We will reply within 24 hours.</p>
+          <p className="thanks-note">If your email app opened, press send to finish.</p>
+          <button className="btn" type="button" autoFocus onClick={() => thanks.current?.close()}>Close</button>
+        </div>
+      </dialog>
     </div>
   );
 }

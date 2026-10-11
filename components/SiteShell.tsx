@@ -93,7 +93,8 @@ export default function SiteShell({ children }: { children: ReactNode }) {
   // Escape closes a project, service or contact page.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key !== "Escape") return;
+      if (e.key !== "Escape" || e.defaultPrevented) return;
+      if (document.querySelector("dialog[open]")) return; // Esc belongs to the open pop-up
       if (v.isProj) router.push("/work");
       else if (v.isSvc || v.isContact) router.push("/");
     };
