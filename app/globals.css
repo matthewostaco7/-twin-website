@@ -545,15 +545,6 @@ p{text-wrap:pretty}
 .bc-go{border-color:color-mix(in srgb,var(--signal) 55%,#fff)}
 .bc-go svg{stroke:color-mix(in srgb,var(--signal) 80%,#fff);stroke-width:1.8}
 
-/* desktop: the floating navbar sits at the bottom of the window, centred */
-@media(min-width:901px){
-  :root{--nav-h:48px;--bar-h:96px}
-  .side{top:auto;bottom:12px;height:var(--bar-h)}
-  .app.nav-hidden .side{transform:translateY(calc(100% + 12px))}
-  .main{padding-bottom:var(--bar-h);scroll-padding-top:var(--s5);scroll-padding-bottom:var(--bar-h)}
-  .pj-side,.svc-side{top:var(--s5)}
-}
-
 /* desktop navbar, more visible: a larger pill with a clearer edge, ink labels and a stronger current tab */
 @media(min-width:901px){
   .side-top{padding:8px;border:1.5px solid rgba(7,19,31,.16);gap:6px}
@@ -563,5 +554,4 @@ p{text-wrap:pretty}
   .item[aria-current="page"]{background:var(--air);font-weight:600}
   @media(hover:hover){.item:not([aria-current="page"]):hover{background:var(--air-2)}}
   .item:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
-  :root{--bar-h:104px}
 }
