@@ -6,6 +6,8 @@ export const site = {
   description:
     "TWIN is a brand design agency. Branding, Debranding, Rebranding, and Logo for founders and SMEs who don’t want to look like everyone else.",
   ogDescription: "Brand identities for founders and SMEs who don’t want to look like everyone else.",
+  /** The live address, used in the sitemap and robots.txt. */
+  url: "https://twincr.com",
   email: "twinbrand.ph@gmail.com",
   /** true = the Work page shows "Unlocking Soon" instead of the gallery. Set to false to publish the gallery. */
   workLocked: true,
