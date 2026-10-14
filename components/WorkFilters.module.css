@@ -1,0 +1,67 @@
+/* Outer track: AIR 2 */
+.filterContainer {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 4px;
+  gap: 4px;
+  background-color: var(--air-2);
+  border-radius: 9999px;
+}
+
+/* Pills */
+.filterPill {
+  flex: none;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--t2);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.filterPill:hover {
+  color: var(--fg);
+}
+
+.filterPill:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+/* Selected: AIR 1, with full-strength text (flat, no shadow) */
+.filterPill.active {
+  background-color: var(--air);
+  color: var(--fg);
+}
+
+/* Phones: the five pills share the full width instead of scrolling */
+@media (max-width: 480px) {
+  .filterContainer {
+    display: flex;
+    width: 100%;
+  }
+  .filterPill {
+    flex: 1 1 auto;
+    padding: 8px 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .filterPill {
+    padding: 8px 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filterPill {
+    transition: none;
+  }
+}
