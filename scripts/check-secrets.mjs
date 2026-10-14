@@ -3,7 +3,7 @@
 import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
 import { join, extname } from "node:path";
 
-const ROOTS = ["app", "components", "lib", "content", "public", "next.config.ts", "out"];
+const ROOTS = ["app", "components", "lib", "content", "public", "next.config.ts", "vercel.json", "package.json", "out"];
 const SKIP_DIRS = new Set(["node_modules", ".next", ".git", "fonts", "images"]);
 const TEXT = new Set([".ts", ".tsx", ".js", ".mjs", ".json", ".css", ".html", ".txt", ".md", ".svg"]);
 

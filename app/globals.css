@@ -19,7 +19,8 @@
   --tint:#FFF3E3; --tint-hover:#FFEBD3; --tint-card:#FFF6EA;
   --field:#F6F7F9; --ghost:rgba(7,19,31,.07); --ghost-hover:rgba(7,19,31,.12);
   --wash:rgba(146,217,238,.09);
-  --edge:rgba(7,19,31,.45);   /* outline for form controls and inactive dots: 3:1 on white */
+  --signal-ink:#B35A00; /* SIGNAL darkened to the same hue for icons on light surfaces: 4.8:1 on white */
+  --edge:rgba(7,19,31,.5);   /* outline for form controls and inactive dots: 3:1 on white */
   /* fonts (unchanged) */
   --sans:"Neue Montreal",sans-serif;
   --mono:"IBM Plex Mono",monospace;
@@ -165,7 +166,7 @@ p{text-wrap:pretty}
 .faq summary::after{content:"+";display:grid;place-items:center;width:40px;height:40px;flex:none;border-radius:50%;background:var(--card);font-size:var(--fs-bodyl);line-height:1;transition:background .2s}
 .faq details[open] summary::after{content:"\2212";background:var(--signal);color:var(--on-signal)}
 @media(hover:hover){.faq summary:hover::after{background:var(--air)}.faq details[open] summary:hover::after{background:var(--signal)}}
-.faq summary:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.faq summary:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 .faq details p{max-width:36em;padding:0 var(--s6) var(--s3) 0;color:var(--t2);font-size:var(--fs-bodyl);line-height:var(--lh-bodyl)}
 
 /* service cards: title, one line, one bold element */
@@ -182,7 +183,7 @@ p{text-wrap:pretty}
 .bc-graphic,.bc-tab,.bc-paper,.bc-front{background-image:var(--noise);background-size:160px 160px}
 .bc-info{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);margin-top:var(--s2);padding:0 4px}
 @media(hover:hover){.bc:hover .bc-go{background:var(--signal);border-color:var(--signal)}.bc:hover .bc-go svg{transform:translate(2px,-2px)}.bc:hover .bc-graphic{transform:translateY(-6px)}.bc:hover .bc-paper{transform:translateY(-10px)}}
-.bc:focus-visible{outline:2px solid var(--signal);outline-offset:4px;border-radius:24px}
+.bc:focus-visible{outline:2px solid var(--fg);outline-offset:4px;border-radius:24px}
 
 
 
@@ -553,7 +554,7 @@ p{text-wrap:pretty}
   .item .ic{width:24px;height:24px}
   .item[aria-current="page"]{background:var(--air);font-weight:600}
   @media(hover:hover){.item:not([aria-current="page"]):hover{background:var(--air-2)}}
-  .item:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+  .item:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 }
 
 /* privacy policy page and the small footer link on every page */
@@ -565,12 +566,25 @@ p{text-wrap:pretty}
 .legal ul{padding-left:1.2em;display:grid;gap:var(--s1)}
 .legal strong{color:var(--fg);font-weight:500}
 .legal a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--signal);text-decoration-thickness:2px;text-underline-offset:3px}
-.legal a:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.legal a:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 .legal-meta{font-family:"IBM Plex Mono",monospace;font-size:var(--fs-small);color:var(--t2)}
 .legal-lead{font-size:var(--fs-h3);line-height:var(--lh-h3);color:var(--fg)}
 .site-foot{display:flex;justify-content:space-between;gap:var(--s2);flex-wrap:wrap;padding:var(--s3) var(--pad) var(--s4);color:var(--t2);font-size:var(--fs-small)}
 .site-foot a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
 .site-foot a:hover{color:var(--fg)}
-.site-foot a:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.site-foot a:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 .legal ul{list-style:disc}
 .legal .legal-lead{font-size:var(--fs-h3);line-height:var(--lh-h3);color:var(--fg)}
+
+/* contrast: typed text, placeholders and field outlines meet WCAG AA (4.5:1 text, 3:1 outline); SIGNAL stays on the caret and focus ring */
+.f input[type="text"],.f textarea{color:var(--fg);border:1.5px solid var(--edge)}
+.f input[type="text"]::placeholder,.f textarea::placeholder{color:var(--t2);opacity:1}
+.f input[type="text"]:focus,.f textarea:focus{border-color:var(--signal);box-shadow:0 0 0 3px color-mix(in srgb,var(--signal) 30%,transparent)}
+
+/* contrast, icons and focus: SIGNAL-INK (same hue, darker) for orange glyphs on light surfaces; focus rings are ink so they read on every background */
+.item[aria-current="page"] .ic{stroke:var(--signal-ink)}
+.ic.inl{stroke:var(--signal-ink)}
+.bc-go svg{stroke:var(--signal-ink)}
+@media(hover:hover){.bc:hover .bc-go svg{stroke:var(--on-signal)}}
+.bc:active .bc-go svg{stroke:var(--on-signal)}
+.f input[type="text"]:focus,.f textarea:focus{border-color:var(--fg)}
