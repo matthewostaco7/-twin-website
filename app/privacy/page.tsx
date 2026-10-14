@@ -56,18 +56,45 @@ export default function PrivacyPage() {
           work and legal or tax rules require.
         </p>
 
-        <h2>Your choices</h2>
+        <h2>Your rights</h2>
         <p>
-          You can ask us to show you, correct or delete the information we hold about you at any time. Email{" "}
-          <a href={`mailto:${site.email}`}>{site.email}</a> and we will respond within a reasonable time.
+          We serve clients in the Philippines and handle personal information in line with the Data Privacy Act of 2012 (Republic Act No.
+          10173). Under that law you have the right to:
+        </p>
+        <ul>
+          <li>be informed about how your information is used;</li>
+          <li>access the information we hold about you;</li>
+          <li>object to its use, or withdraw your consent;</li>
+          <li>correct it if it is wrong;</li>
+          <li>ask us to erase or block it, where the law allows;</li>
+          <li>get a copy in a common format (data portability);</li>
+          <li>claim compensation if you were harmed by unlawful use of your information.</li>
+        </ul>
+        <p>
+          To use any of these rights, email <a href={`mailto:${site.email}`}>{site.email}</a>. We will reply within a reasonable time. If
+          you are not satisfied, you may file a complaint with the National Privacy Commission at{" "}
+          <a href="https://privacy.gov.ph" rel="noopener noreferrer">privacy.gov.ph</a>.
+        </p>
+
+        <h2>Consent</h2>
+        <p>
+          When you send us an enquiry, you agree that we may use the details you give us to reply and to discuss your project. You can
+          withdraw this at any time by writing to us.
+        </p>
+
+        <h2>Keeping it safe</h2>
+        <p>
+          This site runs over HTTPS and holds no database of visitors. Enquiries live in our email inbox, which we protect with reasonable
+          security measures. If a breach ever puts your information at risk, we will tell you and the National Privacy Commission as the law
+          requires.
         </p>
 
         <h2>Changes</h2>
         <p>If this policy changes, we will update the date at the top of this page.</p>
 
-        <h2>Contact</h2>
+        <h2>Privacy contact</h2>
         <p>
-          Questions about this policy? Write to <a href={`mailto:${site.email}`}>{site.email}</a> or use the{" "}
+          Questions about this policy, or for our person in charge of privacy, write to <a href={`mailto:${site.email}`}>{site.email}</a> or use the{" "}
           <Link href="/contact">contact page</Link>.
         </p>
       </article>
