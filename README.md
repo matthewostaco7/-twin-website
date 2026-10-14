@@ -77,7 +77,8 @@ This is a static site: everything in `app/`, `components/`, `lib/`, `content/` a
 - Never put API keys, tokens or passwords in this repo, and never prefix a secret with `NEXT_PUBLIC_` (that prefix publishes it to the browser).
 - If a feature ever needs a secret (a form service, email API, CMS), call it from a server route or the host's serverless function, and keep the key in the host's environment settings.
 - `.env` files, `*.pem` and `*.key` are git-ignored.
-- `npm run check:secrets` scans the source and the built `out/` folder for key-like strings and browser-side `process.env` reads. `npm run lint` runs it with the type check.
+- `npm run check:secrets` scans the source and the built `out/` folder for key-like strings and browser-side `process.env` reads. `npm run lint` runs it with the type check, and `npm run build` runs it after the build, so a deploy fails (and nothing goes live) if a secret-looking string reaches the site.
+- Keep real keys in the host's environment settings (Vercel: **Settings → Environments**), never in the repo.
 
 ## HTTPS only
 
