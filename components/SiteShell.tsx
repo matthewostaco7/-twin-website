@@ -14,6 +14,7 @@ function viewOf(path: string) {
     isProj: /^\/work\/[^/]+$/.test(p),
     isStory: p === "/story",
     isContact: p === "/contact",
+    isPrivacy: p === "/privacy",
     isSvc: /^\/services\/[^/]+$/.test(p),
   };
 }
@@ -45,7 +46,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
   const workScroll = useRef(0);
 
   // The current page's tab. Service pages belong to Home ("What we do").
-  const active = v.isWork || v.isProj ? "/work" : v.isStory ? "/story" : v.isContact ? "/contact" : "/";
+  const active = v.isWork || v.isProj ? "/work" : v.isStory ? "/story" : v.isContact ? "/contact" : v.isPrivacy ? "" : "/";
 
   // First load: forward old hash links.
   useEffect(() => {
@@ -96,11 +97,11 @@ export default function SiteShell({ children }: { children: ReactNode }) {
       if (e.key !== "Escape" || e.defaultPrevented) return;
       if (document.querySelector("dialog[open]")) return; // Esc belongs to the open pop-up
       if (v.isProj) router.push("/work");
-      else if (v.isSvc || v.isContact) router.push("/");
+      else if (v.isSvc || v.isContact || v.isPrivacy) router.push("/");
     };
     addEventListener("keydown", onKey);
     return () => removeEventListener("keydown", onKey);
-  }, [v.isProj, v.isSvc, v.isContact, router]);
+  }, [v.isProj, v.isSvc, v.isContact, v.isPrivacy, router]);
 
   // Tapping the tab you are already on scrolls back to the top.
   const onNav = (href: string) => () => {
@@ -134,6 +135,10 @@ export default function SiteShell({ children }: { children: ReactNode }) {
             <Link href="/" aria-label="TWIN home"><Mark />TWIN</Link>
           </div>
           {children}
+          <footer className="site-foot">
+            <span>&copy; {new Date().getFullYear()} TWIN</span>
+            <Link href="/privacy">Privacy Policy</Link>
+          </footer>
         </main>
       </div>
     </>
