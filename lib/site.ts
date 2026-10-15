@@ -4,8 +4,8 @@ export const site = {
   tagline: "Look like yourself.",
   title: "TWIN — Independent Branding Studio in the Philippines",
   description:
-    "TWIN is an independent branding studio in the Philippines. Branding, rebranding, debranding and logo design for founders and SMEs who want to look like themselves.",
-  ogDescription: "Independent branding studio in the Philippines. Brand identities for founders and SMEs who want to look like themselves.",
+    "Independent branding studio in the Philippines. Brands for founders and SMEs, built in weeks, not months.",
+  ogDescription: "Independent branding studio in the Philippines. Brands for founders and SMEs, built in weeks, not months.",
   /** The live address, used in the sitemap and robots.txt. */
   url: "https://twincr.com",
   email: "twinbrand.ph@gmail.com",
