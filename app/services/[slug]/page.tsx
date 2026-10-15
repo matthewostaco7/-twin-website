@@ -13,7 +13,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const s = SERVICES[(await params).slug];
-  return s ? { title: s.name, description: s.overview } : {};
+  return s ? { title: `${s.name} services for founders and SMEs`, description: s.overview } : {};
 }
 
 export default async function ServicePage({ params }: Props) {

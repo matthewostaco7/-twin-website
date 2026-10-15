@@ -5,9 +5,26 @@ import { site } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: { default: site.title, template: "%s | TWIN" },
   description: site.description,
-  openGraph: { title: site.title, description: site.ogDescription, type: "website", siteName: "TWIN" },
+  alternates: { canonical: "./" },
+  openGraph: { title: site.title, description: site.ogDescription, type: "website", siteName: "TWIN", locale: "en_PH", url: "./" },
+  twitter: { card: "summary_large_image", title: site.title, description: site.ogDescription },
+};
+
+/** Tells Google who and where TWIN is, so the name, logo and location can show in results. */
+const ORG_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "TWIN",
+  description: site.description,
+  url: site.url,
+  logo: `${site.url}/icon-512.png`,
+  image: `${site.url}/opengraph-image.png`,
+  email: site.email,
+  areaServed: { "@type": "Country", name: "Philippines" },
+  serviceType: ["Branding", "Rebranding", "Debranding", "Logo design"],
 };
 
 export const viewport: Viewport = {
@@ -36,6 +53,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
       </head>
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSON_LD) }} />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>
