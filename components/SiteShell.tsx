@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { IconContact, IconHome, IconStory, IconWork, Mark } from "./icons";
 
 /** Which page the URL is. Drives the active tab and the page-specific behaviour. */
@@ -69,8 +69,16 @@ export default function SiteShell({ children }: { children: ReactNode }) {
     return () => { if (pathname.replace(/\/+$/, "") === "/work") workScroll.current = Math.max(main?.scrollTop || 0, window.scrollY); };
   }, [pathname]);
 
-  // Service and Contact pages are long and focused: the navbar slides away while reading down and returns on scroll up.
-  const autoHide = v.isSvc || v.isContact;
+  // On desktop the floating navbar slides away while reading down on every page. Phones keep it, except on the long Service and Contact pages.
+  const [desktop, setDesktop] = useState(false);
+  useEffect(() => {
+    const mq = matchMedia("(min-width:901px)");
+    const on = () => setDesktop(mq.matches);
+    on();
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, []);
+  const autoHide = v.isSvc || v.isContact || desktop;
   useEffect(() => {
     const app = document.querySelector(".app");
     if (!app || !autoHide) return;
@@ -88,8 +96,19 @@ export default function SiteShell({ children }: { children: ReactNode }) {
       if (Math.abs(d) > 6 || y < 24) last = y;
     };
     document.addEventListener("scroll", onScroll, { capture: true, passive: true });
-    return () => { document.removeEventListener("scroll", onScroll, true); app.classList.remove("nav-hidden"); };
-  }, [autoHide, pathname]);
+    // Desktop: moving the pointer to the top edge, or tabbing into the navbar, brings it back.
+    const onMove = (e: MouseEvent) => { if (desktop && e.clientY < 56) set(false); };
+    const onFocus = () => set(false);
+    const side = document.querySelector(".side");
+    document.addEventListener("mousemove", onMove, { passive: true });
+    side?.addEventListener("focusin", onFocus);
+    return () => {
+      document.removeEventListener("scroll", onScroll, true);
+      document.removeEventListener("mousemove", onMove);
+      side?.removeEventListener("focusin", onFocus);
+      app.classList.remove("nav-hidden");
+    };
+  }, [autoHide, desktop, pathname]);
 
   // Escape closes a project, service or contact page.
   useEffect(() => {
