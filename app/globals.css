@@ -576,8 +576,8 @@ p{text-wrap:pretty}
 .legal ul{list-style:disc}
 .legal .legal-lead{font-size:var(--fs-h3);line-height:var(--lh-h3);color:var(--fg)}
 
-/* contrast: typed text, placeholders and field outlines meet WCAG AA (4.5:1 text, 3:1 outline); SIGNAL stays on the caret and focus ring */
-.f input[type="text"],.f textarea{color:var(--fg);border:1.5px solid var(--edge)}
+/* contrast: typed text and placeholders meet 4.5:1. Every box (fields and option chips) shares one soft AIR outline; SIGNAL stays on the caret and focus ring */
+.f input[type="text"],.f textarea{color:var(--fg);border:1px solid var(--air)}
 .f input[type="text"]::placeholder,.f textarea::placeholder{color:var(--t2);opacity:1}
 .f input[type="text"]:focus,.f textarea:focus{border-color:var(--signal);box-shadow:0 0 0 3px color-mix(in srgb,var(--signal) 30%,transparent)}
 
