@@ -12,6 +12,8 @@
 /* Pills */
 .filterPill {
   flex: none;
+  min-height: 44px;
+  min-width: 44px;
   padding: 8px 16px;
   border: none;
   border-radius: 9999px;

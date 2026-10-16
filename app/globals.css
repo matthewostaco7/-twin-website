@@ -601,3 +601,13 @@ p{text-wrap:pretty}
   .svc-dots button{box-sizing:content-box;padding:9px;background-clip:content-box}
   .svc-dots button::after{display:none}
 }
+
+/* mobile-first touch rules: 44px tap targets, and form text at 16px so iPhones do not zoom in on focus */
+.site-foot a{display:inline-flex;align-items:center;min-height:44px;padding:0 var(--s1)}
+.site-foot{align-items:center;padding-block:var(--s1) var(--s2)}
+.svc-more a{min-height:44px;padding:0 var(--s2)}
+@media(max-width:900px){
+  .m-top a{min-height:44px}
+  .f input[type="text"],.f textarea{font-size:16px}
+}
+@media(max-width:700px){.svc-more div{flex-wrap:wrap}.svc-more a{padding:0 var(--s2)}}
