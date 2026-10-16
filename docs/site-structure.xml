@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="site-structure.xsl"?>
+<!--
+  TWIN website structure, written as XML.
+  This describes the site as it is built today (Next.js static export at https://twincr.com).
+  Mobile first: every value is the phone value; <at tablet="..." desktop="..."/> only lists what changes.
+  Validate:  run xmllint with the noout option on this file
+  Render:    open this file in a browser (the XSLT below is linked), or run xsltproc
+-->
+<website name="TWIN" type="portfolio" locale="en_PH" url="https://twincr.com">
+
+  <!-- Viewport and the three screen classes. Mobile is the default; the others add to it. -->
+  <meta>
+    <viewport content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <breakpoints unit="px">
+      <screen name="mobile" min="320" max="480"/>
+      <screen name="tablet" min="481" max="768"/>
+      <screen name="desktop" min="769"/>
+      <!-- Honest note: the live stylesheet switches the navbar at 900px (bottom tab bar below, floating pill above). -->
+      <switch name="navbar" at="900"/>
+    </breakpoints>
+    <noHorizontalScroll enforced="true"/>
+  </meta>
+
+  <!-- Fixed brand tokens. Do not change without the owner's say. -->
+  <tokens>
+    <colors>
+      <color name="ink" hex="#07131F" role="text"/>
+      <color name="signal" hex="#FF9D2E" role="accent, buttons, caret"/>
+      <color name="signal-ink" hex="#B35A00" role="orange icons on light surfaces (4.8:1 on white)"/>
+      <color name="air" hex="#E2E8F0" role="active tab, soft fills"/>
+      <color name="air-2" hex="#F7F9FB" role="page washes"/>
+    </colors>
+    <fonts>
+      <font role="text" family="Neue Montreal" weights="400 500" fallback="system-ui, sans-serif"/>
+      <font role="mono" family="IBM Plex Mono" weights="400" fallback="ui-monospace, monospace"/>
+    </fonts>
+    <spacing unit="px" scale="8 16 24 32 48 64 96" gutter="clamp(24px, 6vw, 72px)"/>
+    <!-- Fluid type: sizes grow with the screen, so no per-breakpoint font overrides are needed. -->
+    <typeScale>
+      <size name="hero" min="56px" max="136px" fluid="true"/>
+      <size name="h1" min="36px" max="56px" fluid="true"/>
+      <size name="h2" min="28px" max="40px" fluid="true"/>
+      <size name="h3" min="22px" max="28px" fluid="true"/>
+      <size name="body-large" min="18px" max="20px" fluid="true"/>
+      <size name="body" min="16px" max="16px" fluid="false"/>
+      <size name="small" min="14px" max="14px" fluid="false"/>
+    </typeScale>
+  </tokens>
+
+  <!-- Touch, media and motion rules that apply everywhere. -->
+  <rules>
+    <touchTarget minimum="44px" wcagMinimum="24px">
+      <!-- Buttons are 48-56px, nav items 44-52px. The carousel dots are 24px (a deliberate small-control exception). -->
+      <exception element="carousel-dots" size="24px"/>
+    </touchTarget>
+    <media maxWidth="100%" height="auto" lazyLoad="below-the-fold"/>
+    <contrast text="4.5:1" ui="3:1" focusRing="ink, 2px, 2px offset"/>
+    <motion respectReducedMotion="true"/>
+    <https forced="true" hsts="63072000"/>
+  </rules>
+
+  <!-- The page frame shared by every page. -->
+  <layout>
+    <header id="top">
+      <!-- Phone: slim logo bar at the top. Desktop: the logo sits inside the floating nav pill instead. -->
+      <logo href="/" label="TWIN home" mobile="visible" desktop="inside-nav"/>
+    </header>
+
+    <navigation id="main-nav" label="Main" type="tab-bar">
+      <!-- Phone and tablet: tab bar fixed to the bottom, in the thumb zone. -->
+      <placement mobile="bottom-fixed" tablet="bottom-fixed" desktop="top-floating-pill"/>
+      <item href="/" label="Home" icon="home" touchTarget="44px"/>
+      <item href="/work" label="Work" icon="briefcase" touchTarget="44px"/>
+      <item href="/story" label="Story" icon="person" touchTarget="44px"/>
+      <item href="/contact" label="Contact" icon="envelope" touchTarget="44px"/>
+      <currentPage style="air background, ink label, signal-ink icon"/>
+    </navigation>
+
+    <footer id="site-foot">
+      <text>&#169; TWIN</text>
+      <link href="/terms" label="Terms"/>
+      <link href="/privacy" label="Privacy Policy"/>
+      <!-- Sits above the bottom tab bar on phones. -->
+    </footer>
+  </layout>
+
+  <pages>
+
+    <page path="/" title="TWIN — Independent Branding Studio in the Philippines" indexed="true">
+      <section id="hero" layout="stack-vertical" align="center">
+        <heading level="1" size="hero" balance="true">Start to look like yourself.</heading>
+        <text role="subhead">Brands built in weeks, not months.</text>
+        <!-- Phone: two buttons side by side, full width. -->
+        <actions layout="row" mobileColumns="2" gap="16px">
+          <button style="primary" href="/work" label="View our works" touchTarget="48px"/>
+          <button style="secondary" href="#services" label="Our services" touchTarget="48px"/>
+        </actions>
+      </section>
+
+      <section id="intro" layout="centered-block">
+        <text role="statement">We're TWIN, an independent branding studio.</text>
+        <!-- Stickers are decorative. Four on desktop, two on phone and tablet, kept clear of the text. -->
+        <decor type="stickers" count-mobile="2" count-desktop="4" ariaHidden="true"/>
+      </section>
+
+      <section id="services" layout="stack-vertical">
+        <heading level="2" size="h2">What we do</heading>
+        <!-- The one component that changes shape: swipe carousel on phone, grid on desktop. -->
+        <grid columns="1" mobileColumns="1" tabletColumns="2" desktopColumns="4" gap="16px">
+          <card href="/services/branding" title="Branding" graphic="folder" touchTarget="full-card"/>
+          <card href="/services/debranding" title="Debranding" graphic="folder" touchTarget="full-card"/>
+          <card href="/services/rebranding" title="Rebranding" graphic="folder" touchTarget="full-card"/>
+          <card href="/services/logo" title="Logo" graphic="folder" touchTarget="full-card"/>
+        </grid>
+        <carousel mobile="snap-scroll" desktop="off" dots="true" dotTouchTarget="24px"/>
+      </section>
+
+      <section id="faq" layout="stack-vertical">
+        <heading level="2" size="h2">FAQs</heading>
+        <accordion rowMinHeight="72px" single-open="false"/>
+      </section>
+    </page>
+
+    <page path="/services/:slug" title="{Service} services for founders and SMEs" indexed="true">
+      <section id="service-detail" layout="stack-vertical"/>
+      <button style="primary" href="/contact?need={Service}" label="Start This Project" touchTarget="56px"/>
+    </page>
+
+    <page path="/contact" title="Let's talk" indexed="true">
+      <!-- Phone: heading above the form. Desktop: heading left, form right. -->
+      <section id="inquiry" layout="stack-vertical" desktopLayout="two-column">
+        <heading level="1" size="h1">Twin, let's talk?</heading>
+        <form method="mailto" action="twinbrand.ph@gmail.com">
+          <!-- 16px minimum text so iOS does not zoom on focus. -->
+          <field name="name" type="text" required="true" minHeight="56px"/>
+          <field name="contact" type="text" required="true" minHeight="56px"/>
+          <field name="company" type="text" required="false" minHeight="56px"/>
+          <choice name="need" mode="multi" options="Branding, Rebranding, Debranding, Logo only, Not sure" minHeight="52px"/>
+          <field name="project" type="textarea" required="false" minHeight="144px"/>
+          <button style="primary" type="submit" label="Submit" touchTarget="56px"/>
+        </form>
+        <dialog id="thanks" modal="true">Thank you. We will reply within 24 hours.</dialog>
+      </section>
+    </page>
+
+    <page path="/privacy" title="Privacy Policy" indexed="true"><section id="legal" layout="prose" maxWidth="44em"/></page>
+    <page path="/terms" title="Terms &amp; Conditions" indexed="true"><section id="legal" layout="prose" maxWidth="44em"/></page>
+    <page path="/work" title="Work" indexed="false" status="locked"><section id="gallery" layout="stack-vertical"/></page>
+    <page path="/story" title="Story" indexed="false" status="coming-soon"><section id="story" layout="centered-block"/></page>
+    <page path="*" title="Page not found" indexed="false" status="404"><section id="not-found" layout="centered-block"/></page>
+  </pages>
+
+</website>
