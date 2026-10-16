@@ -14,7 +14,7 @@ function viewOf(path: string) {
     isProj: /^\/work\/[^/]+$/.test(p),
     isStory: p === "/story",
     isContact: p === "/contact",
-    isPrivacy: p === "/privacy",
+    isPrivacy: p === "/privacy" || p === "/terms",
     isSvc: /^\/services\/[^/]+$/.test(p),
   };
 }
@@ -137,7 +137,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
           {children}
           <footer className="site-foot">
             <span>&copy; {new Date().getFullYear()} TWIN</span>
-            <Link href="/privacy">Privacy Policy</Link>
+            <span className="foot-links"><Link href="/terms">Terms</Link><Link href="/privacy">Privacy Policy</Link></span>
           </footer>
         </main>
       </div>

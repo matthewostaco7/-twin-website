@@ -588,3 +588,4 @@ p{text-wrap:pretty}
 @media(hover:hover){.bc:hover .bc-go svg{stroke:var(--on-signal)}}
 .bc:active .bc-go svg{stroke:var(--on-signal)}
 .f input[type="text"]:focus,.f textarea:focus{border-color:var(--fg)}
+.foot-links{display:flex;gap:var(--s3)}
