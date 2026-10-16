@@ -589,3 +589,8 @@ p{text-wrap:pretty}
 .bc:active .bc-go svg{stroke:var(--on-signal)}
 .f input[type="text"]:focus,.f textarea:focus{border-color:var(--fg)}
 .foot-links{display:flex;gap:var(--s3)}
+
+/* 404 */
+.nf-code{font-family:var(--mono);font-size:var(--fs-mono);letter-spacing:.08em;color:var(--t2)}
+@media(max-width:480px){#view-404 .hero-cta{grid-template-columns:1fr;max-width:260px}}
+#view-404 .hero-sub{max-width:24em;font-size:var(--fs-bodyl);line-height:var(--lh-bodyl);letter-spacing:0;color:var(--t2)}
